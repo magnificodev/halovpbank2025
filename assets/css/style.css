@@ -183,25 +183,18 @@ body {
 .form-group label {
     display: block;
     margin: 0 auto 12px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
     height: 25px;
-}
-
-.form-group label[for='full_name'] {
-    background-image: url('../images/name-label.png');
-    width: 120px;
-}
-
-.form-group label[for='phone'] {
-    background-image: url('../images/phone-label.png');
-    width: 120px;
-}
-
-.form-group label[for='email'] {
-    background-image: url('../images/email-label.png');
-    width: 120px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    background: linear-gradient(to bottom, #ffffff, #cbf0f8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Input styles */

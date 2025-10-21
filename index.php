@@ -14,15 +14,15 @@
                 <div class="form-container">
                     <form id="registrationForm" class="registration-form">
                         <div class="form-group">
-                            <label for="full_name"></label>
+                            <label for="full_name">HỌ TÊN</label>
                             <input type="text" id="full_name" name="full_name" required>
                         </div>
                         <div class="form-group">
-                            <label for="phone"></label>
+                            <label for="phone">SỐ ĐIỆN THOẠI</label>
                             <input type="tel" id="phone" name="phone" required>
                         </div>
                         <div class="form-group">
-                            <label for="email"></label>
+                            <label for="email">EMAIL</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                         <button type="submit" class="join-button">
