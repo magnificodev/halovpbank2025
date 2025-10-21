@@ -52,6 +52,19 @@ class VPBankGame {
         if (form) {
             form.addEventListener('submit', (e) => this.handleRegistration(e));
         }
+
+        // Auto-convert +84 to 0 for phone input
+        const phoneInput = document.getElementById('phone');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', (e) => {
+                let value = e.target.value;
+                if (value.startsWith('+84')) {
+                    // Convert +84 to 0
+                    value = '0' + value.substring(3);
+                    e.target.value = value;
+                }
+            });
+        }
     }
 
     async handleRegistration(e) {
