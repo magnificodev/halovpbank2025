@@ -186,8 +186,9 @@ body {
     color: transparent;
     border: none;
     position: relative;
-    min-height: 60px;
+    min-height: 144px; /* 60px * 2.4 = 144px */
     background-size: contain;
+    padding: 36px 48px; /* 15px * 2.4 = 36px, 20px * 2.4 = 48px */
 }
 
 .scan-button {
@@ -571,11 +572,12 @@ body {
     }
 
     .join-button {
-        padding: 15px;
-        font-size: 16px;
+        padding: 36px; /* 15px * 2.4 = 36px */
+        font-size: 38px; /* 16px * 2.4 = 38.4px, rounded to 38px */
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+        min-height: 144px; /* 60px * 2.4 = 144px */
     }
 
     .scan-button,
