@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <input type="email" id="email" name="email" placeholder="EMAIL" required>
                         </div>
-                        <button type="submit" class="join-button">THAM GIA</button>
+                        <button type="submit" class="join-button"></button>
                     </form>
                 </div>
 
