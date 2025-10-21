@@ -48,6 +48,13 @@ class VPBankGame {
 
     // Registration Page
     initRegistration() {
+        // Check if user is already registered
+        if (this.userToken) {
+            // Redirect to game page if already registered
+            window.location.href = `game.php?token=${this.userToken}`;
+            return;
+        }
+
         const form = document.getElementById('registrationForm');
         if (form) {
             form.addEventListener('submit', (e) => this.handleRegistration(e));
