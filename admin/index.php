@@ -75,7 +75,12 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
 </head>
 <body>
     <header>
-        <div class="logo">🎮 VPBank Admin</div>
+        <div class="logo">
+            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            VPBank Admin
+        </div>
         <div class="user-info">
             <button id="themeToggle" class="toggle">🌙 Dark</button>
             <div class="user-avatar">A</div>
@@ -124,22 +129,42 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         <main class="content">
             <div class="grid">
         <div class="card">
-            <h3>👥 Tổng người chơi</h3>
+            <h3>
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                Tổng người chơi
+            </h3>
             <div class="number"><?php echo number_format($totalUsers); ?></div>
             <div class="label">Đã đăng ký</div>
         </div>
         <div class="card">
-            <h3>✅ Đủ điều kiện</h3>
+            <h3>
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Đủ điều kiện
+            </h3>
             <div class="number"><?php echo number_format($completed3); ?></div>
             <div class="label">Hoàn thành ≥3 trạm</div>
         </div>
         <div class="card">
-            <h3>🎁 Quà đã phát</h3>
+            <h3>
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                </svg>
+                Quà đã phát
+            </h3>
             <div class="number"><?php echo number_format($giftIssued); ?></div>
             <div class="label">Mã quà đã claim</div>
         </div>
         <div class="card">
-            <h3>📱 Quét hôm nay</h3>
+            <h3>
+                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                </svg>
+                Quét hôm nay
+            </h3>
             <div class="number"><?php echo number_format($scansToday); ?></div>
             <div class="label">Lượt quét QR</div>
         </div>

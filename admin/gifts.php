@@ -97,7 +97,12 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
 </head>
 <body>
     <header>
-        <div class="logo">🎁 Mã quà tặng</div>
+        <div class="logo">
+            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+            </svg>
+            Mã quà tặng
+        </div>
         <div>
             <a href="index.php">⬅ Dashboard</a>
             <a href="logout.php" class="logout-btn">Đăng xuất</a>
@@ -136,8 +141,18 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>🎁 Mã quà</th>
-                    <th>📊 Trạng thái</th>
+                    <th>
+                        <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                        </svg>
+                        Mã quà
+                    </th>
+                    <th>
+                        <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                        Trạng thái
+                    </th>
                     <th>👤 Người nhận</th>
                     <th>📅 Thời gian</th>
                 </tr>
@@ -149,7 +164,12 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
                     <td><span class="gift-code"><?php echo htmlspecialchars($g['code']); ?></span></td>
                     <td>
                         <?php if ($claimed): ?>
-                            <span class="badge ok">✅ ĐÃ PHÁT</span>
+                            <span class="badge ok">
+                                <svg class="w-3 h-3 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                ĐÃ PHÁT
+                            </span>
                         <?php else: ?>
                             <span class="badge pending">⏳ CHƯA PHÁT</span>
                         <?php endif; ?>
