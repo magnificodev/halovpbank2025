@@ -146,7 +146,7 @@ if ($q) {
         <form class="search-box">
             <input type="text" name="q" placeholder="🔍 Tìm tên, số điện thoại, email..." value="<?php echo htmlspecialchars($q); ?>">
             <button type="submit" class="search-btn">Tìm kiếm</button>
-            <a href="?export=csv<?php echo $q ? '&q=' . urlencode($q) : ''; ?>" class="search-btn" style="text-decoration:none;display:inline-block;margin-left:10px;">📥 Xuất CSV</a>
+            <a href="?export=csv<?php echo $q ? '&q=' . urlencode($q) : ''; ?>" class="search-btn" style="text-decoration:none;display:inline-block;">📥 Xuất CSV</a>
         </form>
         <table>
             <thead>
