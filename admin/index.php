@@ -46,7 +46,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         .btn-danger{background:#ef4444;color:#fff}
         .btn-danger:hover{background:#dc2626}
         /* Layout with sidebar */
-        .layout{display:flex;min-height:calc(100vh - 58px)}
+        .layout{display:flex;min-height:calc(100vh - 59px)}
         .sidebar{width:240px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
         .nav-group{display:flex;flex-direction:column;gap:8px}
         .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827}
