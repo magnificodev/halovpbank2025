@@ -34,7 +34,8 @@ body {
 .mobile-frame {
     width: 360px;
     height: 640px;
-    background: url('../images/background-1.png') center/cover no-repeat;
+    background: url('../images/background-1.png') center/contain no-repeat;
+    background-color: #000; /* Letterboxing color */
     border-radius: 0;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     overflow: hidden;
@@ -81,7 +82,8 @@ body {
         border-radius: 0;
         box-shadow: none;
         min-height: 100vh;
-        background: url('../images/background-1.png') center/cover no-repeat;
+        background: url('../images/background-1.png') center/contain no-repeat;
+        background-color: #000; /* Letterboxing color */
     }
 }
 
