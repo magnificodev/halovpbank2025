@@ -38,7 +38,9 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827}
         .nav-link:hover{background:#f3f4f6}
         .nav-link.active{border-color:#059669;background:#ecfdf5;color:#065f46}
-        .nav-link svg{width:20px;height:20px;flex-shrink:0}
+        .nav-link svg{width:20px;height:20px;flex-shrink:0;color:inherit}
+        .card h3 svg{width:16px;height:16px;color:#6b7280;margin-right:6px}
+        .logo svg{width:20px;height:20px;color:#059669}
         .content{flex:1;padding:16px 24px}
         .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:1200px}
         .card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;transition:box-shadow .2s}
@@ -59,6 +61,8 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         body.dark .nav-link{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
         body.dark .nav-link:hover{background:#111827}
         body.dark .nav-link.active{background:#0f291f;border-color:#065f46;color:#a7f3d0}
+        body.dark .card h3 svg{color:#94a3b8}
+        body.dark .logo svg{color:#a7f3d0}
         body.dark .card{background:#111827;border-color:#1f2937}
         body.dark .card h3{color:#94a3b8}
         body.dark .card .number{color:#e5e7eb}
@@ -130,7 +134,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
             <div class="grid">
         <div class="card">
             <h3>
-                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                 </svg>
                 Tổng người chơi
@@ -140,7 +144,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         </div>
         <div class="card">
             <h3>
-                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
                 Đủ điều kiện
@@ -150,7 +154,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         </div>
         <div class="card">
             <h3>
-                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
                 </svg>
                 Quà đã phát
@@ -160,7 +164,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         </div>
         <div class="card">
             <h3>
-                <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                 </svg>
                 Quét hôm nay
