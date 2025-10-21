@@ -250,15 +250,21 @@ $totalPages = ceil($totalCount / $perPage);
         <main class="content">
             <div class="stats">
                 <div class="stat-card">
-                    <div class="stat-number"><?php echo count($logs); ?></div>
+                    <div class="stat-number"><?php echo number_format((int)$totalCount); ?></div>
                     <div class="stat-label">Tổng lượt quét</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number"><?php echo count(array_unique(array_column($logs, 'user_id'))); ?></div>
+                    <div class="stat-number"><?php
+                        $distinctUsersRow = $db->fetch("SELECT COUNT(DISTINCT user_id) AS c FROM scan_logs");
+                        echo number_format($distinctUsersRow ? (int)$distinctUsersRow['c'] : 0);
+                    ?></div>
                     <div class="stat-label">Người dùng quét</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number"><?php echo count(array_unique(array_column($logs, 'station_id'))); ?></div>
+                    <div class="stat-number"><?php
+                        $distinctStationsRow = $db->fetch("SELECT COUNT(DISTINCT station_id) AS c FROM scan_logs");
+                        echo number_format($distinctStationsRow ? (int)$distinctStationsRow['c'] : 0);
+                    ?></div>
                     <div class="stat-label">Trạm được quét</div>
                 </div>
             </div>
@@ -337,10 +343,6 @@ $totalPages = ceil($totalCount / $perPage);
         <!-- Pagination -->
         <?php if ($totalPages > 1): ?>
         <div class="pagination">
-            <span class="pagination-info">
-                Hiển thị <?php echo (($page - 1) * $perPage) + 1; ?>-<?php echo min($page * $perPage, $totalCount); ?>
-                trong tổng số <?php echo number_format($totalCount); ?> lượt quét
-            </span>
 
             <?php if ($page > 1): ?>
                 <a href="?page=1">«</a>

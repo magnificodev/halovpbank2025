@@ -247,15 +247,19 @@ $totalPages = ceil($totalCount / $perPage);
         <main class="content">
             <div class="stats">
                 <div class="stat-card">
-                    <div class="stat-number"><?php echo count($gifts); ?></div>
+                    <div class="stat-number"><?php echo number_format((int)$totalCount); ?></div>
                     <div class="stat-label">Tổng mã quà</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number"><?php echo count(array_filter($gifts, fn($g) => !empty($g['user_id']))); ?></div>
+                    <div class="stat-number"><?php
+                        $issuedRow = $db->fetch("SELECT COUNT(*) AS c FROM gift_codes WHERE user_id IS NOT NULL");
+                        $issued = $issuedRow ? (int)$issuedRow['c'] : 0;
+                        echo number_format($issued);
+                    ?></div>
                     <div class="stat-label">Đã phát</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number"><?php echo count(array_filter($gifts, fn($g) => empty($g['user_id']))); ?></div>
+                    <div class="stat-number"><?php echo number_format((int)$totalCount - $issued); ?></div>
                     <div class="stat-label">Chưa phát</div>
                 </div>
             </div>

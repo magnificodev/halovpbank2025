@@ -288,19 +288,19 @@ $totalPages = ceil($totalCount / $perPage);
             </div>
         </aside>
         <main class="content">
-             <div class="stats">
-                 <div class="stat-card">
-                     <div class="stat-number"><?php echo count($users); ?></div>
-                     <div class="stat-label">Người dùng hiện tại</div>
-                 </div>
-                 <div class="stat-card">
-                     <div class="stat-number"><?php
-                         $completed3Result = $db->fetch("SELECT COUNT(DISTINCT user_id) AS c FROM user_progress GROUP BY user_id HAVING COUNT(*) >= 3");
-                         echo $completed3Result ? (int)$completed3Result['c'] : 0;
-                     ?></div>
-                     <div class="stat-label">Đã hoàn thành</div>
-                 </div>
-             </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number"><?php echo number_format((int)$totalCount); ?></div>
+                    <div class="stat-label">Người dùng hiện có</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><?php
+                        $completed3CountRow = $db->fetch("SELECT COUNT(*) AS c FROM (SELECT user_id FROM user_progress GROUP BY user_id HAVING COUNT(*) >= 3) t");
+                        echo number_format($completed3CountRow ? (int)$completed3CountRow['c'] : 0);
+                    ?></div>
+                    <div class="stat-label">Đã hoàn thành ≥3</div>
+                </div>
+            </div>
          <form class="search-box">
              <div class="search-container">
                  <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -377,10 +377,6 @@ $totalPages = ceil($totalCount / $perPage);
         <!-- Pagination -->
         <?php if ($totalPages > 1): ?>
         <div class="pagination">
-            <span class="pagination-info">
-                Hiển thị <?php echo (($page - 1) * $perPage) + 1; ?>-<?php echo min($page * $perPage, $totalCount); ?>
-                trong tổng số <?php echo number_format($totalCount); ?> người dùng
-            </span>
 
             <?php if ($page > 1): ?>
                 <a href="?page=1<?php echo $q ? '&q=' . urlencode($q) : ''; ?>">«</a>
