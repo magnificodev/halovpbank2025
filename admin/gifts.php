@@ -88,9 +88,9 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
         .toolbar{display:flex;gap:10px;align-items:center;justify-content:flex-start;margin:0 0 12px}
         .csv-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
         .csv-btn:hover{background:#059669}
-        table{width:100%;border-collapse:separate;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
-        th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px;border:1px solid #e5e7eb}
-        td{padding:12px;border:1px solid #e5e7eb;transition:background .2s ease;vertical-align:middle}
+        table{width:100%;border-collapse:separate;background:#ffffff;border-radius:12px;overflow:hidden}
+        th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
+        td{padding:12px;transition:background .2s ease;vertical-align:middle}
         tr:hover td{background:#f9fafb}
         .ok{background:#10b981;color:#fff}
         .pending{background:#ef4444;color:#fff}
@@ -98,7 +98,7 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
         .user-id{color:#059669;font-weight:600}
         .date{color:#6b7280;font-size:12px}
         .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
-        .stat-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;text-align:center}
+        .stat-card{background:#ffffff;border-radius:12px;padding:16px;text-align:center}
         .stat-card h3{margin:0 0 8px;font-size:14px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;justify-content:center;gap:6px}
         .stat-card h3 svg{margin-right:0}
         .stat-number{font-size:20px;font-weight:700;color:#111827;margin-bottom:4px}

@@ -99,9 +99,9 @@ if ($q) {
          .csv-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;cursor:pointer;transition:background .2s ease;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
          .csv-btn:hover{background:#059669}
          .search-status{color:#6b7280;font-size:12px;margin-bottom:16px;text-align:left}
-        table{width:100%;border-collapse:separate;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
-        th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px;border:1px solid #e5e7eb}
-        td{padding:12px;border:1px solid #e5e7eb;transition:background .2s ease}
+        table{width:100%;border-collapse:separate;background:#ffffff;border-radius:12px;overflow:hidden}
+        th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
+        td{padding:12px;transition:background .2s ease}
         tr:hover td{background:#f9fafb}
          .user-id{color:#059669;font-weight:600;font-size:14px}
          .user-name{font-weight:600;color:#111827;font-size:14px}
@@ -109,7 +109,7 @@ if ($q) {
          .user-email{color:#6b7280;font-size:13px;word-break:break-all}
          .user-date{color:#6b7280;font-size:12px;font-weight:500}
         .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
-        .stat-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;text-align:center}
+        .stat-card{background:#ffffff;border-radius:12px;padding:16px;text-align:center}
         .stat-card h3{margin:0 0 8px;font-size:14px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;justify-content:center;gap:6px}
         .stat-card h3 svg{margin-right:0}
         .stat-number{font-size:20px;font-weight:700;color:#111827;margin-bottom:4px}
@@ -122,15 +122,14 @@ if ($q) {
         body.light a:hover{color:#047857;background:#f0fdf4;border-color:#059669}
         body.light .logout-btn{background:#065f46;border-color:#059669;color:#ffffff !important}
         body.light .logout-btn:hover{background:#047857;color:#ffffff !important}
-        body.light table{background:#ffffff;border-color:#e2e8f0}
+        body.light table{background:#ffffff}
         body.light th{background:#f1f5f9;color:#374151}
-        body.light td{border-bottom:1px solid #e5e7eb}
         body.light .user-id{color:#059669}
         body.light .user-name{color:#1e293b}
         body.light .user-phone{color:#6b7280}
         body.light .user-email{color:#6b7280}
         body.light .user-date{color:#6b7280}
-        body.light .stat-card{background:#ffffff;border-color:#e2e8f0}
+        body.light .stat-card{background:#ffffff}
         body.light .stat-number{color:#059669}
         body.light .stat-label{color:#6b7280}
          body.light .search-input{background:#ffffff;color:#1e293b;border-color:#d1d5db}
