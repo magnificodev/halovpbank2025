@@ -77,7 +77,7 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
         .btn-danger:hover{background:#dc2626}
         /* Layout with sidebar */
         .layout{display:flex;min-height:calc(100vh - 58px)}
-        .sidebar{width:220px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
+        .sidebar{width:240px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
         .nav-group{display:flex;flex-direction:column;gap:8px}
         .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827}
         .nav-link:hover{background:#f3f4f6}
@@ -88,9 +88,9 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
         .toolbar{display:flex;gap:10px;align-items:center;justify-content:flex-start;margin:0 0 12px}
         .csv-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
         .csv-btn:hover{background:#059669}
-        table{width:100%;border-collapse:collapse;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
-        th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
-        td{padding:12px;border-bottom:1px solid #f1f5f9;transition:background .2s ease;vertical-align:middle}
+        table{width:100%;border-collapse:separate;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
+        th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px;border:1px solid #e5e7eb}
+        td{padding:12px;border:1px solid #e5e7eb;transition:background .2s ease;vertical-align:middle}
         tr:hover td{background:#f9fafb}
         .ok{background:#10b981;color:#fff}
         .pending{background:#ef4444;color:#fff}
@@ -126,9 +126,15 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
         body.dark .stat-number{color:#e5e7eb}
         body.dark .stat-label{color:#94a3b8}
         @media (max-width: 768px){
+            .layout{flex-direction:column}
+            .sidebar{width:100%;border-right:none;border-bottom:1px solid #e5e7eb}
+            .content{padding:20px}
             .wrap{padding:20px}
             table{font-size:14px}
             th,td{padding:10px}
+        }
+        @media (min-width: 769px){
+            .sidebar{width:240px}
         }
     </style>
 </head>
@@ -152,10 +158,8 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
     <script>
         (function(){
             const key='admin_theme';
-            if((localStorage.getItem(key)||'dark')==='light') {
-                document.body.classList.add('light');
-                const mobileFrame = document.querySelector('.mobile-frame');
-                if (mobileFrame) mobileFrame.classList.add('light');
+            if((localStorage.getItem(key)||'light')==='dark') {
+                document.body.classList.add('dark');
             }
         })();
     </script>
