@@ -53,7 +53,7 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         .user-info{display:flex;align-items:center;gap:12px}
         a{color:var(--accent-600);text-decoration:none}
         a:hover{color:var(--accent)}
-        .logout-btn{padding:12px 20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:14px;font-weight:500;cursor:pointer;border:none}
+        .logout-btn{padding:10px 20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:flex;align-items:center;gap:6px;text-decoration:none;font-size:14px;font-weight:500;cursor:pointer;border:none}
         .logout-btn:hover{background:var(--accent-600)}
         /* Logout Dialog */
         .logout-dialog{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center}
