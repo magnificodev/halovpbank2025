@@ -82,10 +82,19 @@ class VPBankGame {
             return;
         }
 
-        const submitBtn = e.target.querySelector('button[type="submit"]');
+        // Hide form and show loading
+        const form = e.target;
+        const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
+        
+        // Hide form inputs
+        const inputs = form.querySelectorAll('.form-group');
+        inputs.forEach(input => input.style.display = 'none');
+        
+        // Show loading state
         submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
         submitBtn.disabled = true;
+        submitBtn.style.marginTop = '20px';
 
         try {
             const response = await fetch('api/register.php', {
@@ -103,21 +112,47 @@ class VPBankGame {
                 localStorage.setItem('vpbank_user_token', this.userToken);
 
                 // Show success message
-                this.showMessage('Đăng ký thành công!', 'success');
+                submitBtn.innerHTML = '<span class="success">✓</span> Đăng ký thành công!';
+                submitBtn.style.background = '#10b981';
+                submitBtn.style.color = 'white';
 
                 // Redirect to game page
                 setTimeout(() => {
                     window.location.href = `game.php?token=${this.userToken}`;
-                }, 1500);
+                }, 1000);
             } else {
-                this.showMessage(result.error || 'Có lỗi xảy ra', 'error');
+                // Show error and restore form
+                submitBtn.innerHTML = '<span class="error">✗</span> ' + (result.error || 'Có lỗi xảy ra');
+                submitBtn.style.background = '#ef4444';
+                submitBtn.style.color = 'white';
+                
+                // Restore form after 2 seconds
+                setTimeout(() => {
+                    inputs.forEach(input => input.style.display = 'block');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = '';
+                    submitBtn.style.color = '';
+                    submitBtn.style.marginTop = '';
+                }, 2000);
             }
         } catch (error) {
             console.error('Registration error:', error);
-            this.showMessage('Có lỗi xảy ra, vui lòng thử lại', 'error');
-        } finally {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
+            
+            // Show error and restore form
+            submitBtn.innerHTML = '<span class="error">✗</span> Có lỗi xảy ra, vui lòng thử lại';
+            submitBtn.style.background = '#ef4444';
+            submitBtn.style.color = 'white';
+            
+            // Restore form after 2 seconds
+            setTimeout(() => {
+                inputs.forEach(input => input.style.display = 'block');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.background = '';
+                submitBtn.style.color = '';
+                submitBtn.style.marginTop = '';
+            }, 2000);
         }
     }
 

@@ -268,6 +268,50 @@ body {
     line-height: 1.2;
 }
 
+/* Loading and success states */
+.loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+}
+
+.success {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    border-radius: 50%;
+    color: #10b981;
+    text-align: center;
+    line-height: 16px;
+    font-size: 12px;
+    margin-right: 8px;
+}
+
+.error {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    border-radius: 50%;
+    color: #ef4444;
+    text-align: center;
+    line-height: 16px;
+    font-size: 12px;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .form-group .input.error {
     /* No border or shadow for error state */
 }
