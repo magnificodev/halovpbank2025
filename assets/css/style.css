@@ -10,6 +10,9 @@
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d3748 100%);
+    background-image: url('../images/background-pattern.svg');
+    background-size: cover;
+    background-attachment: fixed;
     color: white;
     min-height: 100vh;
     overflow-x: hidden;
@@ -34,6 +37,7 @@ body {
     height: 60px;
     width: auto;
     margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px rgba(220, 20, 60, 0.5));
 }
 
 .main-title {
@@ -186,12 +190,15 @@ body {
     justify-content: center;
     font-weight: bold;
     font-size: 16px;
+    background: linear-gradient(45deg, #00ff88, #00cc6a);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
 }
 
 .station-item:not(.completed) .station-icon {
     background: transparent;
     border: 2px solid #00ff88;
     color: #00ff88;
+    box-shadow: 0 0 8px rgba(0, 255, 136, 0.2);
 }
 
 .station-item.completed .station-icon {

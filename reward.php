@@ -11,7 +11,7 @@
         <!-- Header -->
         <header class="header">
             <div class="logo">
-                <img src="assets/images/vpbank-logo.png" alt="VPBank" class="logo-img">
+                <img src="assets/images/vpbank-logo.svg" alt="VPBank" class="logo-img">
             </div>
             <h1 class="main-title">CODE CỦA BẠN LÀ</h1>
         </header>

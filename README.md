@@ -6,12 +6,12 @@ A web-based game where participants scan QR codes at different stations to compl
 
 ## 🚀 Features
 
-- **📱 Mobile-First Design**: Responsive design optimized for mobile devices
-- **📷 QR Code Scanning**: Camera-based QR scanning with external app support
-- **🔄 Session Persistence**: Maintains user progress across sessions
-- **🎯 Station Tracking**: Track completion of 5 different stations
-- **🎁 Reward System**: Random gift code generation after completing 3+ stations
-- **🔒 Security**: Verification hashes prevent fake QR scanning
+-   **📱 Mobile-First Design**: Responsive design optimized for mobile devices
+-   **📷 QR Code Scanning**: Camera-based QR scanning with external app support
+-   **🔄 Session Persistence**: Maintains user progress across sessions
+-   **🎯 Station Tracking**: Track completion of 5 different stations
+-   **🎁 Reward System**: Random gift code generation after completing 3+ stations
+-   **🔒 Security**: Verification hashes prevent fake QR scanning
 
 ## 🎮 Game Flow
 
@@ -23,18 +23,18 @@ A web-based game where participants scan QR codes at different stations to compl
 
 ## 🛠 Tech Stack
 
-- **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
-- **Backend**: PHP 7.4+
-- **Database**: MySQL
-- **QR Scanner**: html5-qrcode library
-- **Hosting**: DirectAdmin compatible
+-   **Frontend**: HTML5, CSS3, JavaScript (Vanilla)
+-   **Backend**: PHP 7.4+
+-   **Database**: MySQL
+-   **QR Scanner**: html5-qrcode library
+-   **Hosting**: DirectAdmin compatible
 
 ## 📁 Project Structure
 
 ```
 /
 ├── index.php              # Registration page
-├── game.php               # Main game page  
+├── game.php               # Main game page
 ├── reward.php             # Reward display page
 ├── config.php             # Database configuration
 ├── database_schema.sql    # Database setup
@@ -54,12 +54,14 @@ A web-based game where participants scan QR codes at different stations to compl
 ## 🚀 Quick Start
 
 ### 1. Database Setup
+
 ```sql
 -- Run database_schema.sql to create tables
 mysql -u username -p < database_schema.sql
 ```
 
 ### 2. Configuration
+
 ```php
 // Update config.php with your database credentials
 define('DB_HOST', 'localhost');
@@ -69,41 +71,45 @@ define('DB_PASS', 'your_db_password');
 ```
 
 ### 3. Generate QR Codes
+
 ```bash
 # Update domain in generate_qr_codes.php
 php generate_qr_codes.php
 ```
 
 ### 4. Test Locally
-- Start local PHP server: `php -S localhost:8000`
-- Open `http://localhost:8000`
-- Test registration → QR scanning → reward flow
+
+-   Start local PHP server: `php -S localhost:8000`
+-   Open `http://localhost:8000`
+-   Test registration → QR scanning → reward flow
 
 ## 📱 Mobile Testing
 
-- **Camera Access**: Requires HTTPS in production
-- **QR Apps**: Compatible with Zalo, Google Lens, etc.
-- **Responsive**: Optimized for 320px - 1024px screens
+-   **Camera Access**: Requires HTTPS in production
+-   **QR Apps**: Compatible with Zalo, Google Lens, etc.
+-   **Responsive**: Optimized for 320px - 1024px screens
 
 ## 🔧 Development
 
 ### Adding New Stations
+
 1. Update `STATIONS` array in `config.php`
 2. Add station description in `main.js`
 3. Generate new QR code with `generate_qr_codes.php`
 
 ### Customizing UI
-- Edit `assets/css/style.css` for styling
-- Replace placeholder images in `assets/images/`
-- Update station descriptions in JavaScript
+
+-   Edit `assets/css/style.css` for styling
+-   Replace placeholder images in `assets/images/`
+-   Update station descriptions in JavaScript
 
 ## 📋 TODO
 
-- [ ] Extract assets from PSD file
-- [ ] Add admin panel for monitoring
-- [ ] Implement analytics tracking
-- [ ] Add more gift codes
-- [ ] Optimize for production deployment
+-   [ ] Extract assets from PSD file
+-   [ ] Add admin panel for monitoring
+-   [ ] Implement analytics tracking
+-   [ ] Add more gift codes
+-   [ ] Optimize for production deployment
 
 ## 🤝 Contributing
 
