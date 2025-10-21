@@ -253,8 +253,11 @@ if ($q) {
                      <div class="stat-label">Người dùng hiện tại</div>
                  </div>
                  <div class="stat-card">
-                     <div class="stat-number"><?php echo $q ? '🔍' : '📊'; ?></div>
-                     <div class="stat-label"><?php echo $q ? 'Đang tìm kiếm' : 'Tổng quan'; ?></div>
+                     <div class="stat-number"><?php
+                         $completed3Result = $db->fetch("SELECT COUNT(DISTINCT user_id) AS c FROM user_progress GROUP BY user_id HAVING COUNT(*) >= 3");
+                         echo $completed3Result ? (int)$completed3Result['c'] : 0;
+                     ?></div>
+                     <div class="stat-label">Đã hoàn thành</div>
                  </div>
              </div>
          <form class="search-box">
