@@ -25,11 +25,10 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
         .logo{font-size:18px;font-weight:700;color:#111827}
         .user-info{display:flex;align-items:center;gap:12px}
-        .user-avatar{width:36px;height:36px;border-radius:50%;background:#10b981;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
         a{color:#059669;text-decoration:none}
         a:hover{color:#10b981}
-        .toggle{padding:8px 12px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer}
-        .logout-btn{padding:8px 14px;border-radius:10px;background:#059669;border:1px solid #059669;color:#fff;display:inline-block;margin-left:10px}
+        .toggle{padding:8px 12px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:14px}
+        .logout-btn{padding:8px 14px;border-radius:10px;background:#059669;border:1px solid #059669;color:#fff;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600}
         .logout-btn:hover{background:#10b981}
         /* Layout with sidebar */
         .layout{display:flex;min-height:calc(100vh - 58px)}
@@ -88,12 +87,18 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
             VPBank Admin
         </div>
         <div class="user-info">
-            <button id="themeToggle" class="toggle">🌙 Dark</button>
-            <div class="user-avatar">A</div>
-            <div>
-                <div style="font-size:14px;color:#00ff88"><?php echo htmlspecialchars($_SESSION['admin_username']); ?></div>
-                <a href="logout.php" class="logout-btn">Đăng xuất</a>
-            </div>
+            <button id="themeToggle" class="toggle">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                </svg>
+                Dark
+            </button>
+            <a href="logout.php" class="logout-btn">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;margin-right:6px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+                Đăng xuất
+            </a>
         </div>
     </header>
     <div class="layout">
@@ -187,7 +192,12 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
                 if (mobileFrame) mobileFrame.classList.add('light');
             }
             const btn=document.getElementById('themeToggle');
-            function render(){btn.textContent=document.body.classList.contains('light')?'☀️ Light':'🌙 Dark';}
+            function render(){
+                const isLight = document.body.classList.contains('light');
+                btn.innerHTML = isLight ? 
+                    '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg> Light' :
+                    '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg> Dark';
+            }
             render();
             btn.addEventListener('click',()=>{
                 document.body.classList.toggle('light');
