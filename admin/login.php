@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .login .form-group input{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;background:#ffffff;color:var(--text);font-size:14px;appearance:none;box-shadow:none !important;text-align:left;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
         .login .form-group input::placeholder{font-size:13px;text-align:left;font-style:italic;font-weight:400;color:var(--muted);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
         .login .form-group input:focus{outline:none;border-color:var(--accent-600);box-shadow:0 0 0 2px rgba(16,185,129,.15) !important}
-        button{width:100%;padding:12px 14px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;transition:background .2s,opacity .2s;box-shadow:none;font-size:14px;line-height:1;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+        button{width:100%;padding:12px 14px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;transition:background .2s,opacity .2s;box-shadow:none;font-size:14px;line-height:1;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
         button:hover{background:var(--accent-600)}
         button:active{opacity:.9}
         /* Dark mode */
