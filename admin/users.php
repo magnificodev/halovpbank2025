@@ -64,7 +64,7 @@ if ($q) {
         .user-info{display:flex;align-items:center;gap:12px}
         a{color:var(--accent-600);text-decoration:none}
         a:hover{color:var(--accent)}
-        .logout-btn{padding:8px 14px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;border:none}
+        .logout-btn{padding:12px 20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:14px;font-weight:500;cursor:pointer;border:none}
         .logout-btn:hover{background:var(--accent-600)}
         /* Logout Dialog */
         .logout-dialog{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center}
@@ -75,7 +75,7 @@ if ($q) {
         .dialog-title{font-size:18px;font-weight:600;color:#111827}
         .dialog-message{color:#6b7280;margin-bottom:24px;line-height:1.5}
         .dialog-actions{display:flex;gap:12px;justify-content:flex-end}
-        .btn{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s}
+        .btn{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;border:none;transition:all 0.2s}
         .btn-secondary{background:#f3f4f6;color:#374151;border:1px solid #d1d5db}
         .btn-secondary:hover{background:#e5e7eb}
         .btn-danger{background:#ef4444;color:#fff}
