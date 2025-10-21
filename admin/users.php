@@ -187,6 +187,7 @@ $totalPages = ceil($totalCount / $perPage);
          body.dark .search-input::placeholder{color:#94a3b8}
          body.dark .csv-btn{background:#059669;border-color:#059669;color:#ffffff}
          body.dark .csv-btn:hover{background:#10b981;color:#ffffff}
+         body.dark tr:hover td{background:#1f2937}
         /* Dark mode sidebar */
         body.dark .sidebar{background:#0b1220;border-right:1px solid #1f2937}
         body.dark .nav-link{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
