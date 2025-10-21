@@ -62,9 +62,18 @@ if ($q) {
         .logo{font-size:18px;font-weight:600;color:#111827}
         a{color:#059669;text-decoration:none;transition:color .2s ease;padding:8px 12px;border-radius:10px;background:#ffffff;border:1px solid #e5e7eb}
         a:hover{color:#10b981;background:#f3f4f6}
-        .logout-btn{padding:10px 18px;border-radius:24px;background:linear-gradient(45deg,#0ea5a3,#0b7a6e);border:1px solid rgba(14,165,163,.6);color:#fff;box-shadow:0 6px 14px rgba(14,165,163,.25)}
-        .logout-btn:hover{background:linear-gradient(45deg,#0b7a6e,#075e57);border-color:#0ea5a3;color:#fff}
-        .wrap{padding:16px 24px;max-width:1200px;margin:0 auto}
+        .logout-btn{padding:8px 14px;border-radius:10px;background:#059669;border:1px solid #059669;color:#fff}
+        .logout-btn:hover{background:#10b981}
+        /* Layout with sidebar */
+        .layout{display:flex;min-height:calc(100vh - 58px)}
+        .sidebar{width:220px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
+        .nav-group{display:flex;flex-direction:column;gap:8px}
+        .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827}
+        .nav-link:hover{background:#f3f4f6}
+        .nav-link.active{border-color:#059669;background:#ecfdf5;color:#065f46}
+        .nav-link svg{width:20px;height:20px;flex-shrink:0;color:inherit}
+        .content{flex:1;padding:16px 24px}
+        .wrap{padding:0;max-width:none;margin:0}
         .search-box{margin-bottom:30px;display:flex;gap:15px;align-items:center}
         input{padding:10px 14px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827;width:300px;font-size:14px}
         input:focus{outline:none;border-color:#059669;box-shadow:0 0 0 3px rgba(16,185,129,.15)}
@@ -129,8 +138,15 @@ if ($q) {
         body.dark input::placeholder{color:#94a3b8}
         body.dark .search-btn{background:#059669;border-color:#059669}
         body.dark .search-btn:hover{background:#10b981}
+        /* Dark mode sidebar */
+        body.dark .sidebar{background:#0b1220;border-right:1px solid #1f2937}
+        body.dark .nav-link{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
+        body.dark .nav-link:hover{background:#111827}
+        body.dark .nav-link.active{background:#0f291f;border-color:#065f46;color:#a7f3d0}
         @media (max-width: 768px){
-            .wrap{padding:20px}
+            .layout{flex-direction:column}
+            .sidebar{width:100%;border-right:none;border-bottom:1px solid #e5e7eb}
+            .content{padding:20px}
             .search-box{flex-direction:column;align-items:stretch}
             input{width:100%}
             table{font-size:14px}
@@ -141,13 +157,12 @@ if ($q) {
 <body>
     <header>
         <div class="logo">
-            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
             </svg>
-            Người chơi
+            VPBank Admin
         </div>
         <div>
-            <a href="index.php">⬅ Dashboard</a>
             <a href="logout.php" class="logout-btn">Đăng xuất</a>
         </div>
     </header>
@@ -159,17 +174,53 @@ if ($q) {
             }
         })();
     </script>
-    <div class="wrap">
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-number"><?php echo count($users); ?></div>
-                <div class="stat-label">Kết quả tìm kiếm</div>
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="nav-group">
+                <a class="nav-link" href="index.php">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"></path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a class="nav-link active" href="users.php">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                    </svg>
+                    Người chơi
+                </a>
+                <a class="nav-link" href="gifts.php">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                    </svg>
+                    Mã quà
+                </a>
+                <a class="nav-link" href="logs.php">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    Log quét
+                </a>
+                <a class="nav-link" href="logout.php">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                    </svg>
+                    Đăng xuất
+                </a>
             </div>
-            <div class="stat-card">
-                <div class="stat-number"><?php echo $q ? '🔍' : '📋'; ?></div>
-                <div class="stat-label"><?php echo $q ? 'Đang tìm kiếm' : 'Tất cả'; ?></div>
+        </aside>
+        <main class="content">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number"><?php echo count($users); ?></div>
+                    <div class="stat-label">Kết quả tìm kiếm</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number"><?php echo $q ? '🔍' : '📋'; ?></div>
+                    <div class="stat-label"><?php echo $q ? 'Đang tìm kiếm' : 'Tất cả'; ?></div>
+                </div>
             </div>
-        </div>
         <form class="search-box">
             <input type="text" name="q" placeholder="🔍 Tìm tên, số điện thoại, email..." value="<?php echo htmlspecialchars($q); ?>">
             <button type="submit" class="search-btn">Tìm kiếm</button>
@@ -202,6 +253,7 @@ if ($q) {
                 <?php endforeach; ?>
             </tbody>
         </table>
+        </main>
     </div>
 </body>
 </html>
