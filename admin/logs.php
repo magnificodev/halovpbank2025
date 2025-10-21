@@ -88,8 +88,8 @@ $totalPages = ceil($totalCount / $perPage);
         .content{flex:1;padding:16px 24px}
         .wrap{padding:0;max-width:none;margin:0}
         .toolbar{display:flex;gap:10px;align-items:center;justify-content:flex-start;margin:0 0 12px}
-        .csv-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
-        .csv-btn:hover{background:#059669}
+        .csv-btn{padding:10px 20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.5;width:160px;box-sizing:border-box}
+        .csv-btn:hover{background:var(--accent-600)}
         table{width:100%;border-collapse:separate;background:#ffffff;border-radius:12px;overflow:hidden}
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
         td{padding:12px;transition:background .2s ease}
@@ -153,6 +153,8 @@ $totalPages = ceil($totalCount / $perPage);
         body.dark .pagination .disabled{color:#6b7280;background:#0f172a}
         body.dark .pagination .disabled:hover{background:#0f172a;border-color:#1f2937;color:#6b7280}
         body.dark .pagination-info{color:#94a3b8}
+        body.dark .csv-btn{background:var(--accent-600);border-color:var(--accent-600)}
+        body.dark .csv-btn:hover{background:var(--accent)}
         @media (max-width: 768px){
             .layout{flex-direction:column}
             .sidebar{width:100%;border-right:none;border-bottom:1px solid #e5e7eb}
