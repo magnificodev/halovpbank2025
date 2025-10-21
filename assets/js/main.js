@@ -318,24 +318,24 @@ class VPBankGame {
 
             if (result.success) {
                 if (result.reward_code) {
-                    this.displayRewardCode(result.reward_code);
+                    this.displayPhoneNumber(result.user.phone);
                 } else {
                     // User hasn't claimed reward yet, redirect to game
                     window.location.href = `game.php?token=${this.userToken}`;
                 }
             } else {
-                this.showMessage(result.error || 'Không thể tải mã quà tặng', 'error');
+                this.showMessage(result.error || 'Không thể tải thông tin', 'error');
             }
         } catch (error) {
             console.error('Load reward error:', error);
-            this.showMessage('Có lỗi xảy ra khi tải mã quà tặng', 'error');
+            this.showMessage('Có lỗi xảy ra khi tải thông tin', 'error');
         }
     }
 
-    displayRewardCode(code) {
-        const giftCodeDisplay = document.getElementById('giftCodeDisplay');
-        if (giftCodeDisplay) {
-            giftCodeDisplay.textContent = code;
+    displayPhoneNumber(phone) {
+        const phoneDisplay = document.getElementById('phoneDisplay');
+        if (phoneDisplay) {
+            phoneDisplay.textContent = phone;
         }
     }
 

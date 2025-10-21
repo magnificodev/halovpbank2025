@@ -15,17 +15,17 @@
                     <div class="logo">
                         <img src="assets/images/vpbank-logo.svg" alt="VPBank" class="logo-img">
                     </div>
-                    <h1 class="main-title">CODE CỦA BẠN LÀ</h1>
+                    <h1 class="main-title">SỐ ĐIỆN THOẠI CỦA BẠN</h1>
                 </header>
 
-                <!-- Gift Code Display -->
+                <!-- Phone Number Display -->
                 <div class="gift-code-container">
-                    <div id="giftCodeDisplay" class="gift-code-box">
-                        <!-- Gift code will be loaded here -->
+                    <div id="phoneDisplay" class="gift-code-box">
+                        <!-- Phone number will be loaded here -->
                     </div>
                     <p class="gift-instruction">
-                        Ghé khu vực Hallo"Win" và xoay vòng may mắn<br>
-                        Niềm vui đang chờ bạn!
+                        Cảm ơn bạn đã tham gia VPBank Solution Day!<br>
+                        Hẹn gặp lại bạn trong những sự kiện tiếp theo!
                     </p>
                 </div>
 
