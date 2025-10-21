@@ -19,6 +19,8 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js" type="module"></script>
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
     <style>
         :root{--accent:#10b981;--accent-600:#059669;--header-height:74px}
         *{margin:0;padding:0;box-sizing:border-box}
@@ -101,7 +103,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         }
     </style>
 </head>
-<body>
+<body class="admin-page">
     <header>
         <div class="logo">
             <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

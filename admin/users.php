@@ -59,6 +59,9 @@ $totalPages = ceil($totalCount / $perPage);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Người chơi</title>
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js" type="module"></script>
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
     <style>
         :root{--accent:#10b981;--accent-600:#059669;--header-height:74px}
         *{margin:0;padding:0;box-sizing:border-box}
@@ -208,7 +211,7 @@ $totalPages = ceil($totalCount / $perPage);
         }
     </style>
 </head>
-<body>
+<body class="admin-page">
     <header>
         <div class="logo">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
