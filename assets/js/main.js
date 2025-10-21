@@ -134,10 +134,13 @@ class VPBankGame {
 
     showFieldError(fieldName, message) {
         const field = document.getElementById(fieldName);
-        if (!field) return;
+        if (!field) {
+            console.error(`Field ${fieldName} not found`);
+            return;
+        }
 
         // Remove existing error
-        const existingError = field.parentNode.querySelector('.field-error');
+        const existingError = field.closest('.form-group').querySelector('.field-error');
         if (existingError) {
             existingError.remove();
         }
@@ -155,16 +158,18 @@ class VPBankGame {
 
         // Add error class to input
         field.classList.add('error');
+        
+        console.log(`Error shown for ${fieldName}: ${message}`);
     }
 
     clearValidationErrors() {
         // Remove all field errors
         const errors = document.querySelectorAll('.field-error');
-        errors.forEach(error => error.remove());
+        errors.forEach((error) => error.remove());
 
         // Remove error classes
         const inputs = document.querySelectorAll('.form-group .input');
-        inputs.forEach(input => input.classList.remove('error'));
+        inputs.forEach((input) => input.classList.remove('error'));
     }
 
     // Game Page
