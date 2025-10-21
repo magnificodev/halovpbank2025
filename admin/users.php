@@ -55,7 +55,8 @@ if ($q) {
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh}
-        .logo svg{width:20px;height:20px;color:#059669}
+        .logo{display:flex;align-items:center;gap:8px}
+        .logo svg{width:20px;height:20px;color:#059669;flex-shrink:0}
         th svg{width:16px;height:16px;color:#6b7280;margin-right:6px}
         header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
         .logo{font-size:18px;font-weight:600;color:#111827}

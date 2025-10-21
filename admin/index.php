@@ -40,7 +40,8 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         .nav-link.active{border-color:#059669;background:#ecfdf5;color:#065f46}
         .nav-link svg{width:20px;height:20px;flex-shrink:0;color:inherit}
         .card h3 svg{width:16px;height:16px;color:#6b7280;margin-right:6px}
-        .logo svg{width:20px;height:20px;color:#059669}
+        .logo{display:flex;align-items:center;gap:8px}
+        .logo svg{width:20px;height:20px;color:#059669;flex-shrink:0}
         .content{flex:1;padding:16px 24px}
         .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:1200px}
         .card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;transition:box-shadow .2s}
