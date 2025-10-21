@@ -90,7 +90,7 @@ if ($q) {
         .nav-link svg{width:20px;height:20px;flex-shrink:0;color:inherit}
         .content{flex:1;padding:16px 24px}
         .wrap{padding:0;max-width:none;margin:0}
-         .search-box{margin-bottom:20px;display:flex;gap:15px;align-items:center}
+         .search-box{margin-bottom:8px;display:flex;gap:15px;align-items:center}
          .search-container{position:relative;display:flex;align-items:center}
          .search-input{padding:10px 14px 10px 40px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827;width:300px;font-size:14px}
          .search-input:focus{outline:none;border-color:#059669;box-shadow:0 0 0 3px rgba(16,185,129,.15)}
@@ -98,7 +98,7 @@ if ($q) {
          .search-icon{position:absolute;left:12px;width:16px;height:16px;color:#6b7280;pointer-events:none}
          .csv-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;cursor:pointer;transition:background .2s ease;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
          .csv-btn:hover{background:#059669}
-         .search-status{color:#6b7280;font-size:12px;margin-top:20px;margin-bottom:8px;text-align:left}
+         .search-status{color:#6b7280;font-size:12px;margin-bottom:16px;text-align:left}
         table{width:100%;border-collapse:collapse;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
         td{padding:12px;border-bottom:1px solid #f1f5f9;transition:background .2s ease}
