@@ -16,6 +16,55 @@ body {
     color: white;
     min-height: 100vh;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Desktop Mobile Frame Container */
+.desktop-container {
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.mobile-frame {
+    width: 375px;
+    max-height: 100vh;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d3748 100%);
+    background-image: url('../images/background-pattern.svg');
+    background-size: cover;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Mobile: Hide frame, show full screen */
+@media (max-width: 768px) {
+    .desktop-container {
+        position: static;
+        background: transparent;
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .mobile-frame {
+        width: 100%;
+        max-height: none;
+        border-radius: 0;
+        box-shadow: none;
+        min-height: 100vh;
+    }
 }
 
 .container {
@@ -23,6 +72,18 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Desktop: Container fits within mobile frame */
+@media (min-width: 769px) {
+    .container {
+        min-height: 100%;
+        height: auto;
+        max-height: 100vh;
+        overflow-y: auto;
+    }
 }
 
 /* Header Styles */
@@ -261,12 +322,24 @@ body {
 .modal {
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 10000; /* High z-index to break out of mobile frame */
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Desktop: Modal breaks out of mobile frame */
+@media (min-width: 769px) {
+    .modal {
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+    }
 }
 
 .modal-content {
@@ -403,7 +476,47 @@ body {
     border: 1px solid #ff4757;
 }
 
-/* Responsive Design */
+/* Desktop Mobile Frame Enhancements */
+@media (min-width: 769px) {
+    .mobile-frame {
+        /* Smooth scrolling within frame */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+    }
+    
+    .mobile-frame::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    .mobile-frame::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    .mobile-frame::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+    }
+    
+    .mobile-frame::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+    
+    /* Ensure content fits well in frame */
+    .stations-list {
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+    
+    .form-container {
+        padding: 30px 20px;
+    }
+    
+    .gift-code-container {
+        padding: 50px 20px;
+    }
+}
+
+/* Mobile: Original responsive design */
 @media (max-width: 768px) {
     .main-title {
         font-size: 20px;
