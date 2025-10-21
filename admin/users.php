@@ -66,7 +66,7 @@ if ($q) {
         input{padding:12px 20px;border:none;border-radius:25px;background:rgba(21,26,44,0.8);color:#fff;border:1px solid rgba(0,255,136,0.3);width:300px;font-size:14px}
         input:focus{outline:none;border-color:#00ff88;box-shadow:0 0 15px rgba(0,255,136,0.3)}
         input::placeholder{color:#999}
-        .search-btn{padding:12px 24px;background:linear-gradient(45deg,#00ff88,#00cc6a);border:none;border-radius:25px;color:#000;font-weight:bold;cursor:pointer;transition:all 0.3s ease;display:inline-block;text-align:center;width:160px}
+        .search-btn{padding:12px 24px;background:linear-gradient(45deg,#00ff88,#00cc6a);border:none;border-radius:25px;color:#000;font-weight:700;cursor:pointer;transition:all 0.3s ease;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;letter-spacing:0;line-height:1}
         .search-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,255,136,0.4)}
         table{width:100%;border-collapse:collapse;background:rgba(21,26,44,0.6);border-radius:15px;overflow:hidden;border:1px solid rgba(0,255,136,0.2)}
         th{background:rgba(0,255,136,0.1);color:#00ff88;padding:15px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:1px}
