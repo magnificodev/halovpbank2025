@@ -207,78 +207,65 @@ body {
     font-family: 'GilroyBold', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Input Shell Wrapper */
+.input-shell {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.input-shell::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/input.png') center/cover no-repeat;
+    background-size: 100% 100%;
+    border-radius: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
 /* Input styles */
-.form-group input {
+.form-group .input {
     width: 100%;
     padding: 12px 20px;
     border: none;
     border-radius: 0;
-    background: url('../images/input.png') center/cover no-repeat;
+    background: transparent;
     color: #333;
     font-size: 14px;
     font-weight: 600;
     text-align: center;
     transition: all 0.3s ease;
     cursor: text;
-    background-size: 100% 100%;
-    margin: 0 auto;
+    margin: 0;
     display: block;
+    position: relative;
+    z-index: 1;
 }
 
-.form-group input:focus {
+.form-group .input:focus {
     outline: none;
     transform: none;
     box-shadow: none;
 }
 
-.form-group input::placeholder {
+.form-group .input::placeholder {
     color: transparent;
 }
 
-/* Fix autofill background - Force preserve custom input.png with higher specificity */
-.registration-form .form-group input:-webkit-autofill,
-.registration-form .form-group input:-webkit-autofill:hover,
-.registration-form .form-group input:-webkit-autofill:focus,
-.registration-form .form-group input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
-    box-shadow: 0 0 0 30px transparent inset !important;
+/* Fix autofill - Cách 1: Xóa lớp nền autofill của trình duyệt */
+.form-group .input:-webkit-autofill,
+.form-group .input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
     -webkit-text-fill-color: #333 !important;
-    color: #333 !important;
     background-color: transparent !important;
-    background-image: url('../images/input.png') !important;
-    background-size: 100% 100% !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
     transition: background-color 5000s ease-in-out 0s !important;
-    animation: autofill-fix 0s forwards !important;
-}
-
-/* Additional autofill selectors for better coverage */
-.registration-form .form-group input:-internal-autofill-selected {
-    background-color: transparent !important;
-    background-image: url('../images/input.png') !important;
-    background-size: 100% 100% !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-}
-
-/* Firefox autofill */
-.registration-form .form-group input:-moz-autofill {
-    background-color: transparent !important;
-    background-image: url('../images/input.png') !important;
-    background-size: 100% 100% !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-}
-
-/* Animation to force autofill fix */
-@keyframes autofill-fix {
-    to {
-        background-image: url('../images/input.png') !important;
-        background-size: 100% 100% !important;
-        background-position: center !important;
-        background-repeat: no-repeat !important;
-    }
 }
 
 /* Button Styles */
