@@ -58,8 +58,8 @@ $totalPages = ceil($totalCount / $perPage);
         .logo svg{width:20px;height:20px;color:var(--accent);flex-shrink:0}
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
         th svg{width:14px;height:14px;color:#6b7280;margin-right:6px;vertical-align:middle}
-        .badge{padding:6px 10px;border-radius:10px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
-        .badge svg{width:12px;height:12px;flex-shrink:0}
+        .badge{padding:4px 8px;border-radius:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+        .badge svg{width:10px;height:10px;flex-shrink:0}
         header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb;height:var(--header-height)}
         .user-info{display:flex;align-items:center;gap:12px}
         .toggle{padding:8px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer;display:flex;align-items:center;justify-content:center;width:36px;height:36px}
