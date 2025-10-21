@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
         .login{width:360px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 28px 24px;box-shadow:none}
         .brand{display:none}
-        h2{margin:0 0 16px;font-size:24px;line-height:1.2;font-weight:600;color:var(--accent)}
+        h2{margin:0 0 16px;font-size:24px;line-height:1.2;font-weight:700;color:var(--accent)}
         .hint{margin:0 0 20px;font-size:14px;color:var(--muted)}
         .error{background:#fef2f2;border:1px solid #fecaca;color:#dc2626;padding:10px;border-radius:8px;margin-bottom:12px;font-size:13px}
         .form-group{margin-bottom:16px}
