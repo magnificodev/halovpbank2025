@@ -155,8 +155,8 @@ body {
 
 .form-group input:focus {
     outline: none;
-    transform: scale(1.02);
-    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
+    transform: none;
+    box-shadow: none;
 }
 
 .form-group input::placeholder {
