@@ -175,7 +175,7 @@ body {
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     position: relative;
 }
 
@@ -190,7 +190,7 @@ body {
 /* Label styles */
 .form-group label {
     display: block;
-    margin: 0 auto 12px;
+    margin: 0 auto 4px;
     height: 30px;
     line-height: 30px;
     text-align: center;
