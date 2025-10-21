@@ -261,10 +261,11 @@ body {
 /* Field Error Styles */
 .field-error {
     color: #ff4757;
-    font-size: 12px;
+    font-size: 11px;
     margin-top: 4px;
     text-align: center;
-    font-weight: 500;
+    font-weight: 400;
+    line-height: 1.2;
 }
 
 .form-group .input.error {
