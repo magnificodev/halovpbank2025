@@ -5,7 +5,7 @@ $db = new Database();
 
 $export = $_GET['export'] ?? '';
 $page = max(1, (int)($_GET['page'] ?? 1));
-$perPage = 20;
+$perPage = 5;
 
 if ($export === 'csv') {
     // Export to CSV
