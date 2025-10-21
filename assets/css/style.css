@@ -230,8 +230,7 @@ body {
 }
 
 .form-group input::placeholder {
-    color: #666;
-    font-weight: 600;
+    color: transparent;
 }
 
 /* Button Styles */
@@ -264,7 +263,7 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    max-width: 280px;
+    max-width: 200px;
     margin: 0 auto;
 }
 

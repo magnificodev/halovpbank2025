@@ -15,15 +15,15 @@
                     <form id="registrationForm" class="registration-form">
                         <div class="form-group">
                             <label for="full_name"></label>
-                            <input type="text" id="full_name" name="full_name" placeholder="HỌ TÊN" required>
+                            <input type="text" id="full_name" name="full_name" required>
                         </div>
                         <div class="form-group">
                             <label for="phone"></label>
-                            <input type="tel" id="phone" name="phone" placeholder="SỐ ĐIỆN THOẠI" required>
+                            <input type="tel" id="phone" name="phone" required>
                         </div>
                         <div class="form-group">
                             <label for="email"></label>
-                            <input type="email" id="email" name="email" placeholder="EMAIL" required>
+                            <input type="email" id="email" name="email" required>
                         </div>
                         <button type="submit" class="join-button">
                             <img src="assets/images/join-button.png" alt="Tham gia">
