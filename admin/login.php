@@ -35,12 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <style>
         :root{--bg:#f6f7f9;--surface:#ffffff;--text:#111827;--muted:#6b7280;--border:#e5e7eb;--accent:#10b981;--accent-600:#059669}
         body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
-        .login{width:360px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 24px 20px;box-shadow:none}
+        .login{width:360px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 28px 24px;box-shadow:none}
         .brand{display:none}
-        h2{margin:0 0 12px;font-size:20px;line-height:1.2;font-weight:800;color:var(--accent)}
-        .hint{margin:0 0 16px;font-size:12px;color:var(--muted)}
+        h2{margin:0 0 16px;font-size:24px;line-height:1.2;font-weight:800;color:var(--accent)}
+        .hint{margin:0 0 20px;font-size:14px;color:var(--muted)}
         .error{background:#fef2f2;border:1px solid #fecaca;color:#dc2626;padding:10px;border-radius:8px;margin-bottom:12px;font-size:13px}
-        .form-group{margin-bottom:12px}
+        .form-group{margin-bottom:16px}
         label{display:block;margin:0 0 6px;font-size:12px;color:var(--muted);font-weight:600}
         /* Increase specificity to override global styles */
         .login .form-group input{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;background:#ffffff;color:var(--text);font-size:14px;appearance:none;box-shadow:none !important;text-align:left;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
