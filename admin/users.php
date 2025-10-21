@@ -104,8 +104,8 @@ $totalPages = ceil($totalCount / $perPage);
          .search-input:focus{outline:none;border-color:#059669;box-shadow:0 0 0 3px rgba(16,185,129,.15)}
          .search-input::placeholder{color:#9ca3af}
          .search-icon{position:absolute;left:12px;width:16px;height:16px;color:#6b7280;pointer-events:none}
-         .csv-btn{padding:10px 20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.5;width:160px;box-sizing:border-box}
-         .csv-btn:hover{background:var(--accent-600)}
+         .csv-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;cursor:pointer;transition:background .2s ease;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
+         .csv-btn:hover{background:#059669}
          .search-status{color:#6b7280;font-size:12px;margin-bottom:16px;text-align:left}
         table{width:100%;border-collapse:separate;background:#ffffff;border-radius:12px;overflow:hidden}
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
@@ -187,8 +187,8 @@ $totalPages = ceil($totalCount / $perPage);
         body.dark .pagination-info{color:#94a3b8}
          body.dark .search-input{background:#0b1220;color:#e5e7eb;border-color:#1f2937}
          body.dark .search-input::placeholder{color:#94a3b8}
-         body.dark .csv-btn{background:var(--accent-600);border-color:var(--accent-600)}
-         body.dark .csv-btn:hover{background:var(--accent)}
+         body.dark .csv-btn{background:#059669;border-color:#059669;color:#ffffff}
+         body.dark .csv-btn:hover{background:#10b981;color:#ffffff}
         /* Dark mode sidebar */
         body.dark .sidebar{background:#0b1220;border-right:1px solid #1f2937}
         body.dark .nav-link{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
