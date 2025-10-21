@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
         .login{width:360px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 24px 20px;box-shadow:none}
         .brand{display:none}
-        h2{margin:0 0 12px;font-size:20px;line-height:1.2;font-weight:700;color:var(--text)}
+        h2{margin:0 0 12px;font-size:20px;line-height:1.2;font-weight:800;color:var(--accent)}
         .hint{margin:0 0 16px;font-size:12px;color:var(--muted)}
         .error{background:#fef2f2;border:1px solid #fecaca;color:#dc2626;padding:10px;border-radius:8px;margin-bottom:12px;font-size:13px}
         .form-group{margin-bottom:12px}
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         body.dark .login{background:#0b1220;border-color:#1f2937;box-shadow:none}
         body.dark .brand,body.dark label,body.dark .hint{color:#94a3b8}
         body.dark .login .form-group input::placeholder{color:#94a3b8}
-        body.dark h2{color:#e5e7eb}
+        body.dark h2{color:#059669}
         body.dark .login .form-group input{background:#111827;border-color:#1f2937;color:#e5e7eb;box-shadow:none !important;text-align:left;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
         body.dark input::placeholder{color:#94a3b8;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
         body.dark button{background:#059669;border:none}
