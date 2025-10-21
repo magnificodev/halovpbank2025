@@ -191,17 +191,17 @@ body {
 
 .form-group label[for='full_name'] {
     background-image: url('../images/name-label.png');
-    width: 100px;
+    width: 120px;
 }
 
 .form-group label[for='phone'] {
     background-image: url('../images/phone-label.png');
-    width: 140px;
+    width: 120px;
 }
 
 .form-group label[for='email'] {
     background-image: url('../images/email-label.png');
-    width: 80px;
+    width: 120px;
 }
 
 /* Input styles */
@@ -263,7 +263,7 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    max-width: 200px;
+    max-width: 140px;
     margin: 0 auto;
 }
 
