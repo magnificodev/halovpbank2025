@@ -109,22 +109,62 @@ class VPBankGame {
     }
 
     validateRegistration(data) {
+        let isValid = true;
+
+        // Clear previous errors
+        this.clearValidationErrors();
+
         if (!data.full_name.trim()) {
-            this.showMessage('Vui lòng nhập họ tên', 'error');
-            return false;
+            this.showFieldError('full_name', 'Vui lòng nhập họ tên');
+            isValid = false;
         }
 
         if (!data.phone.match(/^[0-9]{10,11}$/)) {
-            this.showMessage('Số điện thoại phải có 10-11 chữ số', 'error');
-            return false;
+            this.showFieldError('phone', 'Số điện thoại phải có 10-11 chữ số');
+            isValid = false;
         }
 
         if (!data.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-            this.showMessage('Email không hợp lệ', 'error');
-            return false;
+            this.showFieldError('email', 'Email không hợp lệ');
+            isValid = false;
         }
 
-        return true;
+        return isValid;
+    }
+
+    showFieldError(fieldName, message) {
+        const field = document.getElementById(fieldName);
+        if (!field) return;
+
+        // Remove existing error
+        const existingError = field.parentNode.querySelector('.field-error');
+        if (existingError) {
+            existingError.remove();
+        }
+
+        // Create error element
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'field-error';
+        errorDiv.textContent = message;
+
+        // Insert after input-shell
+        const inputShell = field.closest('.input-shell');
+        if (inputShell) {
+            inputShell.parentNode.insertBefore(errorDiv, inputShell.nextSibling);
+        }
+
+        // Add error class to input
+        field.classList.add('error');
+    }
+
+    clearValidationErrors() {
+        // Remove all field errors
+        const errors = document.querySelectorAll('.field-error');
+        errors.forEach(error => error.remove());
+
+        // Remove error classes
+        const inputs = document.querySelectorAll('.form-group .input');
+        inputs.forEach(input => input.classList.remove('error'));
     }
 
     // Game Page
