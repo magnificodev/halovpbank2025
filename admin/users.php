@@ -103,11 +103,11 @@ if ($q) {
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
         td{padding:12px;border-bottom:1px solid #f1f5f9;transition:background .2s ease}
         tr:hover td{background:#f9fafb}
-        .user-id{color:#059669;font-weight:600}
-        .user-name{font-weight:500}
-        .user-phone{color:#ccc;font-family:monospace}
-        .user-email{color:#999;font-size:13px}
-        .user-date{color:#999;font-size:12px}
+         .user-id{color:#059669;font-weight:600;font-size:14px}
+         .user-name{font-weight:600;color:#111827;font-size:14px}
+         .user-phone{color:#6b7280;font-family:monospace;font-size:13px;background:#f8fafc;padding:4px 8px;border-radius:6px;display:inline-block}
+         .user-email{color:#6b7280;font-size:13px;word-break:break-all}
+         .user-date{color:#6b7280;font-size:12px;font-weight:500}
         .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
         .stat-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;text-align:center}
         .stat-card h3{margin:0 0 8px;font-size:14px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;justify-content:center;gap:6px}
@@ -155,9 +155,10 @@ if ($q) {
         body.dark table{background:#111827;border-color:#1f2937}
         body.dark th{background:#0f172a;color:#e5e7eb}
         body.dark td{border-bottom:1px solid #1f2937}
-        body.dark .user-id{color:#a7f3d0}
-        body.dark .user-name{color:#e5e7eb}
-        body.dark .user-phone,body.dark .user-email,body.dark .user-date{color:#94a3b8}
+         body.dark .user-id{color:#a7f3d0}
+         body.dark .user-name{color:#e5e7eb}
+         body.dark .user-phone{color:#94a3b8;background:#1f2937}
+         body.dark .user-email,body.dark .user-date{color:#94a3b8}
         body.dark .stat-card{background:#111827;border-color:#1f2937}
         body.dark .stat-number{color:#e5e7eb}
         body.dark .stat-label{color:#94a3b8}
@@ -243,16 +244,16 @@ if ($q) {
             </div>
         </aside>
         <main class="content">
-            <div class="stats">
-                <div class="stat-card">
-                    <div class="stat-number"><?php echo count($users); ?></div>
-                    <div class="stat-label">Kết quả tìm kiếm</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number"><?php echo $q ? '🔍' : '📋'; ?></div>
-                    <div class="stat-label"><?php echo $q ? 'Đang tìm kiếm' : 'Tất cả'; ?></div>
-                </div>
-            </div>
+             <div class="stats">
+                 <div class="stat-card">
+                     <div class="stat-number"><?php echo count($users); ?></div>
+                     <div class="stat-label">Người dùng hiện tại</div>
+                 </div>
+                 <div class="stat-card">
+                     <div class="stat-number"><?php echo $q ? '🔍' : '📊'; ?></div>
+                     <div class="stat-label"><?php echo $q ? 'Đang tìm kiếm' : 'Tổng quan'; ?></div>
+                 </div>
+             </div>
          <form class="search-box">
              <div class="search-container">
                  <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
