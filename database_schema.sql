@@ -39,6 +39,20 @@ CREATE TABLE gift_codes (
     INDEX idx_user_id (user_id)
 );
 
+-- Scan logs for audit
+CREATE TABLE IF NOT EXISTS scan_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    station_id VARCHAR(50) NOT NULL,
+    ip_address VARCHAR(64) NULL,
+    user_agent VARCHAR(255) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_user_id (user_id),
+    INDEX idx_station_id (station_id),
+    INDEX idx_created_at (created_at)
+);
+
 -- Insert some sample gift codes (you can add more)
 INSERT INTO gift_codes (code) VALUES
 ('ABC12345'),

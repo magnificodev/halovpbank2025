@@ -10,6 +10,12 @@ define('GAME_SECRET_KEY', 'vpbank_solution_day_2025_secret_key');
 define('REQUIRED_STATIONS', 3); // Minimum stations to complete for reward
 define('GIFT_CODE_LENGTH', 8);
 
+// Admin (single account)
+define('ADMIN_USERNAME', 'admin');
+// Store a SHA256 hash of the password combined with secret key. Default password: Admin@2025
+// Change this by regenerating hash: hash('sha256', 'YOUR_PASSWORD' . GAME_SECRET_KEY)
+define('ADMIN_PASSWORD_HASH', hash('sha256', 'Admin@2025' . GAME_SECRET_KEY));
+
 // Station IDs
 define('STATIONS', [
     'HALLO_GLOW' => 'HALLO GLOW',

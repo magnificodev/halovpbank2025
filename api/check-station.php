@@ -59,6 +59,18 @@ try {
         [$user['id'], $stationId]
     );
 
+    // Log scan event for auditing
+    $ip = $_SERVER['REMOTE_ADDR'] ?? null;
+    $ua = $_SERVER['HTTP_USER_AGENT'] ?? null;
+    try {
+        $db->query(
+            "INSERT INTO scan_logs (user_id, station_id, ip_address, user_agent) VALUES (?, ?, ?, ?)",
+            [$user['id'], $stationId, $ip, substr((string)$ua, 0, 255)]
+        );
+    } catch (Exception $e) {
+        // ignore logging errors to not block user flow
+    }
+
     // Get updated progress
     $completedStations = $db->fetchAll(
         "SELECT station_id FROM user_progress WHERE user_id = ?",
