@@ -48,7 +48,8 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh}
         .logo{display:flex;align-items:center;gap:8px}
         .logo svg{width:20px;height:20px;color:#059669;flex-shrink:0}
-        header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
+        th{display:flex;align-items:center;gap:6px}
+        th svg{width:16px;height:16px;color:#6b7280;flex-shrink:0}
         .logo{font-size:18px;font-weight:600;color:#111827}
         a{color:#059669;text-decoration:none;transition:color .2s ease;padding:8px 12px;border-radius:10px;background:#ffffff;border:1px solid #e5e7eb}
         a:hover{color:#10b981;background:#f3f4f6}
@@ -183,17 +184,48 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
                 </div>
             </div>
         <div class="toolbar">
-            <a class="csv-btn" href="?export=csv">📥 Xuất CSV</a>
+            <a class="csv-btn" href="?export=csv" style="display:inline-flex;align-items:center;gap:6px;">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Xuất CSV
+            </a>
         </div>
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>👤 Người dùng</th>
-                    <th>📍 Trạm</th>
-                    <th>🌐 IP</th>
-                    <th>🔍 User-Agent</th>
-                    <th>⏰ Thời gian</th>
+                    <th>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        Người dùng
+                    </th>
+                    <th>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Trạm
+                    </th>
+                    <th>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+                        </svg>
+                        IP
+                    </th>
+                    <th>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        User-Agent
+                    </th>
+                    <th>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Thời gian
+                    </th>
                 </tr>
             </thead>
             <tbody>

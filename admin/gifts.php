@@ -50,8 +50,10 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh}
         .logo{display:flex;align-items:center;gap:8px}
         .logo svg{width:20px;height:20px;color:#059669;flex-shrink:0}
-        th svg{width:16px;height:16px;color:#6b7280;margin-right:6px}
-        .badge svg{width:12px;height:12px;margin-right:4px}
+        th{display:flex;align-items:center;gap:6px}
+        th svg{width:16px;height:16px;color:#6b7280;flex-shrink:0}
+        .badge{display:flex;align-items:center;gap:4px}
+        .badge svg{width:12px;height:12px;flex-shrink:0}
         header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
         .logo{font-size:18px;font-weight:600;color:#111827}
         a{color:#059669;text-decoration:none;transition:color .2s ease;padding:8px 12px;border-radius:10px;background:#ffffff;border:1px solid #e5e7eb}
@@ -184,7 +186,12 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
                 </div>
             </div>
         <div class="toolbar">
-            <a class="csv-btn" href="?export=csv">📥 Xuất CSV</a>
+            <a class="csv-btn" href="?export=csv" style="display:inline-flex;align-items:center;gap:6px;">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Xuất CSV
+            </a>
         </div>
         <table>
             <thead>
@@ -202,8 +209,18 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
                         </svg>
                         Trạng thái
                     </th>
-                    <th>👤 Người nhận</th>
-                    <th>📅 Thời gian</th>
+                    <th>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        Người nhận
+                    </th>
+                    <th>
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Thời gian
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -220,7 +237,12 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
                                 ĐÃ PHÁT
                             </span>
                         <?php else: ?>
-                            <span class="badge pending">⏳ CHƯA PHÁT</span>
+                            <span class="badge pending">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                CHƯA PHÁT
+                            </span>
                         <?php endif; ?>
                     </td>
                     <td>
