@@ -37,13 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
         .login{width:360px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px 28px 24px;box-shadow:none}
         .brand{display:none}
-        h2{margin:0 0 16px;font-size:24px;line-height:1.2;font-weight:800;color:var(--accent)}
+        h2{margin:0 0 16px;font-size:24px;line-height:1.2;font-weight:600;color:var(--accent)}
         .hint{margin:0 0 20px;font-size:14px;color:var(--muted)}
         .error{background:#fef2f2;border:1px solid #fecaca;color:#dc2626;padding:10px;border-radius:8px;margin-bottom:12px;font-size:13px}
         .form-group{margin-bottom:16px}
         label{display:block;margin:0 0 6px;font-size:12px;color:var(--muted);font-weight:600}
         /* Increase specificity to override global styles */
-        .login .form-group input{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;background:#ffffff;color:var(--text);font-size:14px;appearance:none;box-shadow:none !important;text-align:left;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+        .login .form-group input{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;background:#ffffff;color:var(--text);font-size:14px;font-weight:500;appearance:none;box-shadow:none !important;text-align:left;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
         .login .form-group input::placeholder{font-size:13px;text-align:left;font-style:italic;font-weight:400;color:var(--muted);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
         .login .form-group input:focus{outline:none;border-color:var(--accent-600);box-shadow:0 0 0 2px rgba(16,185,129,.15) !important}
         button{width:100%;padding:12px 14px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;transition:background .2s,opacity .2s;box-shadow:none;font-size:14px;line-height:1;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
