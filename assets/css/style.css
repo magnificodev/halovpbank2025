@@ -196,7 +196,7 @@ body {
     text-align: center;
     font-size: 20px;
     font-weight: bold;
-    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 50%, #cbf0f8 50%, #cbf0f8 100%);
+    background: linear-gradient(to bottom, #ffffff 0%, #ffffff 55%, #cbf0f8 55%, #cbf0f8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
