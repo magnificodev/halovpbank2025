@@ -159,108 +159,62 @@ class VPBankGame {
 
     validateRegistration(data) {
         let isValid = true;
-
-        // Clear previous errors
-        this.clearValidationErrors();
+        let errorMessages = [];
 
         // Validate full name
         if (!data.full_name.trim()) {
-            this.showFieldError('full_name', 'Vui lòng nhập họ tên');
+            errorMessages.push('Vui lòng nhập họ tên');
             isValid = false;
         } else if (data.full_name.trim().length < 2) {
-            this.showFieldError('full_name', 'Họ tên phải có ít nhất 2 ký tự');
+            errorMessages.push('Họ tên phải có ít nhất 2 ký tự');
             isValid = false;
         }
 
         // Validate phone
         if (!data.phone.trim()) {
-            this.showFieldError('phone', 'Vui lòng nhập số điện thoại');
+            errorMessages.push('Vui lòng nhập số điện thoại');
             isValid = false;
         } else if (!data.phone.match(/^(\+84[0-9]{9}|[0-9]{10,11})$/)) {
-            this.showFieldError('phone', 'Số điện thoại phải có 10-11 chữ số');
+            errorMessages.push('Số điện thoại phải có 10-11 chữ số');
             isValid = false;
         } else if (!this.isValidVietnamesePhone(data.phone)) {
-            this.showFieldError('phone', 'Số điện thoại không hợp lệ');
+            errorMessages.push('Số điện thoại không hợp lệ');
             isValid = false;
         }
 
         // Validate email
         if (!data.email.trim()) {
-            this.showFieldError('email', 'Vui lòng nhập email');
+            errorMessages.push('Vui lòng nhập email');
             isValid = false;
         } else if (!data.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-            this.showFieldError('email', 'Email không hợp lệ');
+            errorMessages.push('Email không hợp lệ');
             isValid = false;
+        }
+
+        // Show alert if there are errors
+        if (!isValid && errorMessages.length > 0) {
+            alert(errorMessages.join('\n'));
         }
 
         console.log('Validation result:', isValid);
         return isValid;
     }
 
-    showFieldError(fieldName, message) {
-        console.log(`Attempting to show error for ${fieldName}: ${message}`);
-
-        const field = document.getElementById(fieldName);
-        if (!field) {
-            console.error(`Field ${fieldName} not found`);
-            return;
-        }
-
-        console.log(`Field found:`, field);
-
-        // Remove existing error
-        const existingError = field.closest('.form-group').querySelector('.field-error');
-        if (existingError) {
-            console.log('Removing existing error');
-            existingError.remove();
-        }
-
-        // Create error element
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'field-error';
-        errorDiv.textContent = message;
-        console.log('Created error div:', errorDiv);
-
-        // Insert after input-shell
-        const inputShell = field.closest('.input-shell');
-        if (inputShell) {
-            console.log('Found input-shell, inserting error');
-            inputShell.parentNode.insertBefore(errorDiv, inputShell.nextSibling);
-        } else {
-            console.error('Input-shell not found');
-        }
-
-        // Add error class to input
-        field.classList.add('error');
-
-        console.log(`Error shown for ${fieldName}: ${message}`);
-    }
-
-    clearValidationErrors() {
-        // Remove all field errors
-        const errors = document.querySelectorAll('.field-error');
-        errors.forEach((error) => error.remove());
-
-        // Remove error classes
-        const inputs = document.querySelectorAll('.form-group .input');
-        inputs.forEach((input) => input.classList.remove('error'));
-    }
-
     isValidVietnamesePhone(phone) {
         // Remove any spaces or special characters
         let cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
-
+        
         // Handle international format (+84)
         if (cleanPhone.startsWith('+84')) {
             cleanPhone = '0' + cleanPhone.substring(3);
         }
-
+        
         // Vietnamese phone number patterns:
         // Mobile: 03x, 05x, 07x, 08x, 09x (10 digits)
         // Landline: 02x (10 digits) or 02xx (11 digits)
         const mobilePattern = /^(03[2-9]|05[6|8|9]|07[0|6|7|8|9]|08[1-6|8|9]|09[0-9])[0-9]{7}$/;
         const landlinePattern = /^(02[0-9])[0-9]{7,8}$/;
-
+        
         return mobilePattern.test(cleanPhone) || landlinePattern.test(cleanPhone);
     }
 
