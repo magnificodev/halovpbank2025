@@ -20,7 +20,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
     <title>Admin Dashboard</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh}
         header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
         .logo{font-size:18px;font-weight:700;color:#111827}
         .user-info{display:flex;align-items:center;gap:12px}
