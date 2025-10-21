@@ -54,33 +54,33 @@ if ($q) {
     <title>Admin - Người chơi</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#0b0f19 0%,#1a1f3a 100%);color:#fff;min-height:100vh;transition:background .3s,color .3s}
-        header{display:flex;justify-content:space-between;align-items:center;padding:20px 30px;background:rgba(21,26,44,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,255,136,0.2)}
-        .logo{font-size:24px;font-weight:bold;color:#00ff88;text-shadow:0 0 10px rgba(0,255,136,0.5)}
-        a{color:#00ff88;text-decoration:none;transition:all 0.3s ease;padding:8px 16px;border-radius:20px;background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3)}
-        a:hover{color:#00cc6a;background:rgba(0,255,136,0.2);transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,255,136,0.3)}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh}
+        header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
+        .logo{font-size:18px;font-weight:600;color:#111827}
+        a{color:#059669;text-decoration:none;transition:color .2s ease;padding:8px 12px;border-radius:10px;background:#ffffff;border:1px solid #e5e7eb}
+        a:hover{color:#10b981;background:#f3f4f6}
         .logout-btn{padding:10px 18px;border-radius:24px;background:linear-gradient(45deg,#0ea5a3,#0b7a6e);border:1px solid rgba(14,165,163,.6);color:#fff;box-shadow:0 6px 14px rgba(14,165,163,.25)}
         .logout-btn:hover{background:linear-gradient(45deg,#0b7a6e,#075e57);border-color:#0ea5a3;color:#fff}
-        .wrap{padding:30px;max-width:1400px;margin:0 auto}
+        .wrap{padding:16px 24px;max-width:1200px;margin:0 auto}
         .search-box{margin-bottom:30px;display:flex;gap:15px;align-items:center}
-        input{padding:12px 20px;border:none;border-radius:25px;background:rgba(21,26,44,0.8);color:#fff;border:1px solid rgba(0,255,136,0.3);width:300px;font-size:14px}
-        input:focus{outline:none;border-color:#00ff88;box-shadow:0 0 15px rgba(0,255,136,0.3)}
-        input::placeholder{color:#999}
-        .search-btn{padding:12px 24px;background:linear-gradient(45deg,#00ff88,#00cc6a);border:none;border-radius:25px;color:#000;font-weight:700;cursor:pointer;transition:all 0.3s ease;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
-        .search-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,255,136,0.4)}
-        table{width:100%;border-collapse:collapse;background:rgba(21,26,44,0.6);border-radius:15px;overflow:hidden;border:1px solid rgba(0,255,136,0.2)}
-        th{background:rgba(0,255,136,0.1);color:#00ff88;padding:15px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:1px}
-        td{padding:15px;border-bottom:1px solid rgba(255,255,255,0.1);transition:all 0.3s ease}
-        tr:hover td{background:rgba(0,255,136,0.05)}
-        .user-id{color:#00ff88;font-weight:bold}
+        input{padding:10px 14px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827;width:300px;font-size:14px}
+        input:focus{outline:none;border-color:#059669;box-shadow:0 0 0 3px rgba(16,185,129,.15)}
+        input::placeholder{color:#9ca3af}
+        .search-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;cursor:pointer;transition:background .2s ease;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
+        .search-btn:hover{background:#059669}
+        table{width:100%;border-collapse:collapse;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
+        th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
+        td{padding:12px;border-bottom:1px solid #f1f5f9;transition:background .2s ease}
+        tr:hover td{background:#f9fafb}
+        .user-id{color:#059669;font-weight:600}
         .user-name{font-weight:500}
         .user-phone{color:#ccc;font-family:monospace}
         .user-email{color:#999;font-size:13px}
         .user-date{color:#999;font-size:12px}
-        .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-bottom:30px}
-        .stat-card{background:rgba(21,26,44,0.8);border:1px solid rgba(0,255,136,0.2);border-radius:15px;padding:20px;text-align:center}
-        .stat-number{font-size:24px;font-weight:bold;color:#00ff88;margin-bottom:5px}
-        .stat-label{color:#ccc;font-size:12px;text-transform:uppercase}
+        .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
+        .stat-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;text-align:center}
+        .stat-number{font-size:20px;font-weight:700;color:#111827;margin-bottom:4px}
+        .stat-label{color:#6b7280;font-size:12px;text-transform:uppercase}
         /* Light mode */
         body.light{background:#f8fafc;color:#1e293b}
         body.light header{background:#ffffff;border-bottom:1px solid #e2e8f0}
