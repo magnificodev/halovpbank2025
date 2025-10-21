@@ -341,6 +341,11 @@ class VPBankGame {
 
     // Utility Methods
     showMessage(message, type = 'info') {
+        // Don't show messages on registration page
+        if (this.currentPage === 'index') {
+            return;
+        }
+
         // Remove existing messages
         const existingMessages = document.querySelectorAll('.message');
         existingMessages.forEach((msg) => msg.remove());
