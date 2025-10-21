@@ -1,9 +1,9 @@
 <?php
-// Database configuration
+// Database configuration for XAMPP
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'vpbank_game');
-define('DB_USER', 'your_db_user');
-define('DB_PASS', 'your_db_password');
+define('DB_USER', 'root');
+define('DB_PASS', ''); // XAMPP default: empty password
 
 // Game configuration
 define('GAME_SECRET_KEY', 'vpbank_solution_day_2025_secret_key');
