@@ -72,7 +72,22 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
         .stat-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;text-align:center}
         .stat-number{font-size:20px;font-weight:700;color:#111827;margin-bottom:4px}
         .stat-label{color:#6b7280;font-size:12px;text-transform:uppercase}
-        /* Light is default in flat theme */
+        /* Dark mode overrides */
+        body.dark{background:#0f172a;color:#e5e7eb}
+        body.dark header{background:#0b1220;border-bottom:1px solid #1f2937}
+        body.dark .logo{color:#a7f3d0}
+        body.dark a{color:#a7f3d0;background:#0b1220;border-color:#1f2937}
+        body.dark a:hover{background:#111827}
+        body.dark .logout-btn{background:#065f46;border-color:#065f46}
+        body.dark .logout-btn:hover{background:#059669}
+        body.dark table{background:#111827;border-color:#1f2937}
+        body.dark th{background:#0f172a;color:#e5e7eb}
+        body.dark td{border-bottom:1px solid #1f2937}
+        body.dark .user-id,body.dark .gift-code{color:#a7f3d0}
+        body.dark .date{color:#94a3b8}
+        body.dark .stat-card{background:#111827;border-color:#1f2937}
+        body.dark .stat-number{color:#e5e7eb}
+        body.dark .stat-label{color:#94a3b8}
         @media (max-width: 768px){
             .wrap{padding:20px}
             table{font-size:14px}

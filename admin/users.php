@@ -105,6 +105,27 @@ if ($q) {
         body.light input::placeholder{color:#9ca3af}
         body.light .search-btn{background:linear-gradient(45deg,#059669,#047857);color:#ffffff}
         body.light .search-btn:hover{background:linear-gradient(45deg,#047857,#065f46)}
+        /* Dark mode overrides */
+        body.dark{background:#0f172a;color:#e5e7eb}
+        body.dark header{background:#0b1220;border-bottom:1px solid #1f2937}
+        body.dark .logo{color:#a7f3d0}
+        body.dark a{color:#a7f3d0;background:#0b1220;border-color:#1f2937}
+        body.dark a:hover{background:#111827}
+        body.dark .logout-btn{background:#065f46;border-color:#065f46}
+        body.dark .logout-btn:hover{background:#059669}
+        body.dark table{background:#111827;border-color:#1f2937}
+        body.dark th{background:#0f172a;color:#e5e7eb}
+        body.dark td{border-bottom:1px solid #1f2937}
+        body.dark .user-id{color:#a7f3d0}
+        body.dark .user-name{color:#e5e7eb}
+        body.dark .user-phone,body.dark .user-email,body.dark .user-date{color:#94a3b8}
+        body.dark .stat-card{background:#111827;border-color:#1f2937}
+        body.dark .stat-number{color:#e5e7eb}
+        body.dark .stat-label{color:#94a3b8}
+        body.dark input{background:#0b1220;color:#e5e7eb;border-color:#1f2937}
+        body.dark input::placeholder{color:#94a3b8}
+        body.dark .search-btn{background:#059669;border-color:#059669}
+        body.dark .search-btn:hover{background:#10b981}
         @media (max-width: 768px){
             .wrap{padding:20px}
             .search-box{flex-direction:column;align-items:stretch}
@@ -125,10 +146,8 @@ if ($q) {
     <script>
         (function(){
             const key='admin_theme';
-            if((localStorage.getItem(key)||'dark')==='light') {
-                document.body.classList.add('light');
-                const mobileFrame = document.querySelector('.mobile-frame');
-                if (mobileFrame) mobileFrame.classList.add('light');
+            if((localStorage.getItem(key)||'light')==='dark') {
+                document.body.classList.add('dark');
             }
         })();
     </script>

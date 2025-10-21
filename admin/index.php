@@ -39,8 +39,22 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         .card h3{margin:0 0 8px;font-size:14px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
         .card .number{font-size:28px;font-weight:700;color:#111827;margin-bottom:4px}
         .card .label{color:#6b7280;font-size:12px;text-transform:uppercase}
-        /* Light mode becomes noop for flat theme */
-        body.light{}
+        /* Dark mode overrides */
+        body.dark{background:#0f172a;color:#e5e7eb}
+        body.dark header{background:#0b1220;border-bottom:1px solid #1f2937}
+        body.dark .logo{color:#a7f3d0}
+        body.dark a{color:#a7f3d0}
+        body.dark a:hover{color:#34d399}
+        body.dark .toggle{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
+        body.dark .logout-btn{background:#065f46;border-color:#065f46}
+        body.dark .logout-btn:hover{background:#059669}
+        body.dark .nav{border-bottom:1px solid #1f2937}
+        body.dark .nav a{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
+        body.dark .nav a:hover{background:#111827}
+        body.dark .card{background:#111827;border-color:#1f2937}
+        body.dark .card h3{color:#94a3b8}
+        body.dark .card .number{color:#e5e7eb}
+        body.dark .card .label{color:#94a3b8}
         @media (max-width: 768px){
             header{padding:15px 20px}
             .nav{padding:20px}
