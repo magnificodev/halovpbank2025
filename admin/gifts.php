@@ -50,7 +50,7 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh}
         .logo{display:flex;align-items:center;gap:8px}
         .logo svg{width:20px;height:20px;color:#059669;flex-shrink:0}
-        th{display:flex;align-items:center;gap:6px}
+        th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px;display:flex;align-items:center;gap:6px}
         th svg{width:16px;height:16px;color:#6b7280;flex-shrink:0}
         .badge{display:flex;align-items:center;gap:4px}
         .badge svg{width:12px;height:12px;flex-shrink:0}
