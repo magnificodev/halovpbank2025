@@ -181,7 +181,9 @@ body {
 }
 
 .join-button {
-    background: url('../images/join-button.png') center/contain no-repeat;
+    width: 100%;
+    cursor: pointer;
+    display: block;
 }
 
 .scan-button {
@@ -565,7 +567,9 @@ body {
     }
 
     .join-button {
-        background: url('../images/join-button.png') center/contain no-repeat;
+        width: 100%;
+        cursor: pointer;
+        display: block;
     }
 
     .scan-button,

@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <input type="email" id="email" name="email" placeholder="EMAIL" required>
                         </div>
-                        <button type="submit" class="join-button"></button>
+                        <img src="assets/images/join-button.png" alt="Tham gia" class="join-button" onclick="document.getElementById('registrationForm').submit()">
                     </form>
                 </div>
 
