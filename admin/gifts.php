@@ -52,7 +52,7 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
         .logo svg{width:20px;height:20px;color:#059669;flex-shrink:0}
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
         th svg{width:16px;height:16px;color:#6b7280;margin-right:6px;vertical-align:middle}
-        .badge{display:flex;align-items:center;gap:4px}
+        .badge{padding:6px 10px;border-radius:10px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
         .badge svg{width:12px;height:12px;flex-shrink:0}
         header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
         .logo{font-size:18px;font-weight:600;color:#111827}
@@ -75,9 +75,8 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
         .csv-btn:hover{background:#059669}
         table{width:100%;border-collapse:collapse;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
-        td{padding:12px;border-bottom:1px solid #f1f5f9;transition:background .2s ease}
+        td{padding:12px;border-bottom:1px solid #f1f5f9;transition:background .2s ease;vertical-align:middle}
         tr:hover td{background:#f9fafb}
-        .badge{padding:6px 10px;border-radius:10px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px}
         .ok{background:#10b981;color:#fff}
         .pending{background:#ef4444;color:#fff}
         .gift-code{font-family:monospace;font-size:14px;font-weight:700;color:#059669;letter-spacing:2px}
