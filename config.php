@@ -1,0 +1,32 @@
+<?php
+// Database configuration
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'vpbank_game');
+define('DB_USER', 'your_db_user');
+define('DB_PASS', 'your_db_password');
+
+// Game configuration
+define('GAME_SECRET_KEY', 'vpbank_solution_day_2025_secret_key');
+define('REQUIRED_STATIONS', 3); // Minimum stations to complete for reward
+define('GIFT_CODE_LENGTH', 8);
+
+// Station IDs
+define('STATIONS', [
+    'HALLO_GLOW' => 'HALLO GLOW',
+    'HALLO_SOLUTION' => 'HALLO SOLUTION',
+    'HALLO_SUPER_SINH_LOI' => 'HALLO SUPER SINH LỜI PREMIER',
+    'HALLO_SHOP' => 'HALLO SHOP',
+    'HALLO_WIN' => 'HALLO WIN'
+]);
+
+// Error messages
+define('ERRORS', [
+    'INVALID_TOKEN' => 'Token không hợp lệ',
+    'STATION_ALREADY_COMPLETED' => 'Trạm này đã được hoàn thành',
+    'INVALID_STATION' => 'Trạm không hợp lệ',
+    'INVALID_VERIFY_HASH' => 'Mã xác thực không hợp lệ',
+    'USER_NOT_FOUND' => 'Không tìm thấy người dùng',
+    'REWARD_ALREADY_CLAIMED' => 'Bạn đã nhận quà rồi',
+    'INSUFFICIENT_STATIONS' => 'Chưa hoàn thành đủ trạm để nhận quà'
+]);
+?>

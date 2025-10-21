@@ -1,0 +1,478 @@
+/* VPBank Solution Day Game - Main Styles */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d3748 100%);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    padding: 20px 20px 10px;
+    position: relative;
+    z-index: 2;
+}
+
+.logo-img {
+    height: 60px;
+    width: auto;
+    margin-bottom: 15px;
+}
+
+.main-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #00ff88;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
+}
+
+/* Form Styles */
+.form-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.registration-form {
+    width: 100%;
+    max-width: 350px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.3);
+}
+
+.form-group input::placeholder {
+    color: #666;
+    font-weight: 600;
+}
+
+/* Button Styles */
+.join-button,
+.scan-button,
+.claim-button {
+    width: 100%;
+    padding: 18px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.join-button {
+    background: linear-gradient(45deg, #00ff88, #00cc6a);
+    color: white;
+}
+
+.scan-button {
+    background: linear-gradient(45deg, #4a90e2, #357abd);
+    color: white;
+    margin-bottom: 15px;
+}
+
+.claim-button {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+    color: white;
+}
+
+.join-button:hover,
+.scan-button:hover,
+.claim-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.join-button:active,
+.scan-button:active,
+.claim-button:active {
+    transform: translateY(0);
+}
+
+/* Instructions */
+.instructions {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+/* Stations List */
+.stations-container {
+    flex: 1;
+    padding: 20px;
+}
+
+.stations-list {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.station-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.station-item.completed {
+    background: rgba(0, 255, 136, 0.1);
+    border-color: #00ff88;
+}
+
+.station-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.station-item:not(.completed) .station-icon {
+    background: transparent;
+    border: 2px solid #00ff88;
+    color: #00ff88;
+}
+
+.station-item.completed .station-icon {
+    background: #ff4757;
+    color: white;
+}
+
+.station-name {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.station-description {
+    font-size: 12px;
+    color: #ccc;
+    margin-top: 2px;
+}
+
+/* Action Buttons */
+.action-buttons {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Gift Code Display */
+.gift-code-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.gift-code-box {
+    background: white;
+    color: #333;
+    padding: 30px 40px;
+    border-radius: 20px;
+    border: 3px solid #00ff88;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.3);
+    margin-bottom: 30px;
+    min-width: 250px;
+}
+
+.gift-instruction {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ccc;
+    max-width: 300px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background-color: #1a1f3a;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: white;
+}
+
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: white;
+}
+
+.modal-body {
+    padding: 20px;
+    text-align: center;
+}
+
+#qr-reader {
+    margin-bottom: 15px;
+}
+
+.scan-instruction {
+    color: #ccc;
+    font-size: 14px;
+}
+
+/* Footer */
+.footer {
+    position: relative;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.solution-day-text {
+    font-size: 48px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    position: relative;
+    z-index: 2;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(0, 255, 255, 0.1) 0%,
+        rgba(0, 255, 136, 0.1) 50%,
+        rgba(0, 255, 255, 0.1) 100%
+    );
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Loading Animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #00ff88;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error/Success Messages */
+.message {
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    text-align: center;
+    font-weight: 600;
+}
+
+.message.success {
+    background: rgba(0, 255, 136, 0.2);
+    color: #00ff88;
+    border: 1px solid #00ff88;
+}
+
+.message.error {
+    background: rgba(255, 71, 87, 0.2);
+    color: #ff4757;
+    border: 1px solid #ff4757;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 20px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .form-group input {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    .join-button,
+    .scan-button,
+    .claim-button {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .station-item {
+        padding: 12px 15px;
+    }
+
+    .station-name {
+        font-size: 14px;
+    }
+
+    .gift-code-box {
+        font-size: 24px;
+        padding: 25px 30px;
+        min-width: 200px;
+    }
+
+    .solution-day-text {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 15px 15px 10px;
+    }
+
+    .logo-img {
+        height: 50px;
+    }
+
+    .main-title {
+        font-size: 18px;
+    }
+
+    .form-container {
+        padding: 15px;
+    }
+
+    .stations-container {
+        padding: 15px;
+    }
+
+    .action-buttons {
+        padding: 15px;
+    }
+
+    .gift-code-container {
+        padding: 30px 15px;
+    }
+
+    .gift-code-box {
+        font-size: 20px;
+        padding: 20px 25px;
+        min-width: 180px;
+    }
+
+    .solution-day-text {
+        font-size: 28px;
+    }
+}
