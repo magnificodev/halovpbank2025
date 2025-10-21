@@ -52,7 +52,7 @@ body.game-page {
         position: relative;
         background: transparent;
     }
-    
+
     .mobile-frame {
         width: 100vw;
         height: 100vh;
@@ -64,7 +64,8 @@ body.game-page {
 }
 
 /* Game Content */
-.game-content {
+.game-content,
+.container {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -75,6 +76,13 @@ body.game-page {
     z-index: 2;
 }
 
+.form-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Registration Form */
 .registration-form {
     width: 100%;
@@ -82,8 +90,9 @@ body.game-page {
     margin: 12px auto 0;
 }
 
-.form-group {
-    margin-bottom: 8px;
+/* Override common.css form-group for game */
+.mobile-frame .form-group {
+    margin-bottom: 8px !important;
 }
 
 .form-group > label {
@@ -391,33 +400,33 @@ body.game-page {
         width: 100vw;
         height: 100vh;
     }
-    
+
     .game-content {
         padding: 15px;
     }
-    
+
     .registration-form {
         max-width: 280px;
     }
-    
+
     .station-item {
         padding: 12px;
     }
-    
+
     .station-icon {
         width: 35px;
         height: 35px;
         font-size: 18px;
     }
-    
+
     .station-details h3 {
         font-size: 16px;
     }
-    
+
     .station-details p {
         font-size: 12px;
     }
-    
+
     .gift-code .code {
         font-size: 24px;
         letter-spacing: 2px;
