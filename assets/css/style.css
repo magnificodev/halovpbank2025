@@ -269,8 +269,7 @@ body {
 }
 
 .form-group .input.error {
-    border: 2px solid #ff4757 !important;
-    box-shadow: 0 0 0 2px rgba(255, 71, 87, 0.2) !important;
+    /* No border or shadow for error state */
 }
 
 /* Fix autofill - Cách 1: Xóa lớp nền autofill của trình duyệt */
