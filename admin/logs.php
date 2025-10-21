@@ -54,7 +54,7 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         .logout-btn:hover{background:linear-gradient(45deg,#0b7a6e,#075e57);border-color:#0ea5a3;color:#fff}
         .wrap{padding:30px;max-width:1400px;margin:0 auto}
         .toolbar{display:flex;gap:10px;align-items:center;justify-content:flex-start;margin:0 0 15px}
-        .csv-btn{padding:12px 24px;background:linear-gradient(45deg,#00ff88,#00cc6a);border:none;border-radius:25px;color:#000;font-weight:700;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;border:1px solid rgba(0,255,136,0.3);box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;letter-spacing:0;line-height:1}
+        .csv-btn{padding:12px 24px;background:linear-gradient(45deg,#00ff88,#00cc6a);border:none;border-radius:25px;color:#000;font-weight:700;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;border:1px solid rgba(0,255,136,0.3);box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
         .csv-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,255,136,0.4)}
         table{width:100%;border-collapse:collapse;background:rgba(21,26,44,0.6);border-radius:15px;overflow:hidden;border:1px solid rgba(0,255,136,0.2)}
         th{background:rgba(0,255,136,0.1);color:#00ff88;padding:15px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:1px}
