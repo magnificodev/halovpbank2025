@@ -45,12 +45,12 @@ body {
     max-height: 100vh;
 }
 
-/* Auto-scale frame to fill screen height while maintaining 9:16 aspect ratio */
+/* Auto-scale frame to fit screen while maintaining 9:16 aspect ratio */
 @media (min-height: 640px) {
     .mobile-frame {
-        height: 100vh;
-        width: calc(100vh * 9 / 16);
-        max-width: 100vw;
+        /* Scale based on the smaller dimension to maintain aspect ratio */
+        width: min(100vw, calc(100vh * 9 / 16));
+        height: min(100vh, calc(100vw * 16 / 9));
     }
 }
 
