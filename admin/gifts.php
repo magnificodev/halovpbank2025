@@ -149,6 +149,10 @@ $totalPages = ceil($totalCount / $perPage);
         body.dark .pagination-info{color:#94a3b8}
         body.dark .csv-btn{background:var(--accent-600);border-color:var(--accent-600)}
         body.dark .csv-btn:hover{background:var(--accent)}
+        body.dark .sidebar{background:#0b1220;border-right:1px solid #1f2937}
+        body.dark .nav-link{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
+        body.dark .nav-link:hover{background:#111827}
+        body.dark .nav-link.active{background:#0f291f;border-color:#065f46;color:#a7f3d0}
         @media (max-width: 768px){
             .layout{flex-direction:column}
             .sidebar{width:100%;border-right:none;border-bottom:1px solid #e5e7eb}
