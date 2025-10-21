@@ -29,8 +29,22 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         a{color:var(--accent-600);text-decoration:none}
         a:hover{color:var(--accent)}
         .toggle{padding:8px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer;display:flex;align-items:center;justify-content:center;width:36px;height:36px}
-        .logout-btn{padding:8px 14px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600}
+        .logout-btn{padding:8px 14px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;border:none}
         .logout-btn:hover{background:var(--accent-600)}
+        /* Logout Dialog */
+        .logout-dialog{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center}
+        .logout-dialog.show{display:flex}
+        .dialog-content{background:#fff;border-radius:12px;padding:24px;max-width:400px;width:90%;box-shadow:0 10px 25px rgba(0,0,0,0.2)}
+        .dialog-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+        .dialog-icon{width:24px;height:24px;color:#ef4444}
+        .dialog-title{font-size:18px;font-weight:600;color:#111827}
+        .dialog-message{color:#6b7280;margin-bottom:24px;line-height:1.5}
+        .dialog-actions{display:flex;gap:12px;justify-content:flex-end}
+        .btn{padding:8px 16px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all 0.2s}
+        .btn-secondary{background:#f3f4f6;color:#374151;border:1px solid #d1d5db}
+        .btn-secondary:hover{background:#e5e7eb}
+        .btn-danger{background:#ef4444;color:#fff}
+        .btn-danger:hover{background:#dc2626}
         /* Layout with sidebar */
         .layout{display:flex;min-height:calc(100vh - 58px)}
         .sidebar{width:220px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
@@ -59,6 +73,11 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         body.dark .toggle{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
         body.dark .logout-btn{background:var(--accent-600);border-color:var(--accent-600)}
         body.dark .logout-btn:hover{background:var(--accent)}
+        body.dark .dialog-content{background:#111827;border:1px solid #1f2937}
+        body.dark .dialog-title{color:#e5e7eb}
+        body.dark .dialog-message{color:#94a3b8}
+        body.dark .btn-secondary{background:#1f2937;color:#e5e7eb;border-color:#374151}
+        body.dark .btn-secondary:hover{background:#374151}
         body.dark .sidebar{background:#0b1220;border-right:1px solid #1f2937}
         body.dark .nav-link{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
         body.dark .nav-link:hover{background:#111827}
@@ -93,12 +112,12 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
                 </svg>
             </button>
-            <a href="logout.php" class="logout-btn">
+            <button class="logout-btn" onclick="showLogoutDialog()">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;margin-right:6px;">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                 </svg>
                 Đăng xuất
-            </a>
+            </button>
         </div>
     </header>
     <div class="layout">
@@ -182,6 +201,24 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
             </div>
         </main>
     </div>
+
+    <!-- Logout Dialog -->
+    <div id="logoutDialog" class="logout-dialog">
+        <div class="dialog-content">
+            <div class="dialog-header">
+                <svg class="dialog-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                </svg>
+                <h3 class="dialog-title">Xác nhận đăng xuất</h3>
+            </div>
+            <p class="dialog-message">Bạn có chắc chắn muốn đăng xuất khỏi hệ thống quản trị không?</p>
+            <div class="dialog-actions">
+                <button class="btn btn-secondary" onclick="hideLogoutDialog()">Hủy</button>
+                <button class="btn btn-danger" onclick="confirmLogout()">Đăng xuất</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         (function(){
             const key='admin_theme';
@@ -207,6 +244,33 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
                 render();
             });
         })();
+
+        // Logout Dialog Functions
+        function showLogoutDialog() {
+            document.getElementById('logoutDialog').classList.add('show');
+        }
+
+        function hideLogoutDialog() {
+            document.getElementById('logoutDialog').classList.remove('show');
+        }
+
+        function confirmLogout() {
+            window.location.href = 'logout.php';
+        }
+
+        // Close dialog when clicking outside
+        document.getElementById('logoutDialog').addEventListener('click', function(e) {
+            if (e.target === this) {
+                hideLogoutDialog();
+            }
+        });
+
+        // Close dialog with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hideLogoutDialog();
+            }
+        });
     </script>
 </body>
 </html>
