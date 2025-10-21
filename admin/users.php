@@ -71,7 +71,6 @@ $totalPages = ceil($totalCount / $perPage);
         .user-info{display:flex;align-items:center;gap:12px}
         .toggle{padding:8px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer;display:flex;align-items:center;justify-content:center;width:36px;height:36px}
         a{color:var(--accent-600);text-decoration:none}
-        a:hover{color:var(--accent)}
          .logout-btn{padding:10px 20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.5}
         .logout-btn:hover{background:var(--accent-600)}
         /* Logout Dialog */
@@ -160,7 +159,6 @@ $totalPages = ceil($totalCount / $perPage);
         body.dark .logo{color:#a7f3d0}
         body.dark .logo svg{color:#a7f3d0}
         body.dark a{color:#a7f3d0}
-        body.dark a:hover{color:#34d399}
         body.dark .logout-btn{background:var(--accent-600);border-color:var(--accent-600)}
         body.dark .logout-btn:hover{background:var(--accent)}
         body.dark .toggle{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
