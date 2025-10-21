@@ -18,6 +18,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js" type="module"></script>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh}
@@ -37,6 +38,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827}
         .nav-link:hover{background:#f3f4f6}
         .nav-link.active{border-color:#059669;background:#ecfdf5;color:#065f46}
+        .nav-link svg{width:20px;height:20px;flex-shrink:0}
         .content{flex:1;padding:16px 24px}
         .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:1200px}
         .card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;transition:box-shadow .2s}
@@ -86,11 +88,37 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
     <div class="layout">
         <aside class="sidebar">
             <div class="nav-group">
-                <a class="nav-link active" href="index.php">🏠 Dashboard</a>
-                <a class="nav-link" href="users.php">👥 Người chơi</a>
-                <a class="nav-link" href="gifts.php">🎁 Mã quà</a>
-                <a class="nav-link" href="logs.php">📊 Log quét</a>
-                <a class="nav-link" href="logout.php">🚪 Đăng xuất</a>
+                <a class="nav-link active" href="index.php">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"></path>
+                    </svg>
+                    Dashboard
+                </a>
+                <a class="nav-link" href="users.php">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                    </svg>
+                    Người chơi
+                </a>
+                <a class="nav-link" href="gifts.php">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                    </svg>
+                    Mã quà
+                </a>
+                <a class="nav-link" href="logs.php">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    Log quét
+                </a>
+                <a class="nav-link" href="logout.php">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                    </svg>
+                    Đăng xuất
+                </a>
             </div>
         </aside>
         <main class="content">
