@@ -5,6 +5,8 @@ $db = new Database();
 
 $q = trim($_GET['q'] ?? '');
 $export = $_GET['export'] ?? '';
+$page = max(1, (int)($_GET['page'] ?? 1));
+$perPage = 20;
 
 if ($export === 'csv') {
     // Export to CSV
@@ -40,11 +42,16 @@ if ($export === 'csv') {
     exit;
 }
 
+// Get total count for pagination
 if ($q) {
-    $users = $db->fetchAll("SELECT * FROM users WHERE full_name LIKE ? OR phone LIKE ? OR email LIKE ? ORDER BY id DESC LIMIT 200", ["%$q%", "%$q%", "%$q%"]);
+    $totalCount = $db->fetch("SELECT COUNT(*) as count FROM users WHERE full_name LIKE ? OR phone LIKE ? OR email LIKE ?", ["%$q%", "%$q%", "%$q%"])['count'];
+    $users = $db->fetchAll("SELECT * FROM users WHERE full_name LIKE ? OR phone LIKE ? OR email LIKE ? ORDER BY id DESC LIMIT ? OFFSET ?", ["%$q%", "%$q%", "%$q%", $perPage, ($page - 1) * $perPage]);
 } else {
-    $users = $db->fetchAll("SELECT * FROM users ORDER BY id DESC LIMIT 200");
+    $totalCount = $db->fetch("SELECT COUNT(*) as count FROM users")['count'];
+    $users = $db->fetchAll("SELECT * FROM users ORDER BY id DESC LIMIT ? OFFSET ?", [$perPage, ($page - 1) * $perPage]);
 }
+
+$totalPages = ceil($totalCount / $perPage);
 ?>
 <!DOCTYPE html>
 <html lang="vi">
@@ -114,6 +121,15 @@ if ($q) {
         .stat-card h3 svg{margin-right:0}
         .stat-number{font-size:20px;font-weight:700;color:#111827;margin-bottom:4px}
         .stat-label{color:#6b7280;font-size:12px;text-transform:uppercase}
+        /* Pagination */
+        .pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin:20px 0;padding:16px 0}
+        .pagination a,.pagination span{display:flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 8px;border:1px solid #e5e7eb;border-radius:8px;text-decoration:none;font-size:14px;font-weight:500;transition:all 0.2s}
+        .pagination a{color:#374151;background:#ffffff}
+        .pagination a:hover{background:#f3f4f6;border-color:#059669;color:#059669}
+        .pagination .current{background:#059669;color:#ffffff;border-color:#059669}
+        .pagination .disabled{color:#9ca3af;background:#f9fafb;cursor:not-allowed}
+        .pagination .disabled:hover{background:#f9fafb;border-color:#e5e7eb;color:#9ca3af}
+        .pagination-info{color:#6b7280;font-size:14px;margin-right:16px}
         /* Light mode */
         body.light{background:#f8fafc;color:#1e293b}
         body.light header{background:#ffffff;border-bottom:1px solid #e2e8f0}
@@ -161,6 +177,12 @@ if ($q) {
         body.dark .stat-card{background:#111827;border-color:#1f2937}
         body.dark .stat-number{color:#e5e7eb}
         body.dark .stat-label{color:#94a3b8}
+        body.dark .pagination a{color:#e5e7eb;background:#111827;border-color:#1f2937}
+        body.dark .pagination a:hover{background:#1f2937;border-color:#059669;color:#a7f3d0}
+        body.dark .pagination .current{background:#059669;color:#ffffff;border-color:#059669}
+        body.dark .pagination .disabled{color:#6b7280;background:#0f172a}
+        body.dark .pagination .disabled:hover{background:#0f172a;border-color:#1f2937;color:#6b7280}
+        body.dark .pagination-info{color:#94a3b8}
          body.dark .search-input{background:#0b1220;color:#e5e7eb;border-color:#1f2937}
          body.dark .search-input::placeholder{color:#94a3b8}
          body.dark .csv-btn{background:#059669;border-color:#059669}
@@ -276,9 +298,10 @@ if ($q) {
          </form>
          <div class="search-status">
              <?php if ($q): ?>
-                 Hiển thị <?php echo count($users); ?> kết quả tìm kiếm cho "<?php echo htmlspecialchars($q); ?>"
+                 Hiển thị <?php echo count($users); ?> kết quả tìm kiếm cho "<?php echo htmlspecialchars($q); ?>" 
+                 (trang <?php echo $page; ?>/<?php echo $totalPages; ?>)
              <?php else: ?>
-                 Hiển thị tất cả <?php echo count($users); ?> người dùng
+                 Hiển thị <?php echo count($users); ?> người dùng (trang <?php echo $page; ?>/<?php echo $totalPages; ?>)
              <?php endif; ?>
          </div>
         <table>
@@ -323,6 +346,58 @@ if ($q) {
                 <?php endforeach; ?>
             </tbody>
         </table>
+        
+        <!-- Pagination -->
+        <?php if ($totalPages > 1): ?>
+        <div class="pagination">
+            <span class="pagination-info">
+                Hiển thị <?php echo (($page - 1) * $perPage) + 1; ?>-<?php echo min($page * $perPage, $totalCount); ?> 
+                trong tổng số <?php echo number_format($totalCount); ?> người dùng
+            </span>
+            
+            <?php if ($page > 1): ?>
+                <a href="?page=1<?php echo $q ? '&q=' . urlencode($q) : ''; ?>">«</a>
+                <a href="?page=<?php echo $page - 1; ?><?php echo $q ? '&q=' . urlencode($q) : ''; ?>">‹</a>
+            <?php else: ?>
+                <span class="disabled">«</span>
+                <span class="disabled">‹</span>
+            <?php endif; ?>
+            
+            <?php
+            $startPage = max(1, $page - 2);
+            $endPage = min($totalPages, $page + 2);
+            
+            if ($startPage > 1): ?>
+                <a href="?page=1<?php echo $q ? '&q=' . urlencode($q) : ''; ?>">1</a>
+                <?php if ($startPage > 2): ?>
+                    <span class="disabled">...</span>
+                <?php endif; ?>
+            <?php endif; ?>
+            
+            <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
+                <?php if ($i == $page): ?>
+                    <span class="current"><?php echo $i; ?></span>
+                <?php else: ?>
+                    <a href="?page=<?php echo $i; ?><?php echo $q ? '&q=' . urlencode($q) : ''; ?>"><?php echo $i; ?></a>
+                <?php endif; ?>
+            <?php endfor; ?>
+            
+            <?php if ($endPage < $totalPages): ?>
+                <?php if ($endPage < $totalPages - 1): ?>
+                    <span class="disabled">...</span>
+                <?php endif; ?>
+                <a href="?page=<?php echo $totalPages; ?><?php echo $q ? '&q=' . urlencode($q) : ''; ?>"><?php echo $totalPages; ?></a>
+            <?php endif; ?>
+            
+            <?php if ($page < $totalPages): ?>
+                <a href="?page=<?php echo $page + 1; ?><?php echo $q ? '&q=' . urlencode($q) : ''; ?>">›</a>
+                <a href="?page=<?php echo $totalPages; ?><?php echo $q ? '&q=' . urlencode($q) : ''; ?>">»</a>
+            <?php else: ?>
+                <span class="disabled">›</span>
+                <span class="disabled">»</span>
+            <?php endif; ?>
+        </div>
+        <?php endif; ?>
         </main>
     </div>
 
