@@ -90,12 +90,15 @@ if ($q) {
         .nav-link svg{width:20px;height:20px;flex-shrink:0;color:inherit}
         .content{flex:1;padding:16px 24px}
         .wrap{padding:0;max-width:none;margin:0}
-        .search-box{margin-bottom:30px;display:flex;gap:15px;align-items:center}
-        input{padding:10px 14px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827;width:300px;font-size:14px}
-        input:focus{outline:none;border-color:#059669;box-shadow:0 0 0 3px rgba(16,185,129,.15)}
-        input::placeholder{color:#9ca3af}
-        .search-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;cursor:pointer;transition:background .2s ease;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
-        .search-btn:hover{background:#059669}
+        .search-box{margin-bottom:20px;display:flex;gap:15px;align-items:center}
+        .search-container{position:relative;display:flex;align-items:center}
+        .search-input{padding:10px 14px 10px 40px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827;width:300px;font-size:14px}
+        .search-input:focus{outline:none;border-color:#059669;box-shadow:0 0 0 3px rgba(16,185,129,.15)}
+        .search-input::placeholder{color:#9ca3af}
+        .search-icon{position:absolute;left:12px;width:16px;height:16px;color:#6b7280;pointer-events:none}
+        .csv-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;cursor:pointer;transition:background .2s ease;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
+        .csv-btn:hover{background:#059669}
+        .search-status{color:#6b7280;font-size:12px;margin-top:8px;text-align:left}
         table{width:100%;border-collapse:collapse;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
         td{padding:12px;border-bottom:1px solid #f1f5f9;transition:background .2s ease}
@@ -130,11 +133,11 @@ if ($q) {
         body.light .stat-card{background:#ffffff;border-color:#e2e8f0}
         body.light .stat-number{color:#059669}
         body.light .stat-label{color:#6b7280}
-        body.light input{background:#ffffff;color:#1e293b;border-color:#d1d5db}
-        body.light input:focus{border-color:#059669;box-shadow:0 0 0 3px rgba(5,150,105,0.1)}
-        body.light input::placeholder{color:#9ca3af}
-        body.light .search-btn{background:linear-gradient(45deg,#059669,#047857);color:#ffffff}
-        body.light .search-btn:hover{background:linear-gradient(45deg,#047857,#065f46)}
+        body.light .search-input{background:#ffffff;color:#1e293b;border-color:#d1d5db}
+        body.light .search-input:focus{border-color:#059669;box-shadow:0 0 0 3px rgba(5,150,105,0.1)}
+        body.light .search-input::placeholder{color:#9ca3af}
+        body.light .csv-btn{background:linear-gradient(45deg,#059669,#047857);color:#ffffff}
+        body.light .csv-btn:hover{background:linear-gradient(45deg,#047857,#065f46)}
         /* Dark mode overrides */
         body.dark{background:#0f172a;color:#e5e7eb}
         body.dark header{background:#0b1220;border-bottom:1px solid #1f2937}
@@ -158,10 +161,10 @@ if ($q) {
         body.dark .stat-card{background:#111827;border-color:#1f2937}
         body.dark .stat-number{color:#e5e7eb}
         body.dark .stat-label{color:#94a3b8}
-        body.dark input{background:#0b1220;color:#e5e7eb;border-color:#1f2937}
-        body.dark input::placeholder{color:#94a3b8}
-        body.dark .search-btn{background:#059669;border-color:#059669}
-        body.dark .search-btn:hover{background:#10b981}
+        body.dark .search-input{background:#0b1220;color:#e5e7eb;border-color:#1f2937}
+        body.dark .search-input::placeholder{color:#94a3b8}
+        body.dark .csv-btn{background:#059669;border-color:#059669}
+        body.dark .csv-btn:hover{background:#10b981}
         /* Dark mode sidebar */
         body.dark .sidebar{background:#0b1220;border-right:1px solid #1f2937}
         body.dark .nav-link{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
@@ -240,26 +243,27 @@ if ($q) {
             </div>
         </aside>
         <main class="content">
-            <div class="stats">
-                <div class="stat-card">
-                    <div class="stat-number"><?php echo count($users); ?></div>
-                    <div class="stat-label">Kết quả tìm kiếm</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number"><?php echo $q ? '🔍' : '📋'; ?></div>
-                    <div class="stat-label"><?php echo $q ? 'Đang tìm kiếm' : 'Tất cả'; ?></div>
-                </div>
-            </div>
         <form class="search-box">
-            <input type="text" name="q" placeholder="Tìm tên, số điện thoại, email..." value="<?php echo htmlspecialchars($q); ?>">
-            <button type="submit" class="search-btn">Tìm kiếm</button>
-            <a href="?export=csv<?php echo $q ? '&q=' . urlencode($q) : ''; ?>" class="search-btn" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+            <div class="search-container">
+                <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <input type="text" name="q" class="search-input" placeholder="Tìm tên, số điện thoại, email..." value="<?php echo htmlspecialchars($q); ?>">
+            </div>
+            <a href="?export=csv<?php echo $q ? '&q=' . urlencode($q) : ''; ?>" class="csv-btn" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
                 Xuất CSV
             </a>
         </form>
+        <div class="search-status">
+            <?php if ($q): ?>
+                Hiển thị <?php echo count($users); ?> kết quả tìm kiếm cho "<?php echo htmlspecialchars($q); ?>"
+            <?php else: ?>
+                Hiển thị tất cả <?php echo count($users); ?> người dùng
+            <?php endif; ?>
+        </div>
         <table>
             <thead>
                 <tr>
