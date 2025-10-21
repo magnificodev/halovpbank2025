@@ -349,10 +349,6 @@ $totalPages = ceil($totalCount / $perPage);
         <!-- Pagination -->
         <?php if ($totalPages > 1): ?>
         <div class="pagination">
-            <span class="pagination-info">
-                Hiển thị <?php echo (($page - 1) * $perPage) + 1; ?>-<?php echo min($page * $perPage, $totalCount); ?>
-                trong tổng số <?php echo number_format($totalCount); ?> mã quà
-            </span>
 
             <?php if ($page > 1): ?>
                 <a href="?page=1">«</a>
