@@ -234,6 +234,18 @@ body {
     color: transparent;
 }
 
+/* Fix autofill background - Based on successful implementation */
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover,
+.form-group input:-webkit-autofill:focus,
+.form-group input:-webkit-autofill:active {
+    box-shadow: transparent 0px 0px 0px 30px inset !important;
+    -webkit-text-fill-color: rgb(51, 51, 51) !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    transition: background-color 5000s ease-in-out;
+}
+
 /* Button Styles */
 .scan-button,
 .claim-button {
