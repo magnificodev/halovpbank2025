@@ -69,6 +69,7 @@ $totalPages = ceil($totalCount / $perPage);
         th svg{width:16px;height:16px;color:#6b7280;margin-right:6px;vertical-align:middle}
         header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
         .user-info{display:flex;align-items:center;gap:12px}
+        .toggle{padding:8px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer;display:flex;align-items:center;justify-content:center;width:36px;height:36px}
         a{color:var(--accent-600);text-decoration:none}
         a:hover{color:var(--accent)}
          .logout-btn{padding:10px 20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.5}
@@ -162,6 +163,7 @@ $totalPages = ceil($totalCount / $perPage);
         body.dark a:hover{color:#34d399}
         body.dark .logout-btn{background:var(--accent-600);border-color:var(--accent-600)}
         body.dark .logout-btn:hover{background:var(--accent)}
+        body.dark .toggle{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
         body.dark .dialog-content{background:#111827;border:1px solid #1f2937}
         body.dark .dialog-title{color:#e5e7eb}
         body.dark .dialog-message{color:#94a3b8}
@@ -216,6 +218,11 @@ $totalPages = ceil($totalCount / $perPage);
             VPBank Admin
         </div>
         <div class="user-info">
+            <button id="themeToggle" class="toggle">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                </svg>
+            </button>
             <button class="logout-btn" onclick="showLogoutDialog()">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
@@ -227,9 +234,27 @@ $totalPages = ceil($totalCount / $perPage);
     <script>
         (function(){
             const key='admin_theme';
-            if((localStorage.getItem(key)||'light')==='dark') {
-                document.body.classList.add('dark');
+            const saved=localStorage.getItem(key)||'dark';
+            if(saved==='light') {
+                document.body.classList.add('light');
+                const mobileFrame = document.querySelector('.mobile-frame');
+                if (mobileFrame) mobileFrame.classList.add('light');
             }
+            const btn=document.getElementById('themeToggle');
+            function render(){
+                const isLight = document.body.classList.contains('light');
+                btn.innerHTML = isLight ?
+                    '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>' :
+                    '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>';
+            }
+            render();
+            btn.addEventListener('click',()=>{
+                document.body.classList.toggle('light');
+                const mobileFrame = document.querySelector('.mobile-frame');
+                if (mobileFrame) mobileFrame.classList.toggle('light');
+                localStorage.setItem(key, document.body.classList.contains('light')?'light':'dark');
+                render();
+            });
         })();
     </script>
     <div class="layout">
@@ -298,7 +323,7 @@ $totalPages = ceil($totalCount / $perPage);
          </form>
          <div class="search-status">
              <?php if ($q): ?>
-                 Hiển thị <?php echo count($users); ?> kết quả tìm kiếm cho "<?php echo htmlspecialchars($q); ?>" 
+                 Hiển thị <?php echo count($users); ?> kết quả tìm kiếm cho "<?php echo htmlspecialchars($q); ?>"
                  (trang <?php echo $page; ?>/<?php echo $totalPages; ?>)
              <?php else: ?>
                  Hiển thị <?php echo count($users); ?> người dùng (trang <?php echo $page; ?>/<?php echo $totalPages; ?>)
@@ -346,15 +371,15 @@ $totalPages = ceil($totalCount / $perPage);
                 <?php endforeach; ?>
             </tbody>
         </table>
-        
+
         <!-- Pagination -->
         <?php if ($totalPages > 1): ?>
         <div class="pagination">
             <span class="pagination-info">
-                Hiển thị <?php echo (($page - 1) * $perPage) + 1; ?>-<?php echo min($page * $perPage, $totalCount); ?> 
+                Hiển thị <?php echo (($page - 1) * $perPage) + 1; ?>-<?php echo min($page * $perPage, $totalCount); ?>
                 trong tổng số <?php echo number_format($totalCount); ?> người dùng
             </span>
-            
+
             <?php if ($page > 1): ?>
                 <a href="?page=1<?php echo $q ? '&q=' . urlencode($q) : ''; ?>">«</a>
                 <a href="?page=<?php echo $page - 1; ?><?php echo $q ? '&q=' . urlencode($q) : ''; ?>">‹</a>
@@ -362,18 +387,18 @@ $totalPages = ceil($totalCount / $perPage);
                 <span class="disabled">«</span>
                 <span class="disabled">‹</span>
             <?php endif; ?>
-            
+
             <?php
             $startPage = max(1, $page - 2);
             $endPage = min($totalPages, $page + 2);
-            
+
             if ($startPage > 1): ?>
                 <a href="?page=1<?php echo $q ? '&q=' . urlencode($q) : ''; ?>">1</a>
                 <?php if ($startPage > 2): ?>
                     <span class="disabled">...</span>
                 <?php endif; ?>
             <?php endif; ?>
-            
+
             <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
                 <?php if ($i == $page): ?>
                     <span class="current"><?php echo $i; ?></span>
@@ -381,14 +406,14 @@ $totalPages = ceil($totalCount / $perPage);
                     <a href="?page=<?php echo $i; ?><?php echo $q ? '&q=' . urlencode($q) : ''; ?>"><?php echo $i; ?></a>
                 <?php endif; ?>
             <?php endfor; ?>
-            
+
             <?php if ($endPage < $totalPages): ?>
                 <?php if ($endPage < $totalPages - 1): ?>
                     <span class="disabled">...</span>
                 <?php endif; ?>
                 <a href="?page=<?php echo $totalPages; ?><?php echo $q ? '&q=' . urlencode($q) : ''; ?>"><?php echo $totalPages; ?></a>
             <?php endif; ?>
-            
+
             <?php if ($page < $totalPages): ?>
                 <a href="?page=<?php echo $page + 1; ?><?php echo $q ? '&q=' . urlencode($q) : ''; ?>">›</a>
                 <a href="?page=<?php echo $totalPages; ?><?php echo $q ? '&q=' . urlencode($q) : ''; ?>">»</a>
