@@ -42,8 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .error{background:#fef2f2;border:1px solid #fecaca;color:#dc2626;padding:10px;border-radius:8px;margin-bottom:12px;font-size:13px}
         .form-group{margin-bottom:12px}
         label{display:block;margin:0 0 6px;font-size:12px;color:var(--muted);font-weight:600}
-        input{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;background:#ffffff;color:var(--text);font-size:14px;appearance:none;box-shadow:none}
-        input:focus{outline:none;border-color:var(--accent-600);box-shadow:0 0 0 2px rgba(16,185,129,.15)}
+        /* Increase specificity to override global styles */
+        .login .form-group input{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;background:#ffffff;color:var(--text);font-size:14px;appearance:none;box-shadow:none !important}
+        .login .form-group input:focus{outline:none;border-color:var(--accent-600);box-shadow:0 0 0 2px rgba(16,185,129,.15) !important}
         button{width:100%;padding:12px 14px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;transition:background .2s,opacity .2s;box-shadow:none}
         button:hover{background:var(--accent-600)}
         button:active{opacity:.9}
@@ -52,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         body.dark .login{background:#0b1220;border-color:#1f2937;box-shadow:none}
         body.dark .brand,body.dark label,body.dark .hint{color:#94a3b8}
         body.dark h2{color:#e5e7eb}
-        body.dark input{background:#111827;border-color:#1f2937;color:#e5e7eb;box-shadow:none}
+        body.dark .login .form-group input{background:#111827;border-color:#1f2937;color:#e5e7eb;box-shadow:none !important}
         body.dark input::placeholder{color:#94a3b8}
         body.dark button{background:#059669;border:none}
         body.dark button:hover{background:#10b981}
