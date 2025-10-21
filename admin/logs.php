@@ -49,10 +49,10 @@ $totalPages = ceil($totalCount / $perPage);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Logs</title>
     <style>
-        :root{--accent:#10b981;--accent-600:#059669;--header-height:58px}
+        :root{--accent:#10b981;--accent-600:#059669;--header-height:74px}
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh;line-height:1.5}
-        header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
+        header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb;height:var(--header-height)}
         .logo{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:700;color:#111827}
         .logo svg{width:20px;height:20px;color:var(--accent);flex-shrink:0}
         .user-info{display:flex;align-items:center;gap:12px}

@@ -51,7 +51,7 @@ $totalPages = ceil($totalCount / $perPage);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Mã quà</title>
     <style>
-        :root{--accent:#10b981;--accent-600:#059669;--header-height:58px}
+        :root{--accent:#10b981;--accent-600:#059669;--header-height:74px}
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh;line-height:1.5}
         .logo{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:700;color:#111827}
@@ -60,7 +60,7 @@ $totalPages = ceil($totalCount / $perPage);
         th svg{width:16px;height:16px;color:#6b7280;margin-right:6px;vertical-align:middle}
         .badge{padding:6px 10px;border-radius:10px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
         .badge svg{width:12px;height:12px;flex-shrink:0}
-        header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
+        header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb;height:var(--header-height)}
         .user-info{display:flex;align-items:center;gap:12px}
         .toggle{padding:8px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer;display:flex;align-items:center;justify-content:center;width:36px;height:36px}
         a{color:var(--accent-600);text-decoration:none}
