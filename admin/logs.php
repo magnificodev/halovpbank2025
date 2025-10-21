@@ -76,8 +76,8 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         body.light header{background:#ffffff;border-bottom:1px solid #e2e8f0}
         body.light .logo{color:#059669;text-shadow:none}
         body.light a{color:#059669;background:#f8fafc;border-color:#d1d5db}
-        body.light .logout-btn{background:#065f46;border-color:#059669;color:#fff}
-        body.light .logout-btn:hover{background:#047857}
+        body.light .logout-btn{background:#065f46;border-color:#059669;color:#ffffff !important}
+        body.light .logout-btn:hover{background:#047857;color:#ffffff !important}
         body.light a:hover{color:#047857;background:#f0fdf4;border-color:#059669}
         body.light table{background:#ffffff;border-color:#e2e8f0}
         body.light th{background:#f1f5f9;color:#374151}

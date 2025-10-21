@@ -61,11 +61,12 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         body.light .stat-number{color:#059669}
         body.light .toggle{background:#f0fdf4;border-color:#059669;color:#047857;font-weight:600}
         body.light .toggle:hover{background:#dcfce7;border-color:#047857;color:#065f46}
-        body.light .logout-btn{background:#065f46;border-color:#059669;color:#fff}
-        body.light .logout-btn:hover{background:#047857}
+        body.light .logout-btn{background:#065f46;border-color:#059669;color:#ffffff !important}
+        body.light .logout-btn:hover{background:#047857;color:#ffffff !important}
         body.light .user-info .user-avatar{background:linear-gradient(45deg,#059669,#047857);color:#ffffff}
         body.light .user-info a{color:#6b7280;font-size:12px}
         body.light .user-info a:hover{color:#374151}
+        body.light .user-info div:first-child{color:#374151 !important}
         @media (max-width: 768px){
             header{padding:15px 20px}
             .nav{padding:20px}
