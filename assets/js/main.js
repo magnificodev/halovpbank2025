@@ -114,34 +114,52 @@ class VPBankGame {
         // Clear previous errors
         this.clearValidationErrors();
 
+        // Validate full name
         if (!data.full_name.trim()) {
             this.showFieldError('full_name', 'Vui lòng nhập họ tên');
             isValid = false;
+        } else if (data.full_name.trim().length < 2) {
+            this.showFieldError('full_name', 'Họ tên phải có ít nhất 2 ký tự');
+            isValid = false;
         }
 
-        if (!data.phone.match(/^[0-9]{10,11}$/)) {
+        // Validate phone
+        if (!data.phone.trim()) {
+            this.showFieldError('phone', 'Vui lòng nhập số điện thoại');
+            isValid = false;
+        } else if (!data.phone.match(/^[0-9]{10,11}$/)) {
             this.showFieldError('phone', 'Số điện thoại phải có 10-11 chữ số');
             isValid = false;
         }
 
-        if (!data.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        // Validate email
+        if (!data.email.trim()) {
+            this.showFieldError('email', 'Vui lòng nhập email');
+            isValid = false;
+        } else if (!data.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
             this.showFieldError('email', 'Email không hợp lệ');
             isValid = false;
         }
 
+        console.log('Validation result:', isValid);
         return isValid;
     }
 
     showFieldError(fieldName, message) {
+        console.log(`Attempting to show error for ${fieldName}: ${message}`);
+        
         const field = document.getElementById(fieldName);
         if (!field) {
             console.error(`Field ${fieldName} not found`);
             return;
         }
 
+        console.log(`Field found:`, field);
+
         // Remove existing error
         const existingError = field.closest('.form-group').querySelector('.field-error');
         if (existingError) {
+            console.log('Removing existing error');
             existingError.remove();
         }
 
@@ -149,11 +167,15 @@ class VPBankGame {
         const errorDiv = document.createElement('div');
         errorDiv.className = 'field-error';
         errorDiv.textContent = message;
+        console.log('Created error div:', errorDiv);
 
         // Insert after input-shell
         const inputShell = field.closest('.input-shell');
         if (inputShell) {
+            console.log('Found input-shell, inserting error');
             inputShell.parentNode.insertBefore(errorDiv, inputShell.nextSibling);
+        } else {
+            console.error('Input-shell not found');
         }
 
         // Add error class to input
