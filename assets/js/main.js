@@ -86,11 +86,11 @@ class VPBankGame {
         const form = e.target;
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
-        
+
         // Hide form inputs
         const inputs = form.querySelectorAll('.form-group');
-        inputs.forEach(input => input.style.display = 'none');
-        
+        inputs.forEach((input) => (input.style.display = 'none'));
+
         // Show loading state
         submitBtn.innerHTML = '<span class="loading"></span> Đang xử lý...';
         submitBtn.disabled = true;
@@ -111,24 +111,18 @@ class VPBankGame {
                 this.userToken = result.user_token;
                 localStorage.setItem('vpbank_user_token', this.userToken);
 
-                // Show success message
-                submitBtn.innerHTML = '<span class="success">✓</span> Đăng ký thành công!';
-                submitBtn.style.background = '#10b981';
-                submitBtn.style.color = 'white';
-
-                // Redirect to game page
-                setTimeout(() => {
-                    window.location.href = `game.php?token=${this.userToken}`;
-                }, 1000);
+                // Redirect to game page immediately
+                window.location.href = `game.php?token=${this.userToken}`;
             } else {
                 // Show error and restore form
-                submitBtn.innerHTML = '<span class="error">✗</span> ' + (result.error || 'Có lỗi xảy ra');
+                submitBtn.innerHTML =
+                    '<span class="error">✗</span> ' + (result.error || 'Có lỗi xảy ra');
                 submitBtn.style.background = '#ef4444';
                 submitBtn.style.color = 'white';
-                
+
                 // Restore form after 2 seconds
                 setTimeout(() => {
-                    inputs.forEach(input => input.style.display = 'block');
+                    inputs.forEach((input) => (input.style.display = 'block'));
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
                     submitBtn.style.background = '';
@@ -138,15 +132,15 @@ class VPBankGame {
             }
         } catch (error) {
             console.error('Registration error:', error);
-            
+
             // Show error and restore form
             submitBtn.innerHTML = '<span class="error">✗</span> Có lỗi xảy ra, vui lòng thử lại';
             submitBtn.style.background = '#ef4444';
             submitBtn.style.color = 'white';
-            
+
             // Restore form after 2 seconds
             setTimeout(() => {
-                inputs.forEach(input => input.style.display = 'block');
+                inputs.forEach((input) => (input.style.display = 'block'));
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
                 submitBtn.style.background = '';
