@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         :root{--bg:#f6f7f9;--surface:#ffffff;--text:#111827;--muted:#6b7280;--border:#e5e7eb;--accent:#10b981;--accent-600:#059669}
         body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0}
         .login{width:360px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px 24px 20px;box-shadow:none}
-        .brand{margin:0 0 4px;font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+        .brand{display:none}
         h2{margin:0 0 12px;font-size:20px;line-height:1.2;font-weight:700;color:var(--text)}
         .hint{margin:0 0 16px;font-size:12px;color:var(--muted)}
         .error{background:#fef2f2;border:1px solid #fecaca;color:#dc2626;padding:10px;border-radius:8px;margin-bottom:12px;font-size:13px}
@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         label{display:block;margin:0 0 6px;font-size:12px;color:var(--muted);font-weight:600}
         /* Increase specificity to override global styles */
         .login .form-group input{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;background:#ffffff;color:var(--text);font-size:14px;appearance:none;box-shadow:none !important}
+        .login .form-group input::placeholder{font-size:13px;text-align:left;font-style:italic;font-weight:400;color:var(--muted)}
         .login .form-group input:focus{outline:none;border-color:var(--accent-600);box-shadow:0 0 0 2px rgba(16,185,129,.15) !important}
         button{width:100%;padding:12px 14px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;transition:background .2s,opacity .2s;box-shadow:none}
         button:hover{background:var(--accent-600)}
@@ -52,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         body.dark{background:#0f172a;color:#e5e7eb}
         body.dark .login{background:#0b1220;border-color:#1f2937;box-shadow:none}
         body.dark .brand,body.dark label,body.dark .hint{color:#94a3b8}
+        body.dark .login .form-group input::placeholder{color:#94a3b8}
         body.dark h2{color:#e5e7eb}
         body.dark .login .form-group input{background:#111827;border-color:#1f2937;color:#e5e7eb;box-shadow:none !important}
         body.dark input::placeholder{color:#94a3b8}
