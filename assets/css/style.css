@@ -185,10 +185,9 @@ body {
     background: url('../images/join-button.png') center/contain no-repeat;
     color: transparent;
     border: none;
-    position: relative;
     min-height: 50px;
     background-size: contain;
-    padding: 12px 16px;
+    padding: 0;
 }
 
 .scan-button {
@@ -572,8 +571,7 @@ body {
     }
 
     .join-button {
-        padding: 12px;
-        font-size: 16px;
+        padding: 0;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
