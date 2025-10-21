@@ -20,16 +20,17 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
     <title>Admin Dashboard</title>
     <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js" type="module"></script>
     <style>
+        :root{--accent:#10b981;--accent-600:#059669}
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh}
         header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
         .logo{font-size:18px;font-weight:700;color:#111827}
         .user-info{display:flex;align-items:center;gap:12px}
-        a{color:#059669;text-decoration:none}
-        a:hover{color:#10b981}
-        .toggle{padding:8px 12px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:14px}
-        .logout-btn{padding:8px 14px;border-radius:10px;background:#059669;border:1px solid #059669;color:#fff;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600}
-        .logout-btn:hover{background:#10b981}
+        a{color:var(--accent-600);text-decoration:none}
+        a:hover{color:var(--accent)}
+        .toggle{padding:8px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer;display:flex;align-items:center;justify-content:center;width:36px;height:36px}
+        .logout-btn{padding:8px 14px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600}
+        .logout-btn:hover{background:var(--accent-600)}
         /* Layout with sidebar */
         .layout{display:flex;min-height:calc(100vh - 58px)}
         .sidebar{width:220px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
@@ -56,8 +57,8 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         body.dark a{color:#a7f3d0}
         body.dark a:hover{color:#34d399}
         body.dark .toggle{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
-        body.dark .logout-btn{background:#065f46;border-color:#065f46}
-        body.dark .logout-btn:hover{background:#059669}
+        body.dark .logout-btn{background:var(--accent-600);border-color:var(--accent-600)}
+        body.dark .logout-btn:hover{background:var(--accent)}
         body.dark .sidebar{background:#0b1220;border-right:1px solid #1f2937}
         body.dark .nav-link{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
         body.dark .nav-link:hover{background:#111827}
@@ -88,10 +89,9 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         </div>
         <div class="user-info">
             <button id="themeToggle" class="toggle">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
                 </svg>
-                Dark
             </button>
             <a href="logout.php" class="logout-btn">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;margin-right:6px;">
@@ -195,8 +195,8 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
             function render(){
                 const isLight = document.body.classList.contains('light');
                 btn.innerHTML = isLight ? 
-                    '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg> Light' :
-                    '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg> Dark';
+                    '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>' :
+                    '<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>';
             }
             render();
             btn.addEventListener('click',()=>{
