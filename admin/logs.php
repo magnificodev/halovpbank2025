@@ -46,15 +46,15 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh}
-        .logo{display:flex;align-items:center;gap:8px}
+        header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
+        .logo{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:600;color:#111827}
         .logo svg{width:20px;height:20px;color:#059669;flex-shrink:0}
-        th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
-        th svg{width:16px;height:16px;color:#6b7280;margin-right:6px;vertical-align:middle}
-        .logo{font-size:18px;font-weight:600;color:#111827}
         a{color:#059669;text-decoration:none;transition:color .2s ease;padding:8px 12px;border-radius:10px;background:#ffffff;border:1px solid #e5e7eb}
         a:hover{color:#10b981;background:#f3f4f6}
         .logout-btn{padding:8px 14px;border-radius:10px;background:#059669;border:1px solid #059669;color:#fff}
         .logout-btn:hover{background:#10b981}
+        th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
+        th svg{width:16px;height:16px;color:#6b7280;margin-right:6px;vertical-align:middle}
         /* Layout with sidebar */
         .layout{display:flex;min-height:calc(100vh - 58px)}
         .sidebar{width:220px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
@@ -90,6 +90,7 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         body.dark{background:#0f172a;color:#e5e7eb}
         body.dark header{background:#0b1220;border-bottom:1px solid #1f2937}
         body.dark .logo{color:#a7f3d0}
+        body.dark .logo svg{color:#a7f3d0}
         body.dark a{color:#a7f3d0;background:#0b1220;border-color:#1f2937}
         body.dark a:hover{background:#111827}
         body.dark .logout-btn{background:#065f46;border-color:#065f46}
@@ -102,6 +103,13 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         body.dark .user-id{color:#a7f3d0}
         body.dark .station{background:#0b1220;color:#a7f3d0;border-color:#1f2937}
         body.dark .ip,body.dark .ua,body.dark .date{color:#94a3b8}
+        body.dark .sidebar{background:#0b1220;border-right:1px solid #1f2937}
+        body.dark .nav-link{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
+        body.dark .nav-link:hover{background:#111827}
+        body.dark .nav-link.active{background:#0f291f;border-color:#065f46;color:#a7f3d0}
+        body.dark .stat-card{background:#111827;border-color:#1f2937}
+        body.dark .stat-number{color:#e5e7eb}
+        body.dark .stat-label{color:#94a3b8}
         @media (max-width: 768px){
             .wrap{padding:20px}
             table{font-size:14px}
@@ -125,10 +133,8 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
     <script>
         (function(){
             const key='admin_theme';
-            if((localStorage.getItem(key)||'dark')==='light') {
-                document.body.classList.add('light');
-                const mobileFrame = document.querySelector('.mobile-frame');
-                if (mobileFrame) mobileFrame.classList.add('light');
+            if((localStorage.getItem(key)||'dark')==='dark') {
+                document.body.classList.add('dark');
             }
         })();
     </script>
