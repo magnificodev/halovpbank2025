@@ -30,10 +30,15 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         .toggle{padding:8px 12px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer}
         .logout-btn{padding:8px 14px;border-radius:10px;background:#059669;border:1px solid #059669;color:#fff;display:inline-block;margin-left:10px}
         .logout-btn:hover{background:#10b981}
-        .nav{padding:16px 24px;background:transparent;border-bottom:1px solid #e5e7eb}
-        .nav a{display:inline-block;padding:10px 14px;margin-right:8px;background:#ffffff;border:1px solid #e5e7eb;border-radius:10px;transition:background .2s}
-        .nav a:hover{background:#f3f4f6}
-        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;padding:16px 24px;max-width:1200px;margin:0 auto}
+        /* Layout with sidebar */
+        .layout{display:flex;min-height:calc(100vh - 58px)}
+        .sidebar{width:220px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
+        .nav-group{display:flex;flex-direction:column;gap:8px}
+        .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827}
+        .nav-link:hover{background:#f3f4f6}
+        .nav-link.active{border-color:#059669;background:#ecfdf5;color:#065f46}
+        .content{flex:1;padding:16px 24px}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:1200px}
         .card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;transition:box-shadow .2s}
         .card:hover{box-shadow:0 2px 8px rgba(17,24,39,.08)}
         .card h3{margin:0 0 8px;font-size:14px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
@@ -48,17 +53,20 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         body.dark .toggle{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
         body.dark .logout-btn{background:#065f46;border-color:#065f46}
         body.dark .logout-btn:hover{background:#059669}
-        body.dark .nav{border-bottom:1px solid #1f2937}
-        body.dark .nav a{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
-        body.dark .nav a:hover{background:#111827}
+        body.dark .sidebar{background:#0b1220;border-right:1px solid #1f2937}
+        body.dark .nav-link{background:#0b1220;border-color:#1f2937;color:#e5e7eb}
+        body.dark .nav-link:hover{background:#111827}
+        body.dark .nav-link.active{background:#0f291f;border-color:#065f46;color:#a7f3d0}
         body.dark .card{background:#111827;border-color:#1f2937}
         body.dark .card h3{color:#94a3b8}
         body.dark .card .number{color:#e5e7eb}
         body.dark .card .label{color:#94a3b8}
         @media (max-width: 768px){
             header{padding:15px 20px}
-            .nav{padding:20px}
-            .grid{padding:20px;grid-template-columns:1fr}
+            .layout{flex-direction:column}
+            .sidebar{width:100%;border-right:none;border-bottom:1px solid #e5e7eb}
+            .content{padding:20px}
+            .grid{grid-template-columns:1fr}
             .card{padding:20px}
         }
     </style>
@@ -75,12 +83,18 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
             </div>
         </div>
     </header>
-    <div class="nav">
-        <a href="users.php">👥 Người chơi</a>
-        <a href="gifts.php">🎁 Mã quà</a>
-        <a href="logs.php">📊 Log quét</a>
-    </div>
-    <div class="grid">
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="nav-group">
+                <a class="nav-link active" href="index.php">🏠 Dashboard</a>
+                <a class="nav-link" href="users.php">👥 Người chơi</a>
+                <a class="nav-link" href="gifts.php">🎁 Mã quà</a>
+                <a class="nav-link" href="logs.php">📊 Log quét</a>
+                <a class="nav-link" href="logout.php">🚪 Đăng xuất</a>
+            </div>
+        </aside>
+        <main class="content">
+            <div class="grid">
         <div class="card">
             <h3>👥 Tổng người chơi</h3>
             <div class="number"><?php echo number_format($totalUsers); ?></div>
@@ -101,6 +115,8 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
             <div class="number"><?php echo number_format($scansToday); ?></div>
             <div class="label">Lượt quét QR</div>
         </div>
+            </div>
+        </main>
     </div>
     <script>
         (function(){
