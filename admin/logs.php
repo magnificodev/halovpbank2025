@@ -132,7 +132,7 @@ $totalPages = ceil($totalCount / $perPage);
         body.dark .dialog-message{color:#94a3b8}
         body.dark .btn-secondary{background:#1f2937;color:#e5e7eb;border-color:#374151}
         body.dark .btn-secondary:hover{background:#374151}
-        body.dark table{background:#111827;border-color:#1f2937}
+        body.dark table{background:#111827;border:1px solid #1f2937;border-color:#1f2937}
         body.dark th{background:#0f172a;color:#e5e7eb}
         body.dark td{border-bottom:1px solid #1f2937}
         body.dark .log-id{color:#a7f3d0}
