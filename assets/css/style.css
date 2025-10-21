@@ -242,9 +242,29 @@ body {
     box-shadow: transparent 0px 0px 0px 30px inset !important;
     -webkit-text-fill-color: rgb(51, 51, 51) !important;
     background-color: transparent !important;
-    background: url('../images/input.png') center/cover no-repeat !important;
+    background-image: url('../images/input.png') !important;
     background-size: 100% 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
     transition: background-color 5000s ease-in-out;
+}
+
+/* Additional autofill selectors for better coverage */
+.form-group input:-internal-autofill-selected {
+    background-color: transparent !important;
+    background-image: url('../images/input.png') !important;
+    background-size: 100% 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Firefox autofill */
+.form-group input:-moz-autofill {
+    background-color: transparent !important;
+    background-image: url('../images/input.png') !important;
+    background-size: 100% 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 }
 
 /* Button Styles */
