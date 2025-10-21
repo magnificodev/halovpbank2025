@@ -160,16 +160,18 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 50px 30px;
     overflow: hidden;
     min-height: 0;
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 .registration-form {
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 .form-group {
@@ -180,35 +182,34 @@ body {
 /* Label styles */
 .form-group label {
     display: block;
-    margin-bottom: 8px;
+    margin: 0 auto 12px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    height: 30px;
-    border: 1px solid red; /* Debug border */
+    height: 25px;
 }
 
 .form-group label[for='full_name'] {
     background-image: url('../images/name-label.png');
-    width: 80px;
+    width: 100px;
 }
 
 .form-group label[for='phone'] {
     background-image: url('../images/phone-label.png');
-    width: 120px;
+    width: 140px;
 }
 
 .form-group label[for='email'] {
     background-image: url('../images/email-label.png');
-    width: 60px;
+    width: 80px;
 }
 
 /* Input styles */
 .form-group input {
     width: 100%;
-    height: 50px;
-    padding: 10px 15px;
-    border: 2px solid blue; /* Debug border */
+    height: 45px;
+    padding: 12px 20px;
+    border: none;
     border-radius: 0;
     background: url('../images/input.png') center/cover no-repeat;
     color: #333;
@@ -218,6 +219,8 @@ body {
     transition: all 0.3s ease;
     cursor: text;
     background-size: 100% 100%;
+    margin: 0 auto;
+    display: block;
 }
 
 .form-group input:focus {
@@ -254,12 +257,15 @@ body {
     padding: 0;
     cursor: pointer;
     display: block;
+    margin: 20px auto 0;
 }
 
 .join-button img {
     width: 100%;
     height: auto;
     display: block;
+    max-width: 280px;
+    margin: 0 auto;
 }
 
 .scan-button {
