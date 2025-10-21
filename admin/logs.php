@@ -67,13 +67,26 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         .stat-number{font-size:24px;font-weight:bold;color:#00ff88;margin-bottom:5px}
         .stat-label{color:#ccc;font-size:12px;text-transform:uppercase}
         /* Light mode */
-        body.light{background:linear-gradient(135deg,#f8fafc 0%,#eef2f7 100%);color:#111}
-        body.light header{background:#ffffff;border-bottom:1px solid #cbd5e1}
-        body.light .logo{color:#0a7f5a;text-shadow:none}
-        body.light a{color:#0a7f5a;background:#ffffff;border-color:#cbd5e1}
-        body.light table{background:#ffffff;border-color:#cbd5e1}
-        body.light th{background:#f1f5f9;color:#065f46}
-        body.light td{border-bottom:1px solid #cbd5e1}
+        body.light{background:#f8fafc;color:#1e293b}
+        body.light header{background:#ffffff;border-bottom:1px solid #e2e8f0}
+        body.light .logo{color:#059669;text-shadow:none}
+        body.light a{color:#059669;background:#f8fafc;border-color:#d1d5db}
+        body.light a:hover{color:#047857;background:#f0fdf4;border-color:#059669}
+        body.light table{background:#ffffff;border-color:#e2e8f0}
+        body.light th{background:#f1f5f9;color:#374151}
+        body.light td{border-bottom:1px solid #e5e7eb}
+        body.light .log-id{color:#059669}
+        body.light .user-name{color:#1e293b}
+        body.light .user-id{color:#059669}
+        body.light .station{background:#f0fdf4;color:#059669;border:1px solid #bbf7d0}
+        body.light .ip{color:#6b7280}
+        body.light .ua{color:#6b7280}
+        body.light .date{color:#6b7280}
+        body.light .stat-card{background:#ffffff;border-color:#e2e8f0}
+        body.light .stat-number{color:#059669}
+        body.light .stat-label{color:#6b7280}
+        body.light .stat-card a{background:#f0fdf4;border-color:#bbf7d0;color:#059669}
+        body.light .stat-card a:hover{background:#dcfce7;border-color:#059669;transform:translateY(-2px);box-shadow:0 4px 12px rgba(5,150,105,0.15)}
         @media (max-width: 768px){
             .wrap{padding:20px}
             table{font-size:14px}
@@ -93,7 +106,11 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
     <script>
         (function(){
             const key='admin_theme';
-            if((localStorage.getItem(key)||'dark')==='light') document.body.classList.add('light');
+            if((localStorage.getItem(key)||'dark')==='light') {
+                document.body.classList.add('light');
+                const mobileFrame = document.querySelector('.mobile-frame');
+                if (mobileFrame) mobileFrame.classList.add('light');
+            }
         })();
     </script>
     <div class="wrap">
@@ -111,7 +128,7 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
                 <div class="stat-label">Trạm được quét</div>
             </div>
             <div class="stat-card">
-                <a href="?export=csv" style="text-decoration:none;color:inherit;">
+                <a href="?export=csv" style="text-decoration:none;color:inherit;display:block;padding:20px;text-align:center;border-radius:15px;background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3);transition:all 0.3s ease;">
                     <div class="stat-number">📥</div>
                     <div class="stat-label">Xuất CSV</div>
                 </a>

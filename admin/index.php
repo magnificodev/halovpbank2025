@@ -43,18 +43,25 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         .stat-number{font-size:28px;font-weight:bold;color:#00ff88;margin-bottom:5px}
         .stat-label{color:#ccc;font-size:12px;text-transform:uppercase}
         /* Light mode overrides */
-        body.light{background:linear-gradient(135deg,#f8fafc 0%,#eef2f7 100%);color:#111}
-        body.light header{background:#ffffff;border-bottom:1px solid #cbd5e1}
-        body.light .logo{color:#0a7f5a;text-shadow:none}
-        body.light a{color:#0a7f5a}
-        body.light .nav{background:#f8fafc;border-bottom:1px solid #cbd5e1}
-        body.light .nav a{background:#ffffff;border-color:#cbd5e1}
-        body.light .card{background:#ffffff;border-color:#cbd5e1;box-shadow:0 8px 24px rgba(2,6,23,.08)}
-        body.light .card h3{color:#065f46}
-        body.light .card .number{color:#0f172a;text-shadow:none}
-        body.light .label{color:#334155}
-        body.light .stat-item{background:#ffffff;border-color:#cbd5e1}
-        body.light .stat-number{color:#065f46}
+        body.light{background:#f8fafc;color:#1e293b}
+        body.light header{background:#ffffff;border-bottom:1px solid #e2e8f0}
+        body.light .logo{color:#059669;text-shadow:none}
+        body.light a{color:#059669}
+        body.light a:hover{color:#047857}
+        body.light .nav{background:#f8fafc;border-bottom:1px solid #e2e8f0}
+        body.light .nav a{background:#ffffff;border-color:#d1d5db;color:#059669}
+        body.light .nav a:hover{background:#f0fdf4;border-color:#059669;color:#047857}
+        body.light .card{background:#ffffff;border-color:#e2e8f0;box-shadow:0 4px 6px rgba(0,0,0,0.05)}
+        body.light .card h3{color:#374151}
+        body.light .card .number{color:#1e293b;text-shadow:none}
+        body.light .label{color:#6b7280}
+        body.light .stat-item{background:#ffffff;border-color:#e2e8f0}
+        body.light .stat-number{color:#059669}
+        body.light .toggle{background:#f0fdf4;border-color:#059669;color:#047857;font-weight:600}
+        body.light .toggle:hover{background:#dcfce7;border-color:#047857;color:#065f46}
+        body.light .user-info .user-avatar{background:linear-gradient(45deg,#059669,#047857);color:#ffffff}
+        body.light .user-info a{color:#6b7280;font-size:12px}
+        body.light .user-info a:hover{color:#374151}
         @media (max-width: 768px){
             header{padding:15px 20px}
             .nav{padding:20px}
@@ -106,12 +113,18 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         (function(){
             const key='admin_theme';
             const saved=localStorage.getItem(key)||'dark';
-            if(saved==='light') document.body.classList.add('light');
+            if(saved==='light') {
+                document.body.classList.add('light');
+                const mobileFrame = document.querySelector('.mobile-frame');
+                if (mobileFrame) mobileFrame.classList.add('light');
+            }
             const btn=document.getElementById('themeToggle');
             function render(){btn.textContent=document.body.classList.contains('light')?'☀️ Light':'🌙 Dark';}
             render();
             btn.addEventListener('click',()=>{
                 document.body.classList.toggle('light');
+                const mobileFrame = document.querySelector('.mobile-frame');
+                if (mobileFrame) mobileFrame.classList.toggle('light');
                 localStorage.setItem(key, document.body.classList.contains('light')?'light':'dark');
                 render();
             });

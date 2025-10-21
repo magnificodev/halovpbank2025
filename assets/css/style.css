@@ -315,6 +315,25 @@ body {
     min-width: 250px;
 }
 
+/* Light mode gift code styling */
+@media (min-width: 769px) {
+    .mobile-frame.light .gift-code-box {
+        background: #f8fafc;
+        color: #1e293b;
+        border-color: #059669;
+        box-shadow: 0 8px 30px rgba(5, 150, 105, 0.2);
+    }
+}
+
+@media (max-width: 768px) {
+    body.light .gift-code-box {
+        background: #f8fafc;
+        color: #1e293b;
+        border-color: #059669;
+        box-shadow: 0 8px 30px rgba(5, 150, 105, 0.2);
+    }
+}
+
 .gift-instruction {
     text-align: center;
     font-size: 16px;
