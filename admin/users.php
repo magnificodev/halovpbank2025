@@ -59,12 +59,14 @@ if ($q) {
         .logo{font-size:24px;font-weight:bold;color:#00ff88;text-shadow:0 0 10px rgba(0,255,136,0.5)}
         a{color:#00ff88;text-decoration:none;transition:all 0.3s ease;padding:8px 16px;border-radius:20px;background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3)}
         a:hover{color:#00cc6a;background:rgba(0,255,136,0.2);transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,255,136,0.3)}
+        .logout-btn{padding:10px 18px;border-radius:24px;background:linear-gradient(45deg,#0ea5a3,#0b7a6e);border:1px solid rgba(14,165,163,.6);color:#fff;box-shadow:0 6px 14px rgba(14,165,163,.25)}
+        .logout-btn:hover{background:linear-gradient(45deg,#0b7a6e,#075e57);border-color:#0ea5a3;color:#fff}
         .wrap{padding:30px;max-width:1400px;margin:0 auto}
         .search-box{margin-bottom:30px;display:flex;gap:15px;align-items:center}
         input{padding:12px 20px;border:none;border-radius:25px;background:rgba(21,26,44,0.8);color:#fff;border:1px solid rgba(0,255,136,0.3);width:300px;font-size:14px}
         input:focus{outline:none;border-color:#00ff88;box-shadow:0 0 15px rgba(0,255,136,0.3)}
         input::placeholder{color:#999}
-        .search-btn{padding:12px 24px;background:linear-gradient(45deg,#00ff88,#00cc6a);border:none;border-radius:25px;color:#000;font-weight:bold;cursor:pointer;transition:all 0.3s ease}
+        .search-btn{padding:12px 24px;background:linear-gradient(45deg,#00ff88,#00cc6a);border:none;border-radius:25px;color:#000;font-weight:bold;cursor:pointer;transition:all 0.3s ease;display:inline-block;text-align:center;width:160px}
         .search-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,255,136,0.4)}
         table{width:100%;border-collapse:collapse;background:rgba(21,26,44,0.6);border-radius:15px;overflow:hidden;border:1px solid rgba(0,255,136,0.2)}
         th{background:rgba(0,255,136,0.1);color:#00ff88;padding:15px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:1px}
@@ -85,6 +87,8 @@ if ($q) {
         body.light .logo{color:#059669;text-shadow:none}
         body.light a{color:#059669;background:#f8fafc;border-color:#d1d5db}
         body.light a:hover{color:#047857;background:#f0fdf4;border-color:#059669}
+        body.light .logout-btn{background:#065f46;border-color:#059669;color:#fff}
+        body.light .logout-btn:hover{background:#047857}
         body.light table{background:#ffffff;border-color:#e2e8f0}
         body.light th{background:#f1f5f9;color:#374151}
         body.light td{border-bottom:1px solid #e5e7eb}
@@ -115,7 +119,7 @@ if ($q) {
         <div class="logo">👥 Người chơi</div>
         <div>
             <a href="index.php">⬅ Dashboard</a>
-            <a href="logout.php">Đăng xuất</a>
+            <a href="logout.php" class="logout-btn">Đăng xuất</a>
         </div>
     </header>
     <script>

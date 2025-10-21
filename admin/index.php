@@ -78,7 +78,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
             <div class="user-avatar">A</div>
             <div>
                 <div style="font-size:14px;color:#00ff88"><?php echo htmlspecialchars($_SESSION['admin_username']); ?></div>
-                <a href="logout.php" style="font-size:12px;color:#ccc">Đăng xuất</a>
+                <a href="logout.php" class="logout-btn">Đăng xuất</a>
             </div>
         </div>
     </header>

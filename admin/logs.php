@@ -50,7 +50,12 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         .logo{font-size:24px;font-weight:bold;color:#00ff88;text-shadow:0 0 10px rgba(0,255,136,0.5)}
         a{color:#00ff88;text-decoration:none;transition:all 0.3s ease;padding:8px 16px;border-radius:20px;background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3)}
         a:hover{color:#00cc6a;background:rgba(0,255,136,0.2);transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,255,136,0.3)}
+        .logout-btn{padding:10px 18px;border-radius:24px;background:linear-gradient(45deg,#0ea5a3,#0b7a6e);border:1px solid rgba(14,165,163,.6);color:#fff;box-shadow:0 6px 14px rgba(14,165,163,.25)}
+        .logout-btn:hover{background:linear-gradient(45deg,#0b7a6e,#075e57);border-color:#0ea5a3;color:#fff}
         .wrap{padding:30px;max-width:1400px;margin:0 auto}
+        .toolbar{display:flex;gap:10px;align-items:center;justify-content:flex-start;margin:0 0 15px}
+        .csv-btn{padding:12px 24px;background:linear-gradient(45deg,#00ff88,#00cc6a);border:none;border-radius:25px;color:#000;font-weight:bold;display:inline-block;text-align:center;width:160px;border:1px solid rgba(0,255,136,0.3)}
+        .csv-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,255,136,0.4)}
         table{width:100%;border-collapse:collapse;background:rgba(21,26,44,0.6);border-radius:15px;overflow:hidden;border:1px solid rgba(0,255,136,0.2)}
         th{background:rgba(0,255,136,0.1);color:#00ff88;padding:15px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:1px}
         td{padding:15px;border-bottom:1px solid rgba(255,255,255,0.1);transition:all 0.3s ease}
@@ -71,6 +76,8 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         body.light header{background:#ffffff;border-bottom:1px solid #e2e8f0}
         body.light .logo{color:#059669;text-shadow:none}
         body.light a{color:#059669;background:#f8fafc;border-color:#d1d5db}
+        body.light .logout-btn{background:#065f46;border-color:#059669;color:#fff}
+        body.light .logout-btn:hover{background:#047857}
         body.light a:hover{color:#047857;background:#f0fdf4;border-color:#059669}
         body.light table{background:#ffffff;border-color:#e2e8f0}
         body.light th{background:#f1f5f9;color:#374151}
@@ -85,8 +92,8 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         body.light .stat-card{background:#ffffff;border-color:#e2e8f0}
         body.light .stat-number{color:#059669}
         body.light .stat-label{color:#6b7280}
-        body.light .stat-card a{background:#f0fdf4;border-color:#bbf7d0;color:#059669}
-        body.light .stat-card a:hover{background:#dcfce7;border-color:#059669;transform:translateY(-2px);box-shadow:0 4px 12px rgba(5,150,105,0.15)}
+        body.light .csv-btn{background:linear-gradient(45deg,#059669,#047857);color:#ffffff;border-color:#bbf7d0}
+        body.light .csv-btn:hover{background:linear-gradient(45deg,#047857,#065f46)}
         @media (max-width: 768px){
             .wrap{padding:20px}
             table{font-size:14px}
@@ -100,7 +107,7 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         <div class="logo">📊 Log quét QR</div>
         <div>
             <a href="index.php">⬅ Dashboard</a>
-            <a href="logout.php">Đăng xuất</a>
+            <a href="logout.php" class="logout-btn">Đăng xuất</a>
         </div>
     </header>
     <script>
@@ -114,6 +121,9 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         })();
     </script>
     <div class="wrap">
+        <div class="toolbar">
+            <a class="csv-btn" href="?export=csv">📥 Xuất CSV</a>
+        </div>
         <div class="stats">
             <div class="stat-card">
                 <div class="stat-number"><?php echo count($logs); ?></div>
@@ -127,12 +137,7 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
                 <div class="stat-number"><?php echo count(array_unique(array_column($logs, 'station_id'))); ?></div>
                 <div class="stat-label">Trạm được quét</div>
             </div>
-            <div class="stat-card">
-                <a href="?export=csv" style="text-decoration:none;color:inherit;display:block;padding:20px;text-align:center;border-radius:15px;background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3);transition:all 0.3s ease;">
-                    <div class="stat-number">📥</div>
-                    <div class="stat-label">Xuất CSV</div>
-                </a>
-            </div>
+            
         </div>
         <table>
             <thead>
