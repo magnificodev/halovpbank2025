@@ -44,15 +44,17 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Logs</title>
     <style>
+        :root{--accent:#10b981;--accent-600:#059669}
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh}
         header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
-        .logo{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:600;color:#111827}
-        .logo svg{width:20px;height:20px;color:#059669;flex-shrink:0}
-        a{color:#059669;text-decoration:none;transition:color .2s ease;padding:8px 12px;border-radius:10px;background:#ffffff;border:1px solid #e5e7eb}
-        a:hover{color:#10b981;background:#f3f4f6}
-        .logout-btn{padding:8px 14px;border-radius:10px;background:#059669;border:1px solid #059669;color:#fff}
-        .logout-btn:hover{background:#10b981}
+        .logo{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:700;color:#111827}
+        .logo svg{width:20px;height:20px;color:var(--accent);flex-shrink:0}
+        .user-info{display:flex;align-items:center;gap:12px}
+        a{color:var(--accent-600);text-decoration:none}
+        a:hover{color:var(--accent)}
+        .logout-btn{padding:8px 14px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600}
+        .logout-btn:hover{background:var(--accent-600)}
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
         th svg{width:16px;height:16px;color:#6b7280;margin-right:6px;vertical-align:middle}
         /* Layout with sidebar */
@@ -91,10 +93,10 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         body.dark header{background:#0b1220;border-bottom:1px solid #1f2937}
         body.dark .logo{color:#a7f3d0}
         body.dark .logo svg{color:#a7f3d0}
-        body.dark a{color:#a7f3d0;background:#0b1220;border-color:#1f2937}
-        body.dark a:hover{background:#111827}
-        body.dark .logout-btn{background:#065f46;border-color:#065f46}
-        body.dark .logout-btn:hover{background:#059669}
+        body.dark a{color:#a7f3d0}
+        body.dark a:hover{color:#34d399}
+        body.dark .logout-btn{background:var(--accent-600);border-color:var(--accent-600)}
+        body.dark .logout-btn:hover{background:var(--accent)}
         body.dark table{background:#111827;border-color:#1f2937}
         body.dark th{background:#0f172a;color:#e5e7eb}
         body.dark td{border-bottom:1px solid #1f2937}
@@ -126,8 +128,13 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
             </svg>
             VPBank Admin
         </div>
-        <div>
-            <a href="logout.php" class="logout-btn">Đăng xuất</a>
+        <div class="user-info">
+            <a href="logout.php" class="logout-btn">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+                Đăng xuất
+            </a>
         </div>
     </header>
     <script>
