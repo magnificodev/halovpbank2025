@@ -208,7 +208,6 @@ body {
 /* Input styles */
 .form-group input {
     width: 100%;
-    height: 45px;
     padding: 12px 20px;
     border: none;
     border-radius: 0;
@@ -234,11 +233,11 @@ body {
     color: transparent;
 }
 
-/* Fix autofill background - Force preserve custom input.png */
-.form-group input:-webkit-autofill,
-.form-group input:-webkit-autofill:hover,
-.form-group input:-webkit-autofill:focus,
-.form-group input:-webkit-autofill:active {
+/* Fix autofill background - Force preserve custom input.png with higher specificity */
+.registration-form .form-group input:-webkit-autofill,
+.registration-form .form-group input:-webkit-autofill:hover,
+.registration-form .form-group input:-webkit-autofill:focus,
+.registration-form .form-group input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px transparent inset !important;
     box-shadow: 0 0 0 30px transparent inset !important;
     -webkit-text-fill-color: #333 !important;
@@ -253,7 +252,7 @@ body {
 }
 
 /* Additional autofill selectors for better coverage */
-.form-group input:-internal-autofill-selected {
+.registration-form .form-group input:-internal-autofill-selected {
     background-color: transparent !important;
     background-image: url('../images/input.png') !important;
     background-size: 100% 100% !important;
@@ -262,7 +261,7 @@ body {
 }
 
 /* Firefox autofill */
-.form-group input:-moz-autofill {
+.registration-form .form-group input:-moz-autofill {
     background-color: transparent !important;
     background-image: url('../images/input.png') !important;
     background-size: 100% 100% !important;
