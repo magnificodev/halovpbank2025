@@ -43,10 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .form-group{margin-bottom:16px}
         label{display:block;margin:0 0 6px;font-size:12px;color:var(--muted);font-weight:600}
         /* Increase specificity to override global styles */
-        .login .form-group input{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;background:#ffffff;color:var(--text);font-size:14px;font-weight:500;appearance:none;box-shadow:none !important;text-align:left;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+        .login .form-group input{width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;background:#ffffff;color:var(--text);font-size:14px;font-weight:500;appearance:none;box-shadow:none !important;text-align:left;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;height:44px;box-sizing:border-box}
         .login .form-group input::placeholder{font-size:13px;text-align:left;font-style:normal;font-weight:400;color:var(--muted);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
-        .login .form-group input:focus{outline:none;border-color:var(--accent-600)}
-        button{width:100%;padding:12px 14px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;transition:background .2s,opacity .2s;box-shadow:none;font-size:14px;line-height:1;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+        .login .form-group input:focus{outline:none;border-color:var(--accent);transform:none !important;box-shadow:none !important}
+        button{width:100%;padding:12px 14px;border:none;border-radius:8px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;transition:background .2s,opacity .2s;box-shadow:none;font-size:14px;line-height:1;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;height:44px;box-sizing:border-box}
         button:hover{background:var(--accent-600)}
         button:active{opacity:.9}
         /* Dark mode */
