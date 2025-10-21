@@ -234,7 +234,7 @@ body {
     color: transparent;
 }
 
-/* Fix autofill background - Based on successful implementation */
+/* Fix autofill background - Preserve custom input.png */
 .form-group input:-webkit-autofill,
 .form-group input:-webkit-autofill:hover,
 .form-group input:-webkit-autofill:focus,
@@ -242,7 +242,8 @@ body {
     box-shadow: transparent 0px 0px 0px 30px inset !important;
     -webkit-text-fill-color: rgb(51, 51, 51) !important;
     background-color: transparent !important;
-    background-image: none !important;
+    background: url('../images/input.png') center/cover no-repeat !important;
+    background-size: 100% 100% !important;
     transition: background-color 5000s ease-in-out;
 }
 
