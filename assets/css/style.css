@@ -185,19 +185,20 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     height: 30px;
+    border: 1px solid red; /* Debug border */
 }
 
-.form-group label[for="full_name"] {
+.form-group label[for='full_name'] {
     background-image: url('../images/name-label.png');
     width: 80px;
 }
 
-.form-group label[for="phone"] {
+.form-group label[for='phone'] {
     background-image: url('../images/phone-label.png');
     width: 120px;
 }
 
-.form-group label[for="email"] {
+.form-group label[for='email'] {
     background-image: url('../images/email-label.png');
     width: 60px;
 }
@@ -206,15 +207,17 @@ body {
 .form-group input {
     width: 100%;
     height: 50px;
-    padding: 0;
-    border: none;
+    padding: 10px 15px;
+    border: 2px solid blue; /* Debug border */
     border-radius: 0;
     background: url('../images/input.png') center/cover no-repeat;
-    color: transparent;
-    font-size: 0;
+    color: #333;
+    font-size: 14px;
+    font-weight: 600;
     text-align: center;
     transition: all 0.3s ease;
-    cursor: pointer;
+    cursor: text;
+    background-size: 100% 100%;
 }
 
 .form-group input:focus {
@@ -224,7 +227,8 @@ body {
 }
 
 .form-group input::placeholder {
-    color: transparent;
+    color: #666;
+    font-weight: 600;
 }
 
 /* Button Styles */
