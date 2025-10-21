@@ -60,7 +60,7 @@ $totalPages = ceil($totalCount / $perPage);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Người chơi</title>
     <style>
-        :root{--accent:#10b981;--accent-600:#059669}
+        :root{--accent:#10b981;--accent-600:#059669;--header-height:58px}
         *{margin:0;padding:0;box-sizing:border-box}
          body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh;line-height:1.5}
         .logo{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:700;color:#111827}
@@ -89,7 +89,7 @@ $totalPages = ceil($totalCount / $perPage);
         .btn-danger{background:#ef4444;color:#fff}
         .btn-danger:hover{background:#dc2626}
         /* Layout with sidebar */
-        .layout{display:flex;min-height:calc(100vh - 59px)}
+        .layout{display:flex;min-height:calc(100vh - var(--header-height))}
         .sidebar{width:240px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
         .nav-group{display:flex;flex-direction:column;gap:8px}
         .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827}

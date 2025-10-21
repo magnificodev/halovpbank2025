@@ -49,7 +49,7 @@ $totalPages = ceil($totalCount / $perPage);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - Logs</title>
     <style>
-        :root{--accent:#10b981;--accent-600:#059669}
+        :root{--accent:#10b981;--accent-600:#059669;--header-height:58px}
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh;line-height:1.5}
         header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
@@ -78,7 +78,7 @@ $totalPages = ceil($totalCount / $perPage);
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
         th svg{width:14px;height:14px;color:#6b7280;margin-right:6px;vertical-align:middle}
         /* Layout with sidebar */
-        .layout{display:flex;min-height:calc(100vh - 59px)}
+        .layout{display:flex;min-height:calc(100vh - var(--header-height))}
         .sidebar{width:240px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
         .nav-group{display:flex;flex-direction:column;gap:8px}
         .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827}

@@ -20,7 +20,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
     <title>Admin Dashboard</title>
     <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js" type="module"></script>
     <style>
-        :root{--accent:#10b981;--accent-600:#059669}
+        :root{--accent:#10b981;--accent-600:#059669;--header-height:58px}
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh;line-height:1.5}
         header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb}
@@ -46,7 +46,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         .btn-danger{background:#ef4444;color:#fff}
         .btn-danger:hover{background:#dc2626}
         /* Layout with sidebar */
-        .layout{display:flex;min-height:calc(100vh - 59px)}
+        .layout{display:flex;min-height:calc(100vh - var(--header-height))}
         .sidebar{width:240px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
         .nav-group{display:flex;flex-direction:column;gap:8px}
         .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827}
