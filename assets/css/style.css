@@ -173,24 +173,48 @@ body {
 }
 
 .form-group {
-    margin-bottom: 12px;
+    margin-bottom: 20px;
+    position: relative;
 }
 
+/* Label styles */
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 30px;
+}
+
+.form-group label[for="full_name"] {
+    background-image: url('../images/name-label.png');
+    width: 80px;
+}
+
+.form-group label[for="phone"] {
+    background-image: url('../images/phone-label.png');
+    width: 120px;
+}
+
+.form-group label[for="email"] {
+    background-image: url('../images/email-label.png');
+    width: 60px;
+}
+
+/* Input styles */
 .form-group input {
     width: 100%;
-    padding: 10px 12px;
-    border: 2px solid transparent;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.95);
-    color: #333;
-    font-size: 13px;
-    font-weight: 600;
+    height: 50px;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: url('../images/input.png') center/cover no-repeat;
+    color: transparent;
+    font-size: 0;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    background-image: linear-gradient(white, white), linear-gradient(45deg, #10b981, #059669);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
+    cursor: pointer;
 }
 
 .form-group input:focus {
@@ -200,8 +224,7 @@ body {
 }
 
 .form-group input::placeholder {
-    color: #666;
-    font-weight: 600;
+    color: transparent;
 }
 
 /* Button Styles */
