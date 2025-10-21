@@ -119,9 +119,6 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
         })();
     </script>
     <div class="wrap">
-        <div class="toolbar">
-            <a class="csv-btn" href="?export=csv">📥 Xuất CSV</a>
-        </div>
         <div class="stats">
             <div class="stat-card">
                 <div class="stat-number"><?php echo count($gifts); ?></div>
@@ -135,7 +132,10 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
                 <div class="stat-number"><?php echo count(array_filter($gifts, fn($g) => empty($g['user_id']))); ?></div>
                 <div class="stat-label">Chưa phát</div>
             </div>
-            
+
+        </div>
+        <div class="toolbar">
+            <a class="csv-btn" href="?export=csv">📥 Xuất CSV</a>
         </div>
         <table>
             <thead>

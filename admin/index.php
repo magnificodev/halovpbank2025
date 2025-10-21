@@ -28,6 +28,8 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         a{color:#00ff88;text-decoration:none;transition:all 0.3s ease}
         a:hover{color:#00cc6a;text-shadow:0 0 8px rgba(0,255,136,0.6)}
         .toggle{padding:8px 14px;border-radius:20px;border:1px solid rgba(0,255,136,.4);background:rgba(0,255,136,.1);color:#00ff88;cursor:pointer}
+        .logout-btn{padding:10px 18px;border-radius:24px;background:linear-gradient(45deg,#0ea5a3,#0b7a6e);border:1px solid rgba(14,165,163,.6);color:#fff;box-shadow:0 6px 14px rgba(14,165,163,.25);display:inline-block;margin-left:10px}
+        .logout-btn:hover{background:linear-gradient(45deg,#0b7a6e,#075e57);border-color:#0ea5a3;color:#fff}
         .nav{padding:30px;background:rgba(21,26,44,0.3);border-bottom:1px solid rgba(255,255,255,0.1)}
         .nav a{display:inline-block;padding:12px 24px;margin-right:10px;background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3);border-radius:25px;transition:all 0.3s ease;font-weight:500}
         .nav a:hover{background:rgba(0,255,136,0.2);border-color:#00ff88;transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,255,136,0.3)}
@@ -59,6 +61,8 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         body.light .stat-number{color:#059669}
         body.light .toggle{background:#f0fdf4;border-color:#059669;color:#047857;font-weight:600}
         body.light .toggle:hover{background:#dcfce7;border-color:#047857;color:#065f46}
+        body.light .logout-btn{background:#065f46;border-color:#059669;color:#fff}
+        body.light .logout-btn:hover{background:#047857}
         body.light .user-info .user-avatar{background:linear-gradient(45deg,#059669,#047857);color:#ffffff}
         body.light .user-info a{color:#6b7280;font-size:12px}
         body.light .user-info a:hover{color:#374151}

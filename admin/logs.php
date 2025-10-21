@@ -121,9 +121,6 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         })();
     </script>
     <div class="wrap">
-        <div class="toolbar">
-            <a class="csv-btn" href="?export=csv">📥 Xuất CSV</a>
-        </div>
         <div class="stats">
             <div class="stat-card">
                 <div class="stat-number"><?php echo count($logs); ?></div>
@@ -137,7 +134,10 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
                 <div class="stat-number"><?php echo count(array_unique(array_column($logs, 'station_id'))); ?></div>
                 <div class="stat-label">Trạm được quét</div>
             </div>
-            
+
+        </div>
+        <div class="toolbar">
+            <a class="csv-btn" href="?export=csv">📥 Xuất CSV</a>
         </div>
         <table>
             <thead>
