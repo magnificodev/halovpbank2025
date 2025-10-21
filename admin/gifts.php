@@ -62,10 +62,10 @@ $totalPages = ceil($totalCount / $perPage);
         .badge svg{width:10px;height:10px;flex-shrink:0}
         header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#ffffff;border-bottom:1px solid #e5e7eb;height:var(--header-height)}
         .user-info{display:flex;align-items:center;gap:12px}
-        .toggle{padding:8px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer;display:flex;align-items:center;justify-content:center;width:36px;height:36px}
+        .toggle{padding:8px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer;display:flex;align-items:center;justify-content:center;width:36px;height:36px;transition:all 0.2s ease}
         a{color:var(--accent-600);text-decoration:none}
-        .logout-btn{padding:10px 20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.5}
-        .logout-btn:hover{background:var(--accent-600)}
+        .logout-btn{padding:10px 20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.5;transition:all 0.2s ease}
+        .logout-btn:hover{background:var(--accent-600);transform:translateY(-1px);box-shadow:0 4px 8px rgba(16,185,129,0.3)}
         /* Logout Dialog */
         .logout-dialog{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center}
         .logout-dialog.show{display:flex}
@@ -84,15 +84,15 @@ $totalPages = ceil($totalCount / $perPage);
         .layout{display:flex;min-height:calc(100vh - var(--header-height))}
         .sidebar{width:240px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
         .nav-group{display:flex;flex-direction:column;gap:8px}
-        .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827}
-        .nav-link:hover{background:#f3f4f6}
-        .nav-link.active{border-color:#059669;background:#ecfdf5;color:#065f46}
+        .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827;transition:all 0.2s ease}
+        .nav-link:hover{background:#f3f4f6;transform:translateX(2px)}
+        .nav-link.active{border-color:#059669;background:#ecfdf5;color:#065f46;transform:translateX(2px)}
         .nav-link svg{width:20px;height:20px;flex-shrink:0;color:inherit}
         .content{flex:1;padding:16px 24px}
         .wrap{padding:0;max-width:none;margin:0}
         .toolbar{display:flex;gap:10px;align-items:center;justify-content:flex-start;margin:0 0 12px}
-        .csv-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
-        .csv-btn:hover{background:#059669}
+        .csv-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1;transition:all 0.2s ease}
+        .csv-btn:hover{background:#059669;transform:translateY(-1px);box-shadow:0 4px 8px rgba(16,185,129,0.3)}
         table{width:100%;border-collapse:separate;background:#ffffff;border-radius:12px;overflow:hidden}
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
         td{padding:12px;transition:background .2s ease;vertical-align:middle}
@@ -103,7 +103,8 @@ $totalPages = ceil($totalCount / $perPage);
         .user-id{color:#059669;font-weight:600}
         .date{color:#6b7280;font-size:12px}
         .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
-        .stat-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;text-align:center}
+        .stat-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;text-align:center;transition:all 0.3s ease}
+        .stat-card:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(17,24,39,.12)}
         .stat-card h3{margin:0 0 8px;font-size:14px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;justify-content:center;gap:6px}
         .stat-card h3 svg{margin-right:0}
         .stat-number{font-size:20px;font-weight:700;color:#111827;margin-bottom:4px}

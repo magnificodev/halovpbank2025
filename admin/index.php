@@ -28,9 +28,9 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         .user-info{display:flex;align-items:center;gap:12px}
         a{color:var(--accent-600);text-decoration:none}
         a:hover{color:var(--accent)}
-        .toggle{padding:8px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer;display:flex;align-items:center;justify-content:center;width:36px;height:36px}
-        .logout-btn{padding:10px 20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.5}
-        .logout-btn:hover{background:var(--accent-600)}
+        .toggle{padding:8px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer;display:flex;align-items:center;justify-content:center;width:36px;height:36px;transition:all 0.2s ease}
+        .logout-btn{padding:10px 20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.5;transition:all 0.2s ease}
+        .logout-btn:hover{background:var(--accent-600);transform:translateY(-1px);box-shadow:0 4px 8px rgba(16,185,129,0.3)}
         /* Logout Dialog */
         .logout-dialog{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center}
         .logout-dialog.show{display:flex}
@@ -49,17 +49,17 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         .layout{display:flex;min-height:calc(100vh - var(--header-height))}
         .sidebar{width:240px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
         .nav-group{display:flex;flex-direction:column;gap:8px}
-        .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827}
-        .nav-link:hover{background:#f3f4f6}
-        .nav-link.active{border-color:#059669;background:#ecfdf5;color:#065f46}
+        .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827;transition:all 0.2s ease}
+        .nav-link:hover{background:#f3f4f6;transform:translateX(2px)}
+        .nav-link.active{border-color:#059669;background:#ecfdf5;color:#065f46;transform:translateX(2px)}
         .nav-link svg{width:20px;height:20px;flex-shrink:0;color:inherit}
         .card h3 svg{width:16px;height:16px;color:#6b7280;margin-right:6px}
         .logo{display:flex;align-items:center;gap:8px}
         .logo svg{width:20px;height:20px;color:var(--accent);flex-shrink:0}
         .content{flex:1;padding:16px 24px}
         .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
-        .card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;transition:box-shadow .2s}
-        .card:hover{box-shadow:0 2px 8px rgba(17,24,39,.08)}
+        .card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;transition:all 0.3s ease}
+        .card:hover{box-shadow:0 4px 12px rgba(17,24,39,.12);transform:translateY(-2px)}
         .card h3{margin:0 0 8px;font-size:14px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;gap:6px}
         .card h3 svg{margin-right:0}
         .card .number{font-size:28px;font-weight:700;color:#111827;margin-bottom:4px}
