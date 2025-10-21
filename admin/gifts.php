@@ -48,7 +48,7 @@ $gifts = $db->fetchAll("SELECT id, code, user_id, claimed_at FROM gift_codes ORD
     <style>
         :root{--accent:#10b981;--accent-600:#059669}
         *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#f6f7f9;color:#111827;min-height:100vh;line-height:1.5}
         .logo{display:flex;align-items:center;gap:8px;font-size:18px;font-weight:700;color:#111827}
         .logo svg{width:20px;height:20px;color:var(--accent);flex-shrink:0}
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
