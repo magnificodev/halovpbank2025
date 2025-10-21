@@ -99,7 +99,7 @@ if ($q) {
          .csv-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;cursor:pointer;transition:background .2s ease;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
          .csv-btn:hover{background:#059669}
          .search-status{color:#6b7280;font-size:12px;margin-bottom:16px;text-align:left}
-        table{width:100%;border-collapse:separate;border-spacing:0;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
+        table{width:100%;border-collapse:separate;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e5e7eb}
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px;border:1px solid #e5e7eb}
         td{padding:12px;border:1px solid #e5e7eb;transition:background .2s ease}
         tr:hover td{background:#f9fafb}
