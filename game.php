@@ -6,18 +6,10 @@
     <title>VPBank Solution Day - Khám Phá</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="game-page">
     <div class="desktop-container">
         <div class="mobile-frame">
             <div class="container">
-                <!-- Header -->
-                <header class="header">
-                    <div class="logo">
-                        <img src="assets/images/vpbank-logo.svg" alt="VPBank" class="logo-img">
-                    </div>
-                    <h1 class="main-title">KHÁM PHÁ GIẢI PHÁP THANH TOÁN</h1>
-                </header>
-
                 <!-- Instructions -->
                 <div class="instructions">
                     <p>Hoàn thành 3 trong số các nhiệm vụ để tham gia quay thường trúng quà 100%</p>
@@ -35,11 +27,6 @@
                     <button id="scanQRBtn" class="scan-button">QUÉT MÃ QR</button>
                     <button id="claimRewardBtn" class="claim-button" style="display: none;">QUAY SỐ TRÚNG QUÀ</button>
                 </div>
-
-                <!-- Footer -->
-                <footer class="footer">
-                    <div class="solution-day-text">SOLUTION DAY</div>
-                </footer>
             </div>
         </div>
     </div>

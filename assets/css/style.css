@@ -46,6 +46,12 @@ body {
     max-height: 100vh;
 }
 
+/* Game page background */
+.game-page .mobile-frame {
+    background: url('../images/background-2.png') center/contain no-repeat;
+    background-color: #000;
+}
+
 /* Auto-scale frame to fit screen while maintaining 9:16 aspect ratio */
 @media (min-height: 640px) {
     .mobile-frame {
