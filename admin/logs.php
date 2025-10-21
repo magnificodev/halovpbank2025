@@ -80,6 +80,8 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         .date{color:#6b7280;font-size:12px}
         .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
         .stat-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;text-align:center}
+        .stat-card h3{margin:0 0 8px;font-size:14px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;justify-content:center;gap:6px}
+        .stat-card h3 svg{margin-right:0}
         .stat-number{font-size:20px;font-weight:700;color:#111827;margin-bottom:4px}
         .stat-label{color:#6b7280;font-size:12px;text-transform:uppercase}
         /* Light mode */

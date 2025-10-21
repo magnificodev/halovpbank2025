@@ -46,7 +46,8 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:1200px}
         .card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;transition:box-shadow .2s}
         .card:hover{box-shadow:0 2px 8px rgba(17,24,39,.08)}
-        .card h3{margin:0 0 8px;font-size:14px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+        .card h3{margin:0 0 8px;font-size:14px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;gap:6px}
+        .card h3 svg{margin-right:0}
         .card .number{font-size:28px;font-weight:700;color:#111827;margin-bottom:4px}
         .card .label{color:#6b7280;font-size:12px;text-transform:uppercase}
         /* Dark mode overrides */
