@@ -64,8 +64,7 @@ body {
 /* Mobile-first responsive design */
 @media (max-width: 768px) {
     body {
-        background: linear-gradient(180deg, #0f172a 0%, #1e293b 30%, #059669 70%, #10b981 100%);
-        background-attachment: fixed;
+        background: #000;
     }
 
     .desktop-container {
@@ -82,7 +81,7 @@ body {
         border-radius: 0;
         box-shadow: none;
         min-height: 100vh;
-        background: transparent; /* Remove background from frame on mobile */
+        background: url('../images/background-1.png') center/cover no-repeat;
     }
 }
 
