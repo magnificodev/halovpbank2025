@@ -34,9 +34,7 @@ body {
 .mobile-frame {
     width: 450px;
     height: 100vh;
-    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d3748 100%);
-    background-image: url('../images/background-pattern.svg');
-    background-size: cover;
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 30%, #059669 70%, #10b981 100%);
     border-radius: 0;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     overflow: hidden;
@@ -48,7 +46,7 @@ body {
 /* Mobile: Hide frame, show full screen */
 @media (max-width: 768px) {
     body {
-        background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d3748 100%);
+        background: linear-gradient(180deg, #0f172a 0%, #1e293b 30%, #059669 70%, #10b981 100%);
         background-image: url('../images/background-pattern.svg');
         background-size: cover;
         background-attachment: fixed;
@@ -98,6 +96,19 @@ body {
     flex-shrink: 0;
 }
 
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
 .logo-img {
     height: 50px;
     width: auto;
@@ -106,18 +117,24 @@ body {
 }
 
 .main-title {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     margin-bottom: 5px;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    background: linear-gradient(45deg, #10b981, #34d399, #6ee7b7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.3));
     line-height: 1.2;
 }
 
 .subtitle {
-    font-size: 14px;
-    color: #00ff88;
+    font-size: 16px;
+    color: #ffffff;
     font-weight: 600;
-    text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    margin-top: 5px;
 }
 
 /* Form Styles */
@@ -142,7 +159,7 @@ body {
 .form-group input {
     width: 100%;
     padding: 12px 15px;
-    border: none;
+    border: 2px solid transparent;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.95);
     color: #333;
@@ -151,6 +168,9 @@ body {
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
+    background-image: linear-gradient(white, white), linear-gradient(45deg, #10b981, #059669);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
 }
 
 .form-group input:focus {
@@ -445,12 +465,13 @@ body {
 }
 
 .solution-day-text {
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
     color: white;
-    text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
     position: relative;
     z-index: 2;
+    letter-spacing: 2px;
 }
 
 .footer::before {

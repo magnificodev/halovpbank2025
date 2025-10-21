@@ -16,7 +16,7 @@
                         <img src="assets/images/vpbank-logo.svg" alt="VPBank" class="logo-img">
                     </div>
                     <h1 class="main-title">SIÊU GIẢI PHÁP TOÀN DIỆN</h1>
-                    <p class="subtitle">WIN MỌI TRẢI NGHIỆM</p>
+                    <p class="subtitle">"WIN" MỌI TRẢI NGHIỆM</p>
                 </header>
 
                 <!-- Registration Form -->
