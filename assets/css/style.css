@@ -179,6 +179,14 @@ body {
     position: relative;
 }
 
+/* Gilroy Bold Font */
+@font-face {
+    font-family: 'GilroyBold';
+    src: url('../fonts/SVN-GILROY BOLD.OTF') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
 /* Label styles */
 .form-group label {
     display: block;
@@ -187,14 +195,14 @@ body {
     line-height: 25px;
     text-align: center;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: bold;
     background: linear-gradient(to bottom, #ffffff, #cbf0f8);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'GilroyBold', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Input styles */
