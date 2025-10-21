@@ -109,7 +109,7 @@ if ($q) {
          .user-email{color:#6b7280;font-size:13px;word-break:break-all}
          .user-date{color:#6b7280;font-size:12px;font-weight:500}
         .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
-        .stat-card{background:#ffffff;border-radius:12px;padding:16px;text-align:center}
+        .stat-card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:16px;text-align:center}
         .stat-card h3{margin:0 0 8px;font-size:14px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;justify-content:center;gap:6px}
         .stat-card h3 svg{margin-right:0}
         .stat-number{font-size:20px;font-weight:700;color:#111827;margin-bottom:4px}
@@ -129,7 +129,7 @@ if ($q) {
         body.light .user-phone{color:#6b7280}
         body.light .user-email{color:#6b7280}
         body.light .user-date{color:#6b7280}
-        body.light .stat-card{background:#ffffff}
+        body.light .stat-card{background:#ffffff;border-color:#e2e8f0}
         body.light .stat-number{color:#059669}
         body.light .stat-label{color:#6b7280}
          body.light .search-input{background:#ffffff;color:#1e293b;border-color:#d1d5db}
