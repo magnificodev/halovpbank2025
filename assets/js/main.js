@@ -130,6 +130,9 @@ class VPBankGame {
         } else if (!data.phone.match(/^[0-9]{10,11}$/)) {
             this.showFieldError('phone', 'Số điện thoại phải có 10-11 chữ số');
             isValid = false;
+        } else if (!this.isValidVietnamesePhone(data.phone)) {
+            this.showFieldError('phone', 'Số điện thoại không hợp lệ');
+            isValid = false;
         }
 
         // Validate email
@@ -147,7 +150,7 @@ class VPBankGame {
 
     showFieldError(fieldName, message) {
         console.log(`Attempting to show error for ${fieldName}: ${message}`);
-        
+
         const field = document.getElementById(fieldName);
         if (!field) {
             console.error(`Field ${fieldName} not found`);
@@ -180,7 +183,7 @@ class VPBankGame {
 
         // Add error class to input
         field.classList.add('error');
-        
+
         console.log(`Error shown for ${fieldName}: ${message}`);
     }
 
@@ -192,6 +195,19 @@ class VPBankGame {
         // Remove error classes
         const inputs = document.querySelectorAll('.form-group .input');
         inputs.forEach((input) => input.classList.remove('error'));
+    }
+
+    isValidVietnamesePhone(phone) {
+        // Remove any spaces or special characters
+        const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
+        
+        // Vietnamese phone number patterns:
+        // Mobile: 03x, 05x, 07x, 08x, 09x (10 digits)
+        // Landline: 02x (10 digits) or 02xx (11 digits)
+        const mobilePattern = /^(03[2-9]|05[6|8|9]|07[0|6|7|8|9]|08[1-6|8|9]|09[0-9])[0-9]{7}$/;
+        const landlinePattern = /^(02[0-9])[0-9]{7,8}$/;
+        
+        return mobilePattern.test(cleanPhone) || landlinePattern.test(cleanPhone);
     }
 
     // Game Page
