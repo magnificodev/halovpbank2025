@@ -70,10 +70,10 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         .btn-danger{background:#ef4444;color:#fff}
         .btn-danger:hover{background:#dc2626}
         th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
-        th svg{width:16px;height:16px;color:#6b7280;margin-right:6px;vertical-align:middle}
+        th svg{width:14px;height:14px;color:#6b7280;margin-right:6px;vertical-align:middle}
         /* Layout with sidebar */
         .layout{display:flex;min-height:calc(100vh - 58px)}
-        .sidebar{width:220px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
+        .sidebar{width:240px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
         .nav-group{display:flex;flex-direction:column;gap:8px}
         .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827}
         .nav-link:hover{background:#f3f4f6}
@@ -132,10 +132,16 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         body.dark .stat-number{color:#e5e7eb}
         body.dark .stat-label{color:#94a3b8}
         @media (max-width: 768px){
+            .layout{flex-direction:column}
+            .sidebar{width:100%;border-right:none;border-bottom:1px solid #e5e7eb}
+            .content{padding:20px}
             .wrap{padding:20px}
             table{font-size:14px}
             th,td{padding:10px}
             .ua{max-width:200px}
+        }
+        @media (min-width: 769px){
+            .sidebar{width:240px}
         }
     </style>
 </head>
@@ -159,7 +165,7 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
     <script>
         (function(){
             const key='admin_theme';
-            if((localStorage.getItem(key)||'dark')==='dark') {
+            if((localStorage.getItem(key)||'light')==='dark') {
                 document.body.classList.add('dark');
             }
         })();
@@ -226,37 +232,51 @@ $logs = $db->fetchAll("SELECT sl.*, u.full_name FROM scan_logs sl JOIN users u O
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                        </svg>
-                        Người dùng
+                        <div style="display: inline-flex; align-items: center;">
+                            ID
+                        </div>
                     </th>
                     <th>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                        Trạm
+                        <div style="display: inline-flex; align-items: center;">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            Người dùng
+                        </div>
                     </th>
                     <th>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
-                        </svg>
-                        IP
+                        <div style="display: inline-flex; align-items: center;">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Trạm
+                        </div>
                     </th>
                     <th>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                        User-Agent
+                        <div style="display: inline-flex; align-items: center;">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+                            </svg>
+                            IP
+                        </div>
                     </th>
                     <th>
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        Thời gian
+                        <div style="display: inline-flex; align-items: center;">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            User-Agent
+                        </div>
+                    </th>
+                    <th>
+                        <div style="display: inline-flex; align-items: center;">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            Thời gian
+                        </div>
                     </th>
                 </tr>
             </thead>

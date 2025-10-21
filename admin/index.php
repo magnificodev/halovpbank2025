@@ -47,7 +47,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         .btn-danger:hover{background:#dc2626}
         /* Layout with sidebar */
         .layout{display:flex;min-height:calc(100vh - 58px)}
-        .sidebar{width:220px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
+        .sidebar{width:240px;background:#ffffff;border-right:1px solid #e5e7eb;padding:16px}
         .nav-group{display:flex;flex-direction:column;gap:8px}
         .nav-link{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827}
         .nav-link:hover{background:#f3f4f6}
@@ -57,7 +57,7 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
         .logo{display:flex;align-items:center;gap:8px}
         .logo svg{width:20px;height:20px;color:#059669;flex-shrink:0}
         .content{flex:1;padding:16px 24px}
-        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;max-width:1200px}
+        .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
         .card{background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;transition:box-shadow .2s}
         .card:hover{box-shadow:0 2px 8px rgba(17,24,39,.08)}
         .card h3{margin:0 0 8px;font-size:14px;color:#6b7280;font-weight:600;text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;gap:6px}
@@ -95,6 +95,9 @@ $scansToday = $scansTodayResult ? (int)$scansTodayResult['c'] : 0;
             .content{padding:20px}
             .grid{grid-template-columns:1fr}
             .card{padding:20px}
+        }
+        @media (min-width: 769px){
+            .sidebar{width:240px}
         }
     </style>
 </head>
