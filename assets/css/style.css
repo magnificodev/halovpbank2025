@@ -34,7 +34,7 @@ body {
 .mobile-frame {
     width: 360px;
     height: 640px;
-    background: linear-gradient(180deg, #0f172a 0%, #1e293b 30%, #059669 70%, #10b981 100%);
+    background: url('../images/background-1.png') center/cover no-repeat;
     border-radius: 0;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     overflow: hidden;
@@ -90,6 +90,8 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     position: relative;
     width: 100%;
     overflow: hidden;
@@ -159,9 +161,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 20px;
+    padding: 40px 20px;
     overflow: hidden;
     min-height: 0;
+    width: 100%;
+    max-width: 320px;
 }
 
 .registration-form {

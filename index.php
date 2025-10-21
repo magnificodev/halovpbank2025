@@ -10,15 +10,6 @@
     <div class="desktop-container">
         <div class="mobile-frame">
             <div class="container">
-                <!-- Header -->
-                <header class="header">
-                    <div class="logo">
-                        <img src="assets/images/vpbank-logo.svg" alt="VPBank" class="logo-img">
-                    </div>
-                    <h1 class="main-title">SIÊU GIẢI PHÁP TOÀN DIỆN</h1>
-                    <p class="subtitle">"WIN" MỌI TRẢI NGHIỆM</p>
-                </header>
-
                 <!-- Registration Form -->
                 <div class="form-container">
                     <form id="registrationForm" class="registration-form">
@@ -36,11 +27,6 @@
                         </button>
                     </form>
                 </div>
-
-                <!-- Footer -->
-                <footer class="footer">
-                    <div class="solution-day-text">SOLUTION DAY</div>
-                </footer>
             </div>
         </div>
     </div>
