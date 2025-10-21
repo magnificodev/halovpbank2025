@@ -182,7 +182,16 @@ body {
 
 .join-button {
     width: 100%;
+    border: none;
+    background: none;
+    padding: 0;
     cursor: pointer;
+    display: block;
+}
+
+.join-button img {
+    width: 100%;
+    height: auto;
     display: block;
 }
 
@@ -568,7 +577,16 @@ body {
 
     .join-button {
         width: 100%;
+        border: none;
+        background: none;
+        padding: 0;
         cursor: pointer;
+        display: block;
+    }
+
+    .join-button img {
+        width: 100%;
+        height: auto;
         display: block;
     }
 
