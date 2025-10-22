@@ -62,12 +62,6 @@ body {
     transition: border-color 0.2s ease;
 }
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: var(--accent, #10b981);
-}
 
 /* Common Utility Classes */
 .text-center {

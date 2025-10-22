@@ -254,11 +254,6 @@ body {
     z-index: 1;
 }
 
-.form-group .input:focus {
-    outline: none;
-    transform: none;
-    box-shadow: none;
-}
 
 .form-group .input::placeholder {
     color: transparent;
@@ -323,8 +318,7 @@ body {
 }
 
 /* Fix autofill - Cách 1: Xóa lớp nền autofill của trình duyệt */
-.form-group .input:-webkit-autofill,
-.form-group .input:-webkit-autofill:focus {
+.form-group .input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
     box-shadow: 0 0 0 1000px transparent inset !important;
     -webkit-text-fill-color: #333 !important;
