@@ -142,12 +142,6 @@ body:not(.game-page) {
 }
 
 /* Input States */
-.form-group .input:hover,
-.form-group .input:focus {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
 .form-group .input:focus {
     background: linear-gradient(#f8f9fa, #f8f9fa) padding-box,
         linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box;
