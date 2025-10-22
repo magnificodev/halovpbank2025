@@ -181,7 +181,7 @@ body:not(.game-page) {
 .form-group .input:-webkit-autofill:hover,
 .form-group .input:-webkit-autofill:focus,
 .form-group .input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
     -webkit-text-fill-color: #333 !important;
     background: linear-gradient(white, white) padding-box,
                 linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box !important;
@@ -192,6 +192,7 @@ body:not(.game-page) {
     background: linear-gradient(white, white) padding-box,
                 linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box !important;
     color: #333 !important;
+    -moz-text-fill-color: #333 !important;
 }
 
 .form-group .input:-internal-autofill-selected {
