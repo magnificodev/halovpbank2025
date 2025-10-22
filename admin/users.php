@@ -59,15 +59,16 @@ renderAdminHeader('users');
 ?>
 
 <style>
-    .search-box{margin-bottom:8px;display:flex;gap:15px;align-items:center}
+    .search-box{margin-bottom:8px;display:flex;gap:15px;align-items:start}
+    .search-section{display:flex;flex-direction:column;gap:8px;flex:1}
     .search-container{position:relative;display:flex;align-items:center}
-    .search-input{padding:10px 14px 10px 40px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827;width:300px;font-size:14px}
+    .search-input{padding:10px 14px 10px 40px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827;width:100%;font-size:14px}
     .search-input:focus{outline:none;border-color:#059669;box-shadow:0 0 0 3px rgba(16,185,129,.15)}
     .search-input::placeholder{color:#9ca3af}
     .search-icon{position:absolute;left:12px;width:16px;height:16px;color:#6b7280;pointer-events:none}
     .csv-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;cursor:pointer;transition:all 0.2s ease;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
     .csv-btn:hover{background:#059669;transform:translateY(-1px);box-shadow:0 4px 8px rgba(16,185,129,0.3)}
-    .search-status{color:#6b7280;font-size:12px;margin-bottom:16px;text-align:left}
+    .search-status{color:#6b7280;font-size:12px;text-align:left}
     table{width:100%;border-collapse:separate;background:#ffffff;border-radius:12px;overflow:hidden}
     th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
     th svg{width:14px;height:14px;color:#6b7280;margin-right:6px;vertical-align:middle}
@@ -103,6 +104,7 @@ renderAdminHeader('users');
 
     @media (max-width: 768px){
         .search-box{flex-direction:column;align-items:stretch}
+        .search-section{width:100%}
         .search-input{width:100%}
         table{font-size:14px}
         th,td{padding:10px}
@@ -124,11 +126,21 @@ renderAdminHeader('users');
 </div>
 
 <form class="search-box">
-    <div class="search-container">
-        <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-        </svg>
-        <input type="text" name="q" class="search-input" placeholder="Tìm tên, số điện thoại, email..." value="<?php echo htmlspecialchars($q); ?>">
+    <div class="search-section">
+        <div class="search-container">
+            <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <input type="text" name="q" class="search-input" placeholder="Tìm tên, số điện thoại, email..." value="<?php echo htmlspecialchars($q); ?>">
+        </div>
+        <div class="search-status">
+            <?php if ($q): ?>
+                Hiển thị <?php echo count($users); ?> kết quả tìm kiếm cho "<?php echo htmlspecialchars($q); ?>"
+                (trang <?php echo $page; ?>/<?php echo $totalPages; ?>)
+            <?php else: ?>
+                Hiển thị <?php echo count($users); ?> người dùng (trang <?php echo $page; ?>/<?php echo $totalPages; ?>)
+            <?php endif; ?>
+        </div>
     </div>
     <a href="?export=csv<?php echo $q ? '&q=' . urlencode($q) : ''; ?>" class="csv-btn" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;">
@@ -137,15 +149,6 @@ renderAdminHeader('users');
         Xuất CSV
     </a>
 </form>
-
-<div class="search-status">
-    <?php if ($q): ?>
-        Hiển thị <?php echo count($users); ?> kết quả tìm kiếm cho "<?php echo htmlspecialchars($q); ?>"
-        (trang <?php echo $page; ?>/<?php echo $totalPages; ?>)
-    <?php else: ?>
-        Hiển thị <?php echo count($users); ?> người dùng (trang <?php echo $page; ?>/<?php echo $totalPages; ?>)
-    <?php endif; ?>
-</div>
 
 <table>
     <thead>
