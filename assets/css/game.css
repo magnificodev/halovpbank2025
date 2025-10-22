@@ -114,7 +114,6 @@ body:not(.game-page) {
     line-height: 1.4;
     opacity: 0;
     transform: translateY(-5px);
-    transition: all 0.3s ease;
 }
 
 .field-error.show {
@@ -159,7 +158,6 @@ body:not(.game-page) {
     justify-content: center;
     box-sizing: border-box;
     border-radius: 25px;
-    transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -191,7 +189,6 @@ body:not(.game-page) {
     border: 3px solid transparent !important;
     border-radius: 25px !important;
     color: #333 !important;
-    transition: background-color 5000s ease-in-out 0s;
 }
 
 /* Join Button */
@@ -294,7 +291,6 @@ body:not(.game-page) {
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -326,7 +322,6 @@ body:not(.game-page) {
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin: 20px 0;
