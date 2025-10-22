@@ -269,57 +269,63 @@ function deleteQRCode(id) {
     }
 }
 
-// Form submission
-document.getElementById('createForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', function() {
+    // Form submission
+    const createForm = document.getElementById('createForm');
+    if (createForm) {
+        createForm.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-    const stationId = document.getElementById('stationSelect').value;
-    const notes = document.getElementById('notesInput').value;
-    const expiresAt = document.getElementById('expiresAtInput').value;
+            const stationId = document.getElementById('stationSelect').value;
+            const notes = document.getElementById('notesInput').value;
+            const expiresAt = document.getElementById('expiresAtInput').value;
 
-    if (!stationId) {
-        alert('Please select a station');
-        return;
+            if (!stationId) {
+                alert('Please select a station');
+                return;
+            }
+
+            // Simple form submission
+            const formData = new FormData();
+            formData.append('station_id', stationId);
+            formData.append('notes', notes);
+            formData.append('expires_at', expiresAt);
+
+            fetch('../api/endroid-qr-generator.php?action=create', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('QR Code created successfully!');
+                    hideCreateModal();
+                    location.reload();
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while creating QR code');
+            });
+        });
     }
 
-    // Simple form submission
-    const formData = new FormData();
-    formData.append('station_id', stationId);
-    formData.append('notes', notes);
-    formData.append('expires_at', expiresAt);
+    // Close modals when clicking outside
+    window.onclick = function(event) {
+        const createModal = document.getElementById('createModal');
+        const qrModal = document.getElementById('qrModal');
 
-    fetch('../api/endroid-qr-generator.php?action=create', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('QR Code created successfully!');
+        if (event.target === createModal) {
             hideCreateModal();
-            location.reload();
-        } else {
-            alert('Error: ' + data.message);
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred while creating QR code');
-    });
+        if (event.target === qrModal) {
+            hideQRModal();
+        }
+    }
 });
-
-// Close modals when clicking outside
-window.onclick = function(event) {
-    const createModal = document.getElementById('createModal');
-    const qrModal = document.getElementById('qrModal');
-
-    if (event.target === createModal) {
-        hideCreateModal();
-    }
-    if (event.target === qrModal) {
-        hideQRModal();
-    }
-}
 </script>
 
 <?php renderAdminFooter(); ?>
