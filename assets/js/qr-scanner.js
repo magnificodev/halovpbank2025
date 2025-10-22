@@ -4,6 +4,8 @@ class QRScanner {
     constructor() {
         this.scanner = null;
         this.isScanning = false;
+        this.currentCameraIndex = 0;
+        this.availableCameras = [];
         this.init();
     }
 
@@ -54,20 +56,24 @@ class QRScanner {
             this.scanner = new Html5Qrcode('qr-reader');
 
             // Get available cameras
-            const cameras = await Html5Qrcode.getCameras();
+            this.availableCameras = await Html5Qrcode.getCameras();
 
-            if (cameras.length === 0) {
+            if (this.availableCameras.length === 0) {
                 this.showScannerError('Không tìm thấy camera');
                 return;
             }
 
             // Use back camera if available, otherwise use first camera
-            const cameraId =
-                cameras.find(
-                    (camera) =>
-                        camera.label.toLowerCase().includes('back') ||
-                        camera.label.toLowerCase().includes('rear')
-                )?.id || cameras[0].id;
+            const backCamera = this.availableCameras.find(camera => {
+                const label = camera.label.toLowerCase();
+                return label.includes('back') || 
+                       label.includes('rear') || 
+                       label.includes('environment');
+            });
+            
+            const cameraId = backCamera ? backCamera.id : this.availableCameras[0].id;
+            this.currentCameraIndex = backCamera ? 
+                this.availableCameras.findIndex(c => c.id === backCamera.id) : 0;
 
             // Start scanning
             await this.scanner.start(
@@ -89,6 +95,7 @@ class QRScanner {
             );
 
             this.isScanning = true;
+            this.addCameraSwitchButton();
             console.log('QR Scanner started successfully');
         } catch (error) {
             console.error('Failed to start QR scanner:', error);
@@ -126,6 +133,76 @@ class QRScanner {
         }
     }
 
+    addCameraSwitchButton() {
+        // Only add switch button if there are multiple cameras
+        if (this.availableCameras.length <= 1) return;
+
+        const modal = document.getElementById('qrScannerModal');
+        if (!modal) return;
+
+        // Check if button already exists
+        if (modal.querySelector('.camera-switch-btn')) return;
+
+        const switchButton = document.createElement('button');
+        switchButton.className = 'camera-switch-btn';
+        switchButton.innerHTML = '🔄';
+        switchButton.title = 'Xoay camera';
+        switchButton.addEventListener('click', () => this.switchCamera());
+
+        modal.appendChild(switchButton);
+        console.log('Camera switch button added');
+    }
+
+    async switchCamera() {
+        if (this.availableCameras.length <= 1) return;
+
+        console.log('Switching camera...');
+        
+        // Stop current scanner
+        if (this.isScanning && this.scanner) {
+            try {
+                await this.scanner.stop();
+                await this.scanner.clear();
+            } catch (e) {
+                console.log('Error stopping scanner for switch:', e);
+            }
+        }
+
+        // Switch to next camera
+        this.currentCameraIndex = (this.currentCameraIndex + 1) % this.availableCameras.length;
+        const newCamera = this.availableCameras[this.currentCameraIndex];
+        
+        console.log(`Switching to camera ${this.currentCameraIndex}:`, newCamera.label);
+
+        // Restart scanner with new camera
+        try {
+            await this.scanner.start(
+                newCamera.id,
+                {
+                    fps: 10,
+                    qrbox: { width: 250, height: 250 },
+                    aspectRatio: 1.0,
+                },
+                (decodedText, decodedResult) => {
+                    this.handleQRCode(decodedText);
+                },
+                (error) => {
+                    if (error && !error.includes('No QR code found')) {
+                        console.log('QR scanning error:', error);
+                    }
+                }
+            );
+
+            this.isScanning = true;
+            console.log('Camera switched successfully');
+        } catch (error) {
+            console.error('Failed to switch camera:', error);
+            // Try to restart with original camera
+            this.currentCameraIndex = 0;
+            this.startScanner();
+        }
+    }
+
     async closeScanner() {
         if (!this.isScanning || !this.scanner) return;
 
@@ -135,8 +212,13 @@ class QRScanner {
             this.scanner = null;
             this.isScanning = false;
 
+            // Remove camera switch button
             const modal = document.getElementById('qrScannerModal');
             if (modal) {
+                const switchButton = modal.querySelector('.camera-switch-btn');
+                if (switchButton) {
+                    switchButton.remove();
+                }
                 modal.style.display = 'none';
             }
 
