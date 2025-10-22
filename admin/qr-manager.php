@@ -47,8 +47,8 @@ try {
 renderAdminHeader('qr-manager');
 ?>
 
-<!-- Load QRCode script from working CDN -->
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/lib/browser.min.js"></script>
+<!-- Load QRCode script from alternative CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <style>
     .card {
         background: #fff;
@@ -333,18 +333,18 @@ renderAdminHeader('qr-manager');
                     // Simple approach - wait for script to load then generate
                     let retryCount = 0;
                     const maxRetries = 50; // 5 seconds max
-                    
+
                     function generateQR() {
                         console.log('Starting QR generation...');
-                        console.log('QRCode available:', typeof QRCode !== 'undefined');
+                        console.log('qrcode available:', typeof qrcode !== 'undefined');
 
-                        if (typeof QRCode === 'undefined') {
+                        if (typeof qrcode === 'undefined') {
                             retryCount++;
                             if (retryCount >= maxRetries) {
-                                console.error('QRCode library failed to load after', maxRetries * 100, 'ms');
+                                console.error('qrcode library failed to load after', maxRetries * 100, 'ms');
                                 return;
                             }
-                            console.log('QRCode not ready, retrying in 100ms... (attempt', retryCount, '/', maxRetries, ')');
+                            console.log('qrcode not ready, retrying in 100ms... (attempt', retryCount, '/', maxRetries, ')');
                             setTimeout(generateQR, 100);
                             return;
                         }
@@ -358,20 +358,31 @@ renderAdminHeader('qr-manager');
                         const url = '<?= htmlspecialchars($qrUrl) ?>';
                         console.log('Generating QR for URL:', url);
 
-                        QRCode.toCanvas(canvas, url, {
-                            width: 200,
-                            margin: 2,
-                            color: {
-                                dark: '#000000',
-                                light: '#FFFFFF'
+                        // Use qrcode-generator library
+                        const qr = qrcode(0, 'M');
+                        qr.addData(url);
+                        qr.make();
+                        
+                        const ctx = canvas.getContext('2d');
+                        const size = 200;
+                        const cellSize = size / qr.getModuleCount();
+                        
+                        canvas.width = size;
+                        canvas.height = size;
+                        
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.fillRect(0, 0, size, size);
+                        
+                        ctx.fillStyle = '#000000';
+                        for (let row = 0; row < qr.getModuleCount(); row++) {
+                            for (let col = 0; col < qr.getModuleCount(); col++) {
+                                if (qr.isDark(row, col)) {
+                                    ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+                                }
                             }
-                        }, function (error) {
-                            if (error) {
-                                console.error('QR generation failed:', error);
-                            } else {
-                                console.log('QR code generated successfully!');
-                            }
-                        });
+                        }
+                        
+                        console.log('QR code generated successfully!');
                     }
 
                     // Start generation when page loads
