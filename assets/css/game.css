@@ -16,11 +16,12 @@ body:not(.game-page) {
     background: #000;
 }
 
-/* Desktop Container with Letterbox */
+/* Desktop Container with Full Background */
 .desktop-container {
     width: 100vw;
     height: 100vh;
-    background: #000;
+    background: url('../images/background-1.png') center/cover no-repeat;
+    background-color: #000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,22 +31,21 @@ body:not(.game-page) {
     z-index: 1;
 }
 
+/* Game page background */
+.game-page .desktop-container {
+    background: url('../images/background-2.png') center/cover no-repeat;
+    background-color: #000;
+}
+
 .mobile-frame {
     width: 360px;
     height: 100vh;
-    background: url('../images/background-1.png') center/cover no-repeat;
-    background-color: #000;
+    background: transparent;
     overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
     max-width: 100vw;
-}
-
-/* Game page background */
-.game-page .mobile-frame {
-    background: url('../images/background-2.png') center/cover no-repeat;
-    background-color: #000;
 }
 
 /* Mobile Responsive - Fullscreen */
