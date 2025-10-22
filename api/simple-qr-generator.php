@@ -34,7 +34,7 @@ try {
                         $params[] = $station;
                     }
 
-                    $qrCodes = $db->fetchAll("SELECT * FROM qr_codes $where ORDER BY created_at DESC LIMIT ? OFFSET ?", 
+                    $qrCodes = $db->fetchAll("SELECT * FROM qr_codes $where ORDER BY created_at DESC LIMIT ? OFFSET ?",
                         array_merge($params, [$limit, $offset]));
 
                     $total = $db->fetchOne("SELECT COUNT(*) as count FROM qr_codes $where", $params)['count'];
@@ -97,19 +97,19 @@ try {
 
                     // Generate QR code using Google Charts API
                     $qrImageUrl = 'https://chart.googleapis.com/chart?chs=400x400&chld=L|0&cht=qr&chl=' . urlencode($qrUrl);
-                    
+
                     // Generate filename
                     $qrFilename = 'qr_' . $stationId . '_' . substr($verifyHash, 0, 8) . '.png';
-                    
+
                     // Download and save QR code image
                     $qrImageData = file_get_contents($qrImageUrl);
                     $qrFilePath = '../assets/qr-codes/' . $qrFilename;
-                    
+
                     // Create directory if not exists
                     if (!is_dir('../assets/qr-codes/')) {
                         mkdir('../assets/qr-codes/', 0755, true);
                     }
-                    
+
                     file_put_contents($qrFilePath, $qrImageData);
 
                     $id = $db->insert("INSERT INTO qr_codes (station_id, qr_url, verify_hash, notes, expires_at, created_by, qr_filename) VALUES (?, ?, ?, ?, ?, ?, ?)", [
@@ -158,7 +158,7 @@ try {
                         throw new Exception('Status is required');
                     }
 
-                    $db->execute("UPDATE qr_codes SET status = ?, notes = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?", 
+                    $db->execute("UPDATE qr_codes SET status = ?, notes = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
                         [$status, $notes, $id]);
 
                     echo json_encode([
@@ -181,7 +181,7 @@ try {
 
             // Get QR code info before deletion
             $qrCode = $db->fetchOne("SELECT qr_filename FROM qr_codes WHERE id = ?", [$id]);
-            
+
             // Delete QR code file if exists
             if ($qrCode && !empty($qrCode['qr_filename'])) {
                 $filePath = '../assets/qr-codes/' . $qrCode['qr_filename'];
@@ -201,7 +201,7 @@ try {
         default:
             throw new Exception('Invalid method');
     }
-    
+
 } catch (Exception $e) {
     http_response_code(400);
     echo json_encode([

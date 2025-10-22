@@ -9,11 +9,11 @@ echo "<h2>1. Database Check</h2>";
 try {
     require_once 'api/db.php';
     $db = new Database();
-    
+
     $result = $db->fetchOne("SHOW TABLES LIKE 'qr_codes'");
     if ($result) {
         echo "✅ qr_codes table exists<br>";
-        
+
         // Check columns
         $columns = $db->fetchAll("DESCRIBE qr_codes");
         echo "📋 Table columns:<br>";
@@ -65,7 +65,7 @@ if (is_dir($qrDir)) {
     $qrFiles = array_filter($files, function($file) {
         return pathinfo($file, PATHINFO_EXTENSION) === 'png';
     });
-    
+
     if (count($qrFiles) > 0) {
         echo "✅ Found " . count($qrFiles) . " QR code files:<br>";
         foreach ($qrFiles as $file) {
