@@ -34,13 +34,15 @@ $totalPages = ceil($total / $limit);
 $query = "SELECT * FROM qr_codes $where ORDER BY created_at DESC LIMIT $limit OFFSET $offset";
 $qrCodes = $db->fetchAll($query, $params);
 
-// Define stations
-define('STATIONS', [
-    'HALLO_GLOW' => ['name' => 'HALLO GLOW', 'description' => 'Trải nghiệm ánh sáng'],
-    'HALLO_SOLUTION' => ['name' => 'HALLO SOLUTION', 'description' => 'Giải pháp thông minh'],
-    'HALLO_WIN' => ['name' => 'HALLO WIN', 'description' => 'Chiến thắng vinh quang'],
-    'HALLO_SHOP' => ['name' => 'HALLO SHOP', 'description' => 'Cửa hàng đặc biệt']
-]);
+// Define stations if not already defined
+if (!defined('STATIONS')) {
+    define('STATIONS', [
+        'HALLO_GLOW' => ['name' => 'HALLO GLOW', 'description' => 'Trải nghiệm ánh sáng'],
+        'HALLO_SOLUTION' => ['name' => 'HALLO SOLUTION', 'description' => 'Giải pháp thông minh'],
+        'HALLO_WIN' => ['name' => 'HALLO WIN', 'description' => 'Chiến thắng vinh quang'],
+        'HALLO_SHOP' => ['name' => 'HALLO SHOP', 'description' => 'Cửa hàng đặc biệt']
+    ]);
+}
 
 renderAdminHeader('qr-codes');
 ?>
@@ -91,37 +93,45 @@ renderAdminHeader('qr-codes');
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($qrCodes as $qrCode): ?>
+            <?php if (empty($qrCodes)): ?>
                 <tr>
-                    <td><?= $qrCode['id'] ?></td>
-                    <td><?= htmlspecialchars($qrCode['station_id']) ?></td>
-                    <td>
-                        <div class="qr-image-container">
-                            <img src="../api/qr-png.php?data=<?= urlencode($qrCode['qr_url']) ?>&size=100"
-                                 alt="QR Code"
-                                 class="qr-image"
-                                 onclick="showQRModal('<?= urlencode($qrCode['qr_url']) ?>')">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="qr-url" title="<?= htmlspecialchars($qrCode['qr_url']) ?>">
-                            <?= htmlspecialchars($qrCode['qr_url']) ?>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="status-badge status-<?= $qrCode['status'] ?>">
-                            <?= ucfirst($qrCode['status']) ?>
-                        </span>
-                    </td>
-                    <td><?= $qrCode['scan_count'] ?></td>
-                    <td><?= (new DateTime($qrCode['created_at']))->format('Y-m-d H:i') ?></td>
-                    <td class="actions">
-                        <button onclick="editQRCode(<?= $qrCode['id'] ?>)" class="btn-edit">Edit</button>
-                        <button onclick="updateQRStatus(<?= $qrCode['id'] ?>, 'inactive')" class="btn-inactive">Deactivate</button>
-                        <button onclick="deleteQRCode(<?= $qrCode['id'] ?>)" class="btn-delete">Delete</button>
+                    <td colspan="8" style="text-align: center; padding: 40px; color: #6b7280;">
+                        No QR codes found. <a href="#" onclick="showCreateModal(); return false;">Create your first QR code</a>
                     </td>
                 </tr>
-            <?php endforeach; ?>
+            <?php else: ?>
+                <?php foreach ($qrCodes as $qrCode): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($qrCode['id'] ?? 'N/A') ?></td>
+                        <td><?= htmlspecialchars($qrCode['station_id'] ?? 'N/A') ?></td>
+                        <td>
+                            <div class="qr-image-container">
+                                <img src="../api/qr-png.php?data=<?= urlencode($qrCode['qr_url'] ?? '') ?>&size=100"
+                                     alt="QR Code"
+                                     class="qr-image"
+                                     onclick="showQRModal('<?= urlencode($qrCode['qr_url'] ?? '') ?>')">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="qr-url" title="<?= htmlspecialchars($qrCode['qr_url'] ?? '') ?>">
+                                <?= htmlspecialchars($qrCode['qr_url'] ?? 'N/A') ?>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="status-badge status-<?= $qrCode['status'] ?? 'unknown' ?>">
+                                <?= ucfirst($qrCode['status'] ?? 'Unknown') ?>
+                            </span>
+                        </td>
+                        <td><?= $qrCode['scan_count'] ?? 0 ?></td>
+                        <td><?= isset($qrCode['created_at']) ? (new DateTime($qrCode['created_at']))->format('Y-m-d H:i') : 'N/A' ?></td>
+                        <td class="actions">
+                            <button onclick="editQRCode(<?= $qrCode['id'] ?? 0 ?>)" class="btn-edit">Edit</button>
+                            <button onclick="updateQRStatus(<?= $qrCode['id'] ?? 0 ?>, 'inactive')" class="btn-inactive">Deactivate</button>
+                            <button onclick="deleteQRCode(<?= $qrCode['id'] ?? 0 ?>)" class="btn-delete">Delete</button>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </tbody>
     </table>
 </div>
@@ -262,22 +272,22 @@ function deleteQRCode(id) {
 // Form submission
 document.getElementById('createForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    
+
     const stationId = document.getElementById('stationSelect').value;
     const notes = document.getElementById('notesInput').value;
     const expiresAt = document.getElementById('expiresAtInput').value;
-    
+
     if (!stationId) {
         alert('Please select a station');
         return;
     }
-    
+
     // Simple form submission
     const formData = new FormData();
     formData.append('station_id', stationId);
     formData.append('notes', notes);
     formData.append('expires_at', expiresAt);
-    
+
     fetch('../api/endroid-qr-generator.php?action=create', {
         method: 'POST',
         body: formData
