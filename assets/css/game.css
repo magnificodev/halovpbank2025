@@ -186,12 +186,17 @@ body:not(.game-page) {
 }
 
 .instructions p {
-    font-family: 'Gilroy Bold', 'Segoe UI', sans-serif;
+    font-family: 'Gilroy Regular', 'Gilroy', 'Segoe UI', sans-serif;
     font-size: 12px;
     line-height: 1.4;
     color: #ffffff;
     margin: 0;
-    font-weight: 600;
+    font-weight: 400;
+}
+
+.instructions p strong {
+    font-family: 'Gilroy Bold', 'Gilroy', 'Segoe UI', sans-serif;
+    font-weight: 700;
 }
 
 /* Stations Container */
