@@ -57,6 +57,7 @@ class QRScanner {
 
             // Get available cameras
             this.availableCameras = await Html5Qrcode.getCameras();
+            console.log('Available cameras:', this.availableCameras.length, this.availableCameras);
 
             if (this.availableCameras.length === 0) {
                 this.showScannerError('Không tìm thấy camera');
@@ -134,9 +135,6 @@ class QRScanner {
     }
 
     addCameraSwitchButton() {
-        // Only add switch button if there are multiple cameras
-        if (this.availableCameras.length <= 1) return;
-
         const modal = document.getElementById('qrScannerModal');
         if (!modal) return;
 
@@ -150,11 +148,14 @@ class QRScanner {
         switchButton.addEventListener('click', () => this.switchCamera());
 
         modal.appendChild(switchButton);
-        console.log('Camera switch button added');
+        console.log('Camera switch button added, available cameras:', this.availableCameras.length);
     }
 
     async switchCamera() {
-        if (this.availableCameras.length <= 1) return;
+        if (this.availableCameras.length <= 1) {
+            console.log('Only one camera available, cannot switch');
+            return;
+        }
 
         console.log('Switching camera...');
         
