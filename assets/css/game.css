@@ -178,6 +178,89 @@ body:not(.game-page) {
     display: block;
 }
 
+/* Game Page Specific Styles */
+
+/* Instructions */
+.instructions {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 20px;
+}
+
+.instructions p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ffffff;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Stations Container */
+.stations-container {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 30px;
+}
+
+.stations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.station-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.station-item.completed {
+    background: rgba(40, 167, 69, 0.2);
+    border-color: #28a745;
+}
+
+.station-item.completed .station-status {
+    color: #28a745;
+}
+
+.station-info {
+    flex: 1;
+}
+
+.station-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0 0 5px 0;
+}
+
+.station-description {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.station-status {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffc107;
+}
+
+/* Action Buttons */
+.action-buttons {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 /* Game Interface */
 .game-interface {
     text-align: center;
@@ -254,13 +337,15 @@ body:not(.game-page) {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 15px 30px;
     border-radius: 25px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     text-transform: uppercase;
     letter-spacing: 1px;
+    width: 100%;
+    transition: all 0.3s ease;
 }
 
 .scan-button:hover {
@@ -273,6 +358,26 @@ body:not(.game-page) {
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
+}
+
+.claim-button {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.claim-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(240, 147, 251, 0.4);
 }
 
 /* Reward Section */
