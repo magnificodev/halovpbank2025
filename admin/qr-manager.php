@@ -47,8 +47,8 @@ try {
 renderAdminHeader('qr-manager');
 ?>
 
-<!-- Load QRCode script directly -->
-<script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js"></script>
+<!-- Load QRCode script from working CDN -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/lib/browser.min.js"></script>
 <style>
     .card {
         background: #fff;
@@ -331,12 +331,20 @@ renderAdminHeader('qr-manager');
 
                 <script>
                     // Simple approach - wait for script to load then generate
+                    let retryCount = 0;
+                    const maxRetries = 50; // 5 seconds max
+                    
                     function generateQR() {
                         console.log('Starting QR generation...');
                         console.log('QRCode available:', typeof QRCode !== 'undefined');
 
                         if (typeof QRCode === 'undefined') {
-                            console.log('QRCode not ready, retrying in 100ms...');
+                            retryCount++;
+                            if (retryCount >= maxRetries) {
+                                console.error('QRCode library failed to load after', maxRetries * 100, 'ms');
+                                return;
+                            }
+                            console.log('QRCode not ready, retrying in 100ms... (attempt', retryCount, '/', maxRetries, ')');
                             setTimeout(generateQR, 100);
                             return;
                         }
