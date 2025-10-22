@@ -31,13 +31,13 @@ try {
         sendJsonResponse(['error' => ERRORS['USER_NOT_FOUND']], 404);
     }
 
-    // Check if user already claimed reward
-    $existingReward = $db->fetch(
-        "SELECT code FROM gift_codes WHERE user_id = ? AND claimed_at IS NOT NULL",
+    // Check if user already claimed reward (check user_progress table instead of gift_codes)
+    $existingClaim = $db->fetch(
+        "SELECT id FROM user_progress WHERE user_id = ? AND station_id = 'CLAIMED_REWARD'",
         [$user['id']]
     );
 
-    if ($existingReward) {
+    if ($existingClaim) {
         sendJsonResponse(['error' => ERRORS['REWARD_ALREADY_CLAIMED']], 400);
     }
 
@@ -68,25 +68,15 @@ try {
         sendJsonResponse(['error' => ERRORS['INSUFFICIENT_STATIONS']], 400);
     }
 
-    // Get an available gift code
-    $availableCode = $db->fetch(
-        "SELECT id, code FROM gift_codes WHERE user_id IS NULL ORDER BY RAND() LIMIT 1"
-    );
-
-    if (!$availableCode) {
-        sendJsonResponse(['error' => 'Hết mã quà tặng'], 400);
-    }
-
-    // Assign gift code to user
+    // Mark user as claimed reward (no gift code needed)
     $db->query(
-        "UPDATE gift_codes SET user_id = ?, claimed_at = NOW() WHERE id = ?",
-        [$user['id'], $availableCode['id']]
+        "INSERT INTO user_progress (user_id, station_id) VALUES (?, 'CLAIMED_REWARD')",
+        [$user['id']]
     );
 
     sendJsonResponse([
         'success' => true,
-        'message' => 'Chúc mừng bạn đã nhận được quà!',
-        'gift_code' => $availableCode['code']
+        'claimed' => true
     ]);
 
 } catch (Exception $e) {

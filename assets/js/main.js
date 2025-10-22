@@ -251,39 +251,47 @@ class VPBankGame {
             const result = await response.json();
 
             if (result.success) {
-                this.renderStations(result.stations);
+                // Apply server progress to existing checklist UI and sync local storage
+                this.applyServerProgressToChecklist(result.stations);
                 this.updateActionButtons(result);
-            } else {
-                this.showMessage(result.error || 'Không thể tải tiến độ', 'error');
             }
         } catch (error) {
             console.error('Load progress error:', error);
-            this.showMessage('Có lỗi xảy ra khi tải tiến độ', 'error');
         }
     }
 
-    renderStations(stations) {
-        const stationsList = document.getElementById('stationsList');
-        if (!stationsList) return;
+    // Apply server result to current checklist DOM and sync local storage
+    applyServerProgressToChecklist(stations) {
+        try {
+            const key = 'vpbank_station_progress';
+            const items = Array.from(document.querySelectorAll('.station-checklist-item'));
+            const serverCompleted = new Set(
+                (stations || []).filter((s) => s.completed).map((s) => s.id)
+            );
 
-        stationsList.innerHTML = '';
+            // Update UI icons based on server state
+            items.forEach((li) => {
+                const station = li.getAttribute('data-station');
+                const icon = li.querySelector('.status-icon');
+                if (!station || !icon) return;
+                if (serverCompleted.has(station)) {
+                    icon.src = 'assets/images/checked-box.png';
+                    icon.alt = 'Đã hoàn thành';
+                } else {
+                    icon.src = 'assets/images/no-checked-box.png';
+                    icon.alt = 'Chưa hoàn thành';
+                }
+            });
 
-        stations.forEach((station) => {
-            const stationElement = document.createElement('div');
-            stationElement.className = `station-item ${station.completed ? 'completed' : ''}`;
-
-            stationElement.innerHTML = `
-                <div class="station-icon">
-                    ${station.completed ? '✓' : '○'}
-                </div>
-                <div class="station-info">
-                    <div class="station-name">${station.name}</div>
-                    <div class="station-description">${this.getStationDescription(station.id)}</div>
-                </div>
-            `;
-
-            stationsList.appendChild(stationElement);
-        });
+            // Sync local storage for consistent subsequent UI updates
+            const progress = {};
+            (stations || []).forEach((s) => {
+                progress[s.id] = !!s.completed;
+            });
+            localStorage.setItem(key, JSON.stringify(progress));
+        } catch (e) {
+            console.warn('Apply server progress failed', e);
+        }
     }
 
     getStationDescription(stationId) {
@@ -374,7 +382,6 @@ class VPBankGame {
         if (this.isDevMode()) {
             this.markStationCompletedLocally(stationId);
             this.applyLocalProgressToChecklist();
-            this.showMessage(`Đã đánh dấu hoàn thành ${stationId} (DEV)`, 'success');
             return;
         }
         try {
@@ -398,12 +405,9 @@ class VPBankGame {
                 this.applyLocalProgressToChecklist();
                 // Also reload from server to stay in sync
                 await this.loadGameProgress();
-            } else {
-                this.showMessage(result.error || 'Có lỗi xảy ra', 'error');
             }
         } catch (error) {
             console.error('Station completion error:', error);
-            this.showMessage('Có lỗi xảy ra khi hoàn thành trạm', 'error');
         }
     }
 
@@ -481,19 +485,14 @@ class VPBankGame {
             const result = await response.json();
 
             if (result.success) {
-                this.showMessage(result.message, 'success');
-                // Redirect to reward page
-                setTimeout(() => {
-                    window.location.href = `reward.php?token=${this.userToken}`;
-                }, 2000);
+                // Redirect to reward page immediately without message
+                window.location.href = `reward.php?token=${this.userToken}`;
             } else {
-                this.showMessage(result.error || 'Có lỗi xảy ra', 'error');
                 claimBtn.textContent = originalText;
                 claimBtn.disabled = false;
             }
         } catch (error) {
             console.error('Claim reward error:', error);
-            this.showMessage('Có lỗi xảy ra khi nhận quà', 'error');
             claimBtn.textContent = originalText;
             claimBtn.disabled = false;
         }
@@ -515,18 +514,15 @@ class VPBankGame {
             const result = await response.json();
 
             if (result.success) {
-                if (result.reward_code) {
+                if (result.has_claimed_reward) {
                     this.displayPhoneNumber(result.user.phone);
                 } else {
                     // User hasn't claimed reward yet, redirect to game
                     window.location.href = `game.php?token=${this.userToken}`;
                 }
-            } else {
-                this.showMessage(result.error || 'Không thể tải thông tin', 'error');
             }
         } catch (error) {
             console.error('Load reward error:', error);
-            this.showMessage('Có lỗi xảy ra khi tải thông tin', 'error');
         }
     }
 

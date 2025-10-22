@@ -93,6 +93,7 @@ class QRScanner {
                         label.includes('rear') ||
                         label.includes('environment') ||
                         label.includes('camera 1') || // iOS often uses "Camera 1" for back
+                        label.includes('camera 2') || // Sometimes "Camera 2" is back
                         (label.includes('camera') && !label.includes('front'))
                     );
                 });
@@ -119,6 +120,11 @@ class QRScanner {
                         return bNum - aNum; // Higher index first
                     });
                     selectedCamera = sortedCameras[0];
+                }
+
+                // Fourth try: If still no camera selected, prefer the last camera in the list
+                if (!selectedCamera && this.availableCameras.length > 1) {
+                    selectedCamera = this.availableCameras[this.availableCameras.length - 1];
                 }
 
                 // Final fallback
@@ -160,24 +166,48 @@ class QRScanner {
             console.log(`Platform: ${isIOS ? 'iOS' : isAndroid ? 'Android' : 'Desktop'}`);
             console.log(`Selected camera: ${selectedCamera.label} (index: ${cameraIndex})`);
 
-            // Start scanning
-            await this.scanner.start(
-                cameraId,
-                {
-                    fps: 10,
-                    qrbox: { width: 250, height: 250 },
-                    aspectRatio: 1.0,
-                },
-                (decodedText, decodedResult) => {
-                    this.handleQRCode(decodedText);
-                },
-                (error) => {
-                    // Ignore common scanning errors
-                    if (error && !error.includes('No QR code found')) {
-                        console.log('QR scanning error:', error);
+            // Start scanning with environment-facing camera preference
+            const config = {
+                fps: 10,
+                qrbox: { width: 250, height: 250 },
+                aspectRatio: 1.0,
+            };
+
+            try {
+                // Try using facingMode for better camera selection (especially iOS)
+                await this.scanner.start(
+                    { facingMode: { exact: 'environment' } },
+                    config,
+                    (decodedText, decodedResult) => {
+                        this.handleQRCode(decodedText);
+                    },
+                    (error) => {
+                        // Ignore common scanning errors
+                        if (error && !error.includes('No QR code found')) {
+                            console.log('QR scanning error:', error);
+                        }
                     }
-                }
-            );
+                );
+                console.log('QR Scanner started with environment-facing camera');
+            } catch (facingModeError) {
+                console.log('FacingMode failed, falling back to camera ID:', facingModeError);
+
+                // Fallback to camera ID method
+                await this.scanner.start(
+                    cameraId,
+                    config,
+                    (decodedText, decodedResult) => {
+                        this.handleQRCode(decodedText);
+                    },
+                    (error) => {
+                        // Ignore common scanning errors
+                        if (error && !error.includes('No QR code found')) {
+                            console.log('QR scanning error:', error);
+                        }
+                    }
+                );
+                console.log('QR Scanner started with camera ID fallback');
+            }
 
             this.isScanning = true;
             console.log('QR Scanner started successfully');

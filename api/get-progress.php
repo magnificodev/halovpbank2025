@@ -61,9 +61,12 @@ try {
     // New logic: >= 2 in first 4 stations AND HALLO_SHOP must be completed
     $canClaimReward = $completedFirstFour >= 2 && $isShopCompleted;
 
-    // Check if user already claimed reward
+    // Calculate total completed count
+    $completedCount = count($completedStationIds);
+
+    // Check if user already claimed reward (check user_progress table)
     $claimedReward = $db->fetch(
-        "SELECT code FROM gift_codes WHERE user_id = ? AND claimed_at IS NOT NULL",
+        "SELECT station_id FROM user_progress WHERE user_id = ? AND station_id = 'CLAIMED_REWARD'",
         [$user['id']]
     );
 
@@ -80,7 +83,7 @@ try {
         'required_count' => REQUIRED_STATIONS,
         'can_claim_reward' => $canClaimReward,
         'has_claimed_reward' => !empty($claimedReward),
-        'reward_code' => $claimedReward['code'] ?? null
+        'reward_code' => null // No gift code needed anymore
     ]);
 
 } catch (Exception $e) {

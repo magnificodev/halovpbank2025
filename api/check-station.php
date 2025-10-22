@@ -97,9 +97,11 @@ try {
     // New logic: >= 2 in first 4 stations AND HALLO_SHOP must be completed
     $canClaimReward = $completedFirstFour >= 2 && $isShopCompleted;
 
+    // Calculate total completed count
+    $completedCount = count($completedStationIds);
+
     sendJsonResponse([
         'success' => true,
-        'message' => 'Hoàn thành trạm ' . STATIONS[$stationId] . '!',
         'station_id' => $stationId,
         'station_name' => STATIONS[$stationId],
         'completed_count' => $completedCount,
