@@ -1,11 +1,11 @@
--- VPBank Solution Day Game Database Setup
--- Run this in phpMyAdmin or MySQL command line
+-- VPBank Solution Day Game Database Setup (Simple Version)
+-- Run this in phpMyAdmin
 
 -- Create database
 CREATE DATABASE IF NOT EXISTS vpbankgame_halovpbank CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE vpbankgame_halovpbank;
 
--- Create users table
+-- Users table
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(255) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Create user_progress table
+-- User progress tracking
 CREATE TABLE IF NOT EXISTS user_progress (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS user_progress (
     UNIQUE KEY unique_user_station (user_id, station_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Create gift_codes table
+-- Gift codes table
 CREATE TABLE IF NOT EXISTS gift_codes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     code VARCHAR(20) NOT NULL UNIQUE,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS gift_codes (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Create scan_logs table
+-- Scan logs table
 CREATE TABLE IF NOT EXISTS scan_logs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS scan_logs (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Create qr_generation_logs table
+-- QR generation logs table
 CREATE TABLE IF NOT EXISTS qr_generation_logs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     station_id VARCHAR(50) NOT NULL,
@@ -56,8 +56,3 @@ CREATE TABLE IF NOT EXISTS qr_generation_logs (
     generated_by VARCHAR(100),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Create user for database access
-CREATE USER IF NOT EXISTS 'vpbankgame_halovpbank'@'localhost' IDENTIFIED BY 'VpBank2025!@#';
-GRANT ALL PRIVILEGES ON vpbankgame_halovpbank.* TO 'vpbankgame_halovpbank'@'localhost';
-FLUSH PRIVILEGES;
