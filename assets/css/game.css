@@ -140,56 +140,6 @@ body:not(.game-page) {
     text-align: center;
 }
 
-/* Input Base Styles */
-.form-group .input {
-    width: 100%;
-    height: 46px;
-    padding: 0 20px;
-    border: 3px solid transparent;
-    background: linear-gradient(white, white) padding-box,
-        linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box;
-    color: #333;
-    font-size: 16px;
-    font-weight: 500;
-    outline: none;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    border-radius: 25px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Input States */
-.form-group .input:hover,
-.form-group .input:focus {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.form-group .input:focus {
-    background: linear-gradient(#f8f9fa, #f8f9fa) padding-box,
-        linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box;
-}
-
-/* Autofill Fix - Unified */
-.form-group .input:-webkit-autofill,
-.form-group .input:-webkit-autofill:hover,
-.form-group .input:-webkit-autofill:focus,
-.form-group .input:-webkit-autofill:active,
-.form-group .input:-moz-autofill,
-.form-group .input:-internal-autofill-selected,
-.form-group .input:autofill {
-    -webkit-box-shadow: 0 0 0 1000px white inset !important;
-    -webkit-text-fill-color: #333 !important;
-    -moz-text-fill-color: #333 !important;
-    background: linear-gradient(white, white) padding-box,
-        linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box !important;
-    border: 3px solid transparent !important;
-    border-radius: 25px !important;
-    color: #333 !important;
-}
 
 /* Join Button */
 .join-button {
