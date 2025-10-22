@@ -201,8 +201,13 @@ body:not(.game-page) {
     width: 100%;
     gap: 16px;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-evenly; /* Default: space-evenly for 2 buttons */
     margin-top: 0;
+}
+
+/* When only scan button is visible, center it */
+.action-image-buttons[style*="justify-content: center"] {
+    justify-content: center !important;
 }
 
 .action-image-btn {

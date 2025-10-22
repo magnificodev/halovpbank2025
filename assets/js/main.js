@@ -299,12 +299,28 @@ class VPBankGame {
 
     updateActionButtons(result) {
         const claimBtn = document.getElementById('claimRewardBtn');
+        const scanBtn = document.getElementById('scanBtn');
+        const actionButtons = document.querySelector('.action-image-buttons');
+        
+        if (!claimBtn || !scanBtn || !actionButtons) return;
 
-        if (result.can_claim_reward && !result.has_claimed_reward) {
-            claimBtn.style.display = 'block';
-        } else if (result.has_claimed_reward) {
+        // Check if user has completed at least 3 stations
+        const completedStations = result.stations ? result.stations.filter(station => station.completed).length : 0;
+        const hasEnoughStations = completedStations >= 3;
+
+        if (result.has_claimed_reward) {
             // User already claimed reward, redirect to reward page
             window.location.href = `reward.php?token=${this.userToken}`;
+        } else if (hasEnoughStations && result.can_claim_reward) {
+            // Show both buttons
+            claimBtn.style.display = 'block';
+            scanBtn.style.display = 'block';
+            actionButtons.style.justifyContent = 'space-evenly';
+        } else {
+            // Show only scan button, centered
+            claimBtn.style.display = 'none';
+            scanBtn.style.display = 'block';
+            actionButtons.style.justifyContent = 'center';
         }
     }
 
@@ -408,14 +424,17 @@ class VPBankGame {
                     icon.alt = 'Chưa hoàn thành';
                 }
             });
-            // Enable claim if condition met: completed >=2 and HALLO_SHOP done
+            // Update action buttons based on local progress (>= 3 stations)
             const completedCount = Object.values(progress).filter(Boolean).length;
-            const shopDone = !!progress['HALLO_SHOP'];
-            const claimBtn = document.getElementById('claimRewardBtn');
-            if (claimBtn) {
-                claimBtn.style.pointerEvents = completedCount >= 2 && shopDone ? 'auto' : 'none';
-                claimBtn.style.opacity = completedCount >= 2 && shopDone ? '1' : '0.6';
-            }
+            const mockResult = {
+                stations: items.map(item => ({
+                    id: item.getAttribute('data-station'),
+                    completed: progress[item.getAttribute('data-station')] || false
+                })),
+                can_claim_reward: completedCount >= 3,
+                has_claimed_reward: false
+            };
+            this.updateActionButtons(mockResult);
         } catch (e) {
             console.warn('Local progress read failed', e);
         }

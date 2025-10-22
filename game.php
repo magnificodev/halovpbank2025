@@ -12,7 +12,7 @@
         <div class="mobile-frame">
             <div class="container">
                 <div class="instructions">
-                    <p><strong>Hoàn thành 2</strong> trong số các nhiệm vụ và <strong>thực hiện trải nghiệm đặc biệt tại booth Hallo Shop</strong> để nhận quà từ chương trình</p>
+                    <p><strong>Hoàn thành 3</strong> trong số các nhiệm vụ và <strong>thực hiện trải nghiệm đặc biệt tại booth Hallo Shop</strong> để nhận quà từ chương trình</p>
                 </div>
 
                 <!-- Stations list (5 items) -->
