@@ -28,7 +28,7 @@
                         <img class="status-icon" src="assets/images/no-checked-box.png" alt="Chưa hoàn thành" />
                         <div class="station-text">
                             <h4 class="station-title">HALLO SOLUTION</h4>
-                            <p class="station-desc">Thử thách game công nghệ “không chạm”</p>
+                            <p class="station-desc">Thử thách game công nghệ<br>“không chạm”</p>
                         </div>
                     </li>
                     <li class="station-checklist-item">
@@ -42,7 +42,7 @@
                         <img class="status-icon" src="assets/images/no-checked-box.png" alt="Chưa hoàn thành" />
                         <div class="station-text">
                             <h4 class="station-title">HALLO SHOP</h4>
-                            <p class="station-desc">Trải nghiệm các giải pháp thanh toán từ VPBank</p>
+                            <p class="station-desc">Trải nghiệm các giải pháp<br>thanh toán từ VPBank</p>
                         </div>
                     </li>
                     <li class="station-checklist-item">
