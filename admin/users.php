@@ -96,24 +96,10 @@ renderAdminHeader('users');
     .pagination-info{color:#6b7280;font-size:14px;margin-right:16px}
 
     /* Dark mode overrides */
-    body.dark .search-input{background:#0b1220;color:#e5e7eb;border-color:#1f2937}
-    body.dark .search-input::placeholder{color:#94a3b8}
-    body.dark .csv-btn{background:#059669;border-color:#059669;color:#ffffff}
-    body.dark .csv-btn:hover{background:#10b981;color:#ffffff}
-    body.dark tr:hover td{background:#1f2937}
     body.dark .user-id{color:#a7f3d0}
     body.dark .user-name{color:#e5e7eb}
     body.dark .user-phone{color:#94a3b8;background:#1f2937}
     body.dark .user-email,body.dark .user-date{color:#94a3b8}
-    body.dark .stat-card{background:#111827;border-color:#1f2937}
-    body.dark .stat-number{color:#e5e7eb}
-    body.dark .stat-label{color:#94a3b8}
-    body.dark .pagination a{color:#e5e7eb;background:#111827;border-color:#1f2937}
-    body.dark .pagination a:hover{background:#1f2937;border-color:#059669;color:#a7f3d0}
-    body.dark .pagination .current{background:#059669;color:#ffffff;border-color:#059669}
-    body.dark .pagination .disabled{color:#6b7280;background:#0f172a}
-    body.dark .pagination .disabled:hover{background:#0f172a;border-color:#1f2937;color:#6b7280}
-    body.dark .pagination-info{color:#94a3b8}
 
     @media (max-width: 768px){
         .search-box{flex-direction:column;align-items:stretch}

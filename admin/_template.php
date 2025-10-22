@@ -73,6 +73,26 @@ function renderAdminHeader($currentPage = '') {
             body.dark .nav-link:hover{background:#111827}
             body.dark .nav-link.active{background:#0f291f;border-color:#065f46;color:#a7f3d0}
             body.dark .logo svg{color:#a7f3d0}
+            /* Dark mode table styles */
+            body.dark table{background:#111827;border:1px solid #1f2937}
+            body.dark th{background:#0f172a;color:#e5e7eb;border-color:#374151}
+            body.dark td{color:#94a3b8;border-color:#374151}
+            body.dark tr:hover td{background:#1f2937}
+            body.dark .search-input{background:#0b1220;color:#e5e7eb;border-color:#1f2937}
+            body.dark .search-input::placeholder{color:#94a3b8}
+            body.dark .csv-btn{background:#059669;border-color:#059669;color:#ffffff}
+            body.dark .csv-btn:hover{background:#10b981;color:#ffffff}
+            body.dark .stat-card{background:#111827;border-color:#1f2937}
+            body.dark .stat-number{color:#e5e7eb}
+            body.dark .stat-label{color:#94a3b8}
+            body.dark .pagination a{color:#e5e7eb;background:#111827;border-color:#1f2937}
+            body.dark .pagination a:hover{background:#1f2937;border-color:#059669;color:#a7f3d0}
+            body.dark .pagination .current{background:#059669;color:#ffffff;border-color:#059669}
+            body.dark .pagination .disabled{color:#6b7280;background:#0f172a}
+            body.dark .pagination .disabled:hover{background:#0f172a;border-color:#1f2937;color:#6b7280}
+            body.dark .pagination-info{color:#94a3b8}
+            /* Smooth transitions for all nav links */
+            .nav-link{transition:all 0.3s ease}
             @media (max-width: 768px){
                 header{padding:15px 20px}
                 .layout{flex-direction:column}
