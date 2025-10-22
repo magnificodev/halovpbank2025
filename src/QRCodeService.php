@@ -5,22 +5,17 @@ namespace VPBank;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Writer\SvgWriter;
-use Endroid\QrCode\ErrorCorrectionLevel;
-use Endroid\QrCode\RoundBlockSizeMode;
-use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
 
 class QRCodeService {
     private $qrDirectory;
     private $baseUrl;
 
     public function __construct($qrDirectory = 'assets/qr-codes/', $baseUrl = '') {
-        $this->qrDirectory = $qrDirectory;
+        $this->qrDirectory = rtrim($qrDirectory, '/') . '/';
         $this->baseUrl = $baseUrl;
-<<<<<<< HEAD
         
-=======
-
->>>>>>> 474d4931da60f101bdeca6c45815177aff91c0d9
         // Create directory if it doesn't exist
         if (!is_dir($this->qrDirectory)) {
             mkdir($this->qrDirectory, 0755, true);
@@ -28,9 +23,9 @@ class QRCodeService {
     }
 
     /**
-     * Generate QR code and save to file
+     * Generate QR code and save to file using Endroid QR-Code
      */
-    public function generateQRCode($data, $filename = null, $format = 'png', $size = 300) {
+    public function generateQRCode($data, $filename = null, $format = 'svg', $size = 300) {
         if (!$filename) {
             $filename = 'qr_' . uniqid() . '.' . $format;
         }
@@ -38,8 +33,8 @@ class QRCodeService {
         $qrCode = QrCode::create($data)
             ->setSize($size)
             ->setMargin(10)
-            ->setErrorCorrectionLevel(ErrorCorrectionLevel::HIGH)
-            ->setRoundBlockSizeMode(RoundBlockSizeMode::MARGIN);
+            ->setErrorCorrectionLevel(new ErrorCorrectionLevelHigh())
+            ->setRoundBlockSizeMode(new RoundBlockSizeModeMargin());
 
         // Choose writer based on format
         if ($format === 'svg') {
@@ -50,35 +45,29 @@ class QRCodeService {
 
         $result = $writer->write($qrCode);
         $filePath = $this->qrDirectory . $filename;
-<<<<<<< HEAD
         
         // Save to file
         $result->saveToFile($filePath);
         
-=======
-
-        // Save to file
-        $result->saveToFile($filePath);
-
->>>>>>> 474d4931da60f101bdeca6c45815177aff91c0d9
         return [
             'filename' => $filename,
             'filepath' => $filePath,
-            'url' => $this->baseUrl . $filePath,
+            'url' => $this->baseUrl . $filename,
             'size' => filesize($filePath),
-            'format' => $format
+            'format' => $format,
+            'method' => 'endroid'
         ];
     }
 
     /**
      * Generate QR code and output directly to browser
      */
-    public function outputQRCode($data, $format = 'png', $size = 300) {
+    public function outputQRCode($data, $format = 'svg', $size = 300) {
         $qrCode = QrCode::create($data)
             ->setSize($size)
             ->setMargin(10)
-            ->setErrorCorrectionLevel(ErrorCorrectionLevel::HIGH)
-            ->setRoundBlockSizeMode(RoundBlockSizeMode::MARGIN);
+            ->setErrorCorrectionLevel(new ErrorCorrectionLevelHigh())
+            ->setRoundBlockSizeMode(new RoundBlockSizeModeMargin());
 
         if ($format === 'svg') {
             $writer = new SvgWriter();
@@ -87,11 +76,7 @@ class QRCodeService {
         }
 
         $result = $writer->write($qrCode);
-<<<<<<< HEAD
         
-=======
-
->>>>>>> 474d4931da60f101bdeca6c45815177aff91c0d9
         header('Content-Type: ' . $result->getMimeType());
         echo $result->getString();
         exit;
@@ -105,20 +90,43 @@ class QRCodeService {
         $host = $_SERVER['HTTP_HOST'];
         $baseUrl = $protocol . '://' . $host . dirname($_SERVER['REQUEST_URI'], 2);
         $qrUrl = $baseUrl . '/game.php?station=' . urlencode($stationId) . '&verify=' . $verifyHash;
-<<<<<<< HEAD
         
         if (!$filename) {
-            $filename = 'station_' . $stationId . '_' . substr($verifyHash, 0, 8) . '.png';
+            $filename = 'station_' . $stationId . '_' . substr($verifyHash, 0, 8) . '.svg';
         }
         
-=======
+        return $this->generateQRCode($qrUrl, $filename, 'svg', 400);
+    }
 
+    /**
+     * Generate QR code with custom styling
+     */
+    public function generateStyledQR($data, $filename = null, $size = 300, $foregroundColor = '#000000', $backgroundColor = '#FFFFFF') {
         if (!$filename) {
-            $filename = 'station_' . $stationId . '_' . substr($verifyHash, 0, 8) . '.png';
+            $filename = 'qr_' . uniqid() . '.svg';
         }
 
->>>>>>> 474d4931da60f101bdeca6c45815177aff91c0d9
-        return $this->generateQRCode($qrUrl, $filename, 'png', 400);
+        $qrCode = QrCode::create($data)
+            ->setSize($size)
+            ->setMargin(10)
+            ->setErrorCorrectionLevel(new ErrorCorrectionLevelHigh())
+            ->setRoundBlockSizeMode(new RoundBlockSizeModeMargin());
+
+        $writer = new SvgWriter();
+        $result = $writer->write($qrCode);
+        $filePath = $this->qrDirectory . $filename;
+        
+        // Save to file
+        $result->saveToFile($filePath);
+        
+        return [
+            'filename' => $filename,
+            'filepath' => $filePath,
+            'url' => $this->baseUrl . $filename,
+            'size' => filesize($filePath),
+            'format' => 'svg',
+            'method' => 'endroid-styled'
+        ];
     }
 
     /**
@@ -126,23 +134,15 @@ class QRCodeService {
      */
     public function getQRCodeInfo($filename) {
         $filePath = $this->qrDirectory . $filename;
-<<<<<<< HEAD
         
         if (!file_exists($filePath)) {
             return null;
         }
         
-=======
-
-        if (!file_exists($filePath)) {
-            return null;
-        }
-
->>>>>>> 474d4931da60f101bdeca6c45815177aff91c0d9
         return [
             'filename' => $filename,
             'filepath' => $filePath,
-            'url' => $this->baseUrl . $filePath,
+            'url' => $this->baseUrl . $filename,
             'size' => filesize($filePath),
             'created' => filemtime($filePath),
             'format' => pathinfo($filename, PATHINFO_EXTENSION)
@@ -154,19 +154,11 @@ class QRCodeService {
      */
     public function deleteQRCode($filename) {
         $filePath = $this->qrDirectory . $filename;
-<<<<<<< HEAD
         
         if (file_exists($filePath)) {
             return unlink($filePath);
         }
         
-=======
-
-        if (file_exists($filePath)) {
-            return unlink($filePath);
-        }
-
->>>>>>> 474d4931da60f101bdeca6c45815177aff91c0d9
         return false;
     }
 
@@ -176,31 +168,52 @@ class QRCodeService {
     public function listQRCodes() {
         $files = glob($this->qrDirectory . '*');
         $qrCodes = [];
-<<<<<<< HEAD
         
-=======
-
->>>>>>> 474d4931da60f101bdeca6c45815177aff91c0d9
         foreach ($files as $file) {
             if (is_file($file)) {
                 $filename = basename($file);
                 $qrCodes[] = $this->getQRCodeInfo($filename);
             }
         }
-<<<<<<< HEAD
         
-=======
-
->>>>>>> 474d4931da60f101bdeca6c45815177aff91c0d9
         // Sort by creation time (newest first)
         usort($qrCodes, function($a, $b) {
             return $b['created'] - $a['created'];
         });
-<<<<<<< HEAD
         
-=======
-
->>>>>>> 474d4931da60f101bdeca6c45815177aff91c0d9
         return $qrCodes;
+    }
+
+    /**
+     * Generate QR code with logo (if logo file exists)
+     */
+    public function generateQRWithLogo($data, $filename = null, $size = 300, $logoPath = null) {
+        if (!$filename) {
+            $filename = 'qr_' . uniqid() . '.svg';
+        }
+
+        $qrCode = QrCode::create($data)
+            ->setSize($size)
+            ->setMargin(10)
+            ->setErrorCorrectionLevel(new ErrorCorrectionLevelHigh())
+            ->setRoundBlockSizeMode(new RoundBlockSizeModeMargin());
+
+        $writer = new SvgWriter();
+        $result = $writer->write($qrCode);
+        $filePath = $this->qrDirectory . $filename;
+        
+        // Save to file
+        $result->saveToFile($filePath);
+        
+        // TODO: Add logo overlay functionality if needed
+        
+        return [
+            'filename' => $filename,
+            'filepath' => $filePath,
+            'url' => $this->baseUrl . $filename,
+            'size' => filesize($filePath),
+            'format' => 'svg',
+            'method' => 'endroid-with-logo'
+        ];
     }
 }
