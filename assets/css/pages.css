@@ -1,0 +1,28 @@
+/* VPBank Solution Day Game - Page-specific Styles */
+
+/* Page 1: Registration (index.php) */
+.registration-page .mobile-frame {
+    background: url('../images/background-1.png') center/contain no-repeat;
+    background-color: #000;
+}
+
+/* Page 2: Game (game.php) */
+.game-page .mobile-frame {
+    background: url('../images/background-2.png') center/contain no-repeat;
+    background-color: #000;
+}
+
+/* Page 3: Reward (reward.php) */
+.reward-page .mobile-frame {
+    background: url('../images/background-3.png') center/contain no-repeat;
+    background-color: #000;
+}
+
+/* Mobile responsive backgrounds */
+@media (max-width: 768px) {
+    .registration-page .mobile-frame,
+    .game-page .mobile-frame {
+        background: url('../images/background-1.png') center/contain no-repeat;
+        background-color: #000;
+    }
+}

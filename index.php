@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VPBank Solution Day - Đăng Ký</title>
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="assets/css/forms.css">
 </head>
-<body>
+<body class="registration-page">
     <div class="desktop-container">
         <div class="mobile-frame">
             <div class="container">
