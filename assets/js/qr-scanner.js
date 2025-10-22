@@ -135,11 +135,11 @@ class QRScanner {
     }
 
     addCameraSwitchButton() {
-        const modal = document.getElementById('qrScannerModal');
-        if (!modal) return;
+        const modalBody = document.querySelector('#qrScannerModal .modal-body');
+        if (!modalBody) return;
 
         // Check if button already exists
-        if (modal.querySelector('.camera-switch-btn')) return;
+        if (modalBody.querySelector('.camera-switch-btn')) return;
 
         const switchButton = document.createElement('button');
         switchButton.className = 'camera-switch-btn';
@@ -147,8 +147,8 @@ class QRScanner {
         switchButton.title = 'Xoay camera';
         switchButton.addEventListener('click', () => this.switchCamera());
 
-        modal.appendChild(switchButton);
-        console.log('Camera switch button added, available cameras:', this.availableCameras.length);
+        modalBody.appendChild(switchButton);
+        console.log('Camera switch button added to modal-body, available cameras:', this.availableCameras.length);
     }
 
     async switchCamera() {
