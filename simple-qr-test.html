@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple QR Test</title>
+</head>
+<body>
+    <h1>Simple QR Code Test</h1>
+    <canvas id="qrcode" width="200" height="200" style="border: 1px solid #ccc"></canvas>
+    
+    <script>
+        // Simple QR code generation without external library
+        function generateSimpleQR() {
+            const canvas = document.getElementById('qrcode');
+            const ctx = canvas.getContext('2d');
+            const url = 'https://example.com';
+            
+            // Clear canvas
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, 200, 200);
+            
+            // Draw a simple pattern (placeholder)
+            ctx.fillStyle = '#000000';
+            ctx.font = '16px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('QR Code', 100, 100);
+            ctx.fillText('Placeholder', 100, 120);
+            
+            console.log('Simple QR placeholder generated');
+        }
+        
+        window.addEventListener('load', generateSimpleQR);
+    </script>
+</body>
+</html>
