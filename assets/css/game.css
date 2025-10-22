@@ -184,6 +184,14 @@ body:not(.game-page) {
     margin-bottom: 28px;
     padding: 0 20px;
 }
+.scan-image-btn {
+    display: block;
+    width: 260px;
+    max-width: 80%;
+    height: auto;
+    margin: 14px auto 0;
+    cursor: pointer;
+}
 
 .instructions p {
     font-family: 'Gilroy Regular', 'Gilroy', 'Segoe UI', sans-serif;
