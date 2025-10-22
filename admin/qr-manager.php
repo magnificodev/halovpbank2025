@@ -47,7 +47,7 @@ try {
 renderAdminHeader('qr-manager');
 ?>
 
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<!-- QRCode script is preloaded in _template.php -->
 <style>
     .card {
         background: #fff;
@@ -263,6 +263,19 @@ renderAdminHeader('qr-manager');
     
     body.dark .qr-code canvas {
         border-color: #374151;
+    }
+    
+    /* Smooth transitions to prevent flicker */
+    .card, .form-select, .btn, .table {
+        transition: all 0.3s ease;
+    }
+    
+    /* Prevent layout shift during dark mode toggle */
+    .qr-code {
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 </style>
             <?php if ($message): ?>
