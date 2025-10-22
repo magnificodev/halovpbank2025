@@ -299,19 +299,21 @@ class VPBankGame {
 
     updateActionButtons(result) {
         const claimBtn = document.getElementById('claimRewardBtn');
-        const scanBtn = document.getElementById('scanBtn');
+        const scanBtn = document.getElementById('scanQRBtn');
         const actionButtons = document.querySelector('.action-image-buttons');
-        
+
         if (!claimBtn || !scanBtn || !actionButtons) return;
 
-        // Check if user has completed at least 3 stations
-        const completedStations = result.stations ? result.stations.filter(station => station.completed).length : 0;
+        // Compute completed stations from result
+        const completedStations = result.stations
+            ? result.stations.filter((station) => station.completed).length
+            : 0;
         const hasEnoughStations = completedStations >= 3;
 
         if (result.has_claimed_reward) {
             // User already claimed reward, redirect to reward page
             window.location.href = `reward.php?token=${this.userToken}`;
-        } else if (hasEnoughStations && result.can_claim_reward) {
+        } else if (hasEnoughStations) {
             // Show both buttons
             claimBtn.style.display = 'block';
             scanBtn.style.display = 'block';
@@ -427,12 +429,12 @@ class VPBankGame {
             // Update action buttons based on local progress (>= 3 stations)
             const completedCount = Object.values(progress).filter(Boolean).length;
             const mockResult = {
-                stations: items.map(item => ({
+                stations: items.map((item) => ({
                     id: item.getAttribute('data-station'),
-                    completed: progress[item.getAttribute('data-station')] || false
+                    completed: progress[item.getAttribute('data-station')] || false,
                 })),
                 can_claim_reward: completedCount >= 3,
-                has_claimed_reward: false
+                has_claimed_reward: false,
             };
             this.updateActionButtons(mockResult);
         } catch (e) {

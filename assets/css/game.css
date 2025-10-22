@@ -205,8 +205,13 @@ body:not(.game-page) {
     margin-top: 0;
 }
 
+/* Hide claim button by default; JS will show when eligible */
+#claimRewardBtn {
+    display: none;
+}
+
 /* When only scan button is visible, center it */
-.action-image-buttons[style*="justify-content: center"] {
+.action-image-buttons[style*='justify-content: center'] {
     justify-content: center !important;
 }
 
