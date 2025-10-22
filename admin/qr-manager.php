@@ -10,7 +10,7 @@ $error = '';
 // Handle QR generation
 if ($_POST['action'] ?? '' === 'generate_qr') {
     $stationId = $_POST['station_id'] ?? '';
-    
+
     if ($stationId && array_key_exists($stationId, STATIONS)) {
         try {
             $verifyHash = generateVerifyHash($stationId);
@@ -18,7 +18,7 @@ if ($_POST['action'] ?? '' === 'generate_qr') {
             $host = $_SERVER['HTTP_HOST'];
             $baseUrl = $protocol . '://' . $host . dirname($_SERVER['REQUEST_URI'], 2);
             $qrUrl = $baseUrl . '/game.php?station=' . urlencode($stationId) . '&verify=' . $verifyHash;
-            
+
             $message = "QR Code generated successfully for " . STATIONS[$stationId];
         } catch (Exception $e) {
             $error = "Error generating QR: " . $e->getMessage();
@@ -32,11 +32,11 @@ if ($_POST['action'] ?? '' === 'generate_qr') {
 $scanStats = [];
 try {
     $scanStats = $db->fetchAll("
-        SELECT 
+        SELECT
             station_id,
             COUNT(*) as scan_count,
             COUNT(DISTINCT user_id) as unique_users
-        FROM scan_logs 
+        FROM scan_logs
         GROUP BY station_id
         ORDER BY scan_count DESC
     ");
@@ -48,6 +48,17 @@ renderAdminHeader('qr-manager');
 ?>
 
 <!-- QRCode script is preloaded in _template.php -->
+<script>
+// Fallback: Load QRCode script if not available
+if (typeof QRCode === 'undefined') {
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js';
+    script.onload = function() {
+        console.log('QRCode library loaded via fallback');
+    };
+    document.head.appendChild(script);
+}
+</script>
 <style>
     .card {
         background: #fff;
@@ -57,34 +68,34 @@ renderAdminHeader('qr-manager');
         border: 1px solid #e5e7eb;
         margin-bottom: 24px;
     }
-    
+
     .card-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
     }
-    
+
     .card-title {
         font-size: 18px;
         font-weight: 600;
         color: #111827;
     }
-    
+
     .card-subtitle {
         color: #6b7280;
         font-size: 14px;
         margin-top: 4px;
     }
-    
+
     .form-group {
         margin-bottom: 20px;
     }
-    
+
     .form-group:last-child {
         margin-bottom: 0;
     }
-    
+
     .form-label {
         display: block;
         font-size: 14px;
@@ -92,7 +103,7 @@ renderAdminHeader('qr-manager');
         color: #374151;
         margin-bottom: 6px;
     }
-    
+
     .form-select {
         width: 100%;
         padding: 10px 12px;
@@ -102,13 +113,13 @@ renderAdminHeader('qr-manager');
         background: #fff;
         cursor: pointer;
     }
-    
+
     .form-select:focus {
         outline: none;
         border-color: var(--accent);
         box-shadow: 0 0 0 3px rgba(16,185,129,0.1);
     }
-    
+
     .btn {
         padding: 10px 20px;
         border-radius: 8px;
@@ -122,57 +133,57 @@ renderAdminHeader('qr-manager');
         align-items: center;
         gap: 6px;
     }
-    
+
     .btn-primary {
         background: var(--accent);
         color: #fff;
     }
-    
+
     .btn-primary:hover {
         background: var(--accent-600);
         transform: translateY(-1px);
     }
-    
+
     .btn-secondary {
         background: #f3f4f6;
         color: #374151;
         border: 1px solid #d1d5db;
     }
-    
+
     .btn-secondary:hover {
         background: #e5e7eb;
     }
-    
+
     .alert {
         padding: 12px 16px;
         border-radius: 8px;
         margin-bottom: 20px;
         font-size: 14px;
     }
-    
+
     .alert-success {
         background: #f0fdf4;
         color: #166534;
         border: 1px solid #bbf7d0;
     }
-    
+
     .alert-error {
         background: #fef2f2;
         color: #dc2626;
         border: 1px solid #fecaca;
     }
-    
+
     .table-responsive {
         overflow-x: auto;
         margin-top: 20px;
     }
-    
+
     .table {
         width: 100%;
         border-collapse: collapse;
         font-size: 14px;
     }
-    
+
     .table th {
         background: #f8fafc;
         color: #374151;
@@ -181,95 +192,95 @@ renderAdminHeader('qr-manager');
         padding: 12px;
         border-bottom: 1px solid #e5e7eb;
     }
-    
+
     .table td {
         padding: 12px;
         border-bottom: 1px solid #f3f4f6;
         color: #6b7280;
     }
-    
+
     .table tbody tr:hover {
         background: #f8fafc;
     }
-    
+
     .qr-display {
         display: flex;
         gap: 20px;
         align-items: flex-start;
         margin-top: 20px;
     }
-    
+
     .qr-info {
         flex: 1;
     }
-    
+
     .qr-code {
         flex-shrink: 0;
     }
-    
+
     .qr-code canvas {
         border: 1px solid #ddd;
         border-radius: 8px;
     }
-    
+
     @media (max-width: 768px) {
         .qr-display {
             flex-direction: column;
         }
     }
-    
+
     /* Dark mode overrides */
     body.dark .card {
         background: #111827;
         border-color: #1f2937;
     }
-    
+
     body.dark .card-title {
         color: #e5e7eb;
     }
-    
+
     body.dark .card-subtitle {
         color: #94a3b8;
     }
-    
+
     body.dark .form-label {
         color: #e5e7eb;
     }
-    
+
     body.dark .form-select {
         background: #1f2937;
         border-color: #374151;
         color: #e5e7eb;
     }
-    
+
     body.dark .form-select:focus {
         border-color: var(--accent);
     }
-    
+
     body.dark .table th {
         background: #1f2937;
         color: #e5e7eb;
         border-color: #374151;
     }
-    
+
     body.dark .table td {
         color: #94a3b8;
         border-color: #374151;
     }
-    
+
     body.dark .table tbody tr:hover {
         background: #1f2937;
     }
-    
+
     body.dark .qr-code canvas {
         border-color: #374151;
     }
-    
+
     /* Smooth transitions to prevent flicker */
     .card, .form-select, .btn, .table {
         transition: all 0.3s ease;
     }
-    
+
     /* Prevent layout shift during dark mode toggle */
     .qr-code {
         min-height: 200px;
@@ -329,17 +340,39 @@ renderAdminHeader('qr-manager');
                 </div>
 
                 <script>
-                    // Generate QR code
-                    QRCode.toCanvas(document.getElementById('qrcode'), '<?= htmlspecialchars($qrUrl) ?>', {
-                        width: 200,
-                        margin: 2,
-                        color: {
-                            dark: '#000000',
-                            light: '#FFFFFF'
+                    // Generate QR code when DOM is ready
+                    function waitForQRCode() {
+                        if (typeof QRCode !== 'undefined') {
+                            generateQRCode();
+                        } else {
+                            // Retry every 100ms for up to 5 seconds
+                            setTimeout(waitForQRCode, 100);
                         }
-                    }, function (error) {
-                        if (error) console.error(error);
-                    });
+                    }
+
+                    // Start when DOM is ready
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', waitForQRCode);
+                    } else {
+                        waitForQRCode();
+                    }
+
+                    function generateQRCode() {
+                        QRCode.toCanvas(document.getElementById('qrcode'), '<?= htmlspecialchars($qrUrl) ?>', {
+                            width: 200,
+                            margin: 2,
+                            color: {
+                                dark: '#000000',
+                                light: '#FFFFFF'
+                            }
+                        }, function (error) {
+                            if (error) {
+                                console.error('QR Code generation error:', error);
+                            } else {
+                                console.log('QR Code generated successfully');
+                            }
+                        });
+                    }
 
                     function copyToClipboard(text) {
                         navigator.clipboard.writeText(text).then(function() {
