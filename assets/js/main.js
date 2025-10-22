@@ -373,7 +373,6 @@ class VPBankGame {
             const result = await response.json();
 
             if (result.success) {
-                this.showMessage(result.message, 'success');
                 // Mark locally for immediate UI feedback
                 this.markStationCompletedLocally(stationId);
                 this.applyLocalProgressToChecklist();
