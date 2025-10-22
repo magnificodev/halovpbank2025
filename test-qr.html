@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test QR Code</title>
+</head>
+<body>
+    <h1>Test QR Code Generation</h1>
+    <canvas id="qrcode" width="200" height="200" style="border: 1px solid #ccc;"></canvas>
+    
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            console.log('Page loaded, QRCode available:', typeof QRCode !== 'undefined');
+            
+            if (typeof QRCode !== 'undefined') {
+                QRCode.toCanvas(document.getElementById('qrcode'), 'https://example.com', {
+                    width: 200,
+                    margin: 2,
+                    color: {
+                        dark: '#000000',
+                        light: '#FFFFFF'
+                    }
+                }, function (error) {
+                    if (error) {
+                        console.error('QR generation error:', error);
+                    } else {
+                        console.log('QR code generated successfully!');
+                    }
+                });
+            } else {
+                console.error('QRCode library not loaded');
+            }
+        });
+    </script>
+</body>
+</html>

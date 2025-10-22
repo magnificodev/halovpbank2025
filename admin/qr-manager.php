@@ -47,18 +47,8 @@ try {
 renderAdminHeader('qr-manager');
 ?>
 
-<!-- QRCode script is preloaded in _template.php -->
-<script>
-// Fallback: Load QRCode script if not available
-if (typeof QRCode === 'undefined') {
-    var script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js';
-    script.onload = function() {
-        console.log('QRCode library loaded via fallback');
-    };
-    document.head.appendChild(script);
-}
-</script>
+<!-- Load QRCode script directly -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <style>
     .card {
         background: #fff;
@@ -340,48 +330,44 @@ if (typeof QRCode === 'undefined') {
                 </div>
 
                 <script>
-                    // Generate QR code when DOM is ready
-                    function waitForQRCode() {
-                        if (typeof QRCode !== 'undefined') {
-                            generateQRCode();
-                        } else {
-                            // Retry every 100ms for up to 5 seconds
-                            setTimeout(waitForQRCode, 100);
-                        }
-                    }
-
-                    // Start when DOM is ready
-                    if (document.readyState === 'loading') {
-                        document.addEventListener('DOMContentLoaded', waitForQRCode);
-                    } else {
-                        waitForQRCode();
-                    }
-
-                    function generateQRCode() {
-                        console.log('Attempting to generate QR code...');
-                        console.log('QRCode library available:', typeof QRCode !== 'undefined');
-                        console.log('Canvas element:', document.getElementById('qrcode'));
-                        console.log('URL to encode:', '<?= htmlspecialchars($qrUrl) ?>');
+                    // Simple approach - wait for script to load then generate
+                    function generateQR() {
+                        console.log('Starting QR generation...');
+                        console.log('QRCode available:', typeof QRCode !== 'undefined');
                         
-                        try {
-                            QRCode.toCanvas(document.getElementById('qrcode'), '<?= htmlspecialchars($qrUrl) ?>', {
-                                width: 200,
-                                margin: 2,
-                                color: {
-                                    dark: '#000000',
-                                    light: '#FFFFFF'
-                                }
-                            }, function (error) {
-                                if (error) {
-                                    console.error('QR Code generation error:', error);
-                                } else {
-                                    console.log('QR Code generated successfully');
-                                }
-                            });
-                        } catch (e) {
-                            console.error('Exception during QR generation:', e);
+                        if (typeof QRCode === 'undefined') {
+                            console.log('QRCode not ready, retrying in 100ms...');
+                            setTimeout(generateQR, 100);
+                            return;
                         }
+                        
+                        const canvas = document.getElementById('qrcode');
+                        if (!canvas) {
+                            console.error('Canvas element not found');
+                            return;
+                        }
+                        
+                        const url = '<?= htmlspecialchars($qrUrl) ?>';
+                        console.log('Generating QR for URL:', url);
+                        
+                        QRCode.toCanvas(canvas, url, {
+                            width: 200,
+                            margin: 2,
+                            color: {
+                                dark: '#000000',
+                                light: '#FFFFFF'
+                            }
+                        }, function (error) {
+                            if (error) {
+                                console.error('QR generation failed:', error);
+                            } else {
+                                console.log('QR code generated successfully!');
+                            }
+                        });
                     }
+                    
+                    // Start generation when page loads
+                    window.addEventListener('load', generateQR);
 
                     function copyToClipboard(text) {
                         navigator.clipboard.writeText(text).then(function() {
