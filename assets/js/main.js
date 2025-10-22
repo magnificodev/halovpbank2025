@@ -307,6 +307,8 @@ class VPBankGame {
     initGameEvents() {
         const scanBtn = document.getElementById('scanQRBtn');
         const claimBtn = document.getElementById('claimRewardBtn');
+        // Try to restore local progress to UI
+        this.applyLocalProgressToChecklist();
 
         if (scanBtn) {
             scanBtn.addEventListener('click', () => this.openQRScanner());
@@ -343,7 +345,10 @@ class VPBankGame {
 
             if (result.success) {
                 this.showMessage(result.message, 'success');
-                // Reload progress
+                // Mark locally for immediate UI feedback
+                this.markStationCompletedLocally(stationId);
+                this.applyLocalProgressToChecklist();
+                // Also reload from server to stay in sync
                 await this.loadGameProgress();
             } else {
                 this.showMessage(result.error || 'Có lỗi xảy ra', 'error');
@@ -351,6 +356,47 @@ class VPBankGame {
         } catch (error) {
             console.error('Station completion error:', error);
             this.showMessage('Có lỗi xảy ra khi hoàn thành trạm', 'error');
+        }
+    }
+
+    markStationCompletedLocally(stationId) {
+        try {
+            const key = 'vpbank_station_progress';
+            const current = JSON.parse(localStorage.getItem(key) || '{}');
+            current[stationId] = true;
+            localStorage.setItem(key, JSON.stringify(current));
+        } catch (e) {
+            console.warn('Local progress save failed', e);
+        }
+    }
+
+    applyLocalProgressToChecklist() {
+        try {
+            const key = 'vpbank_station_progress';
+            const progress = JSON.parse(localStorage.getItem(key) || '{}');
+            const items = document.querySelectorAll('.station-checklist-item');
+            items.forEach((li) => {
+                const station = li.getAttribute('data-station');
+                const icon = li.querySelector('.status-icon');
+                if (!station || !icon) return;
+                if (progress[station]) {
+                    icon.src = 'assets/images/checked-box.png';
+                    icon.alt = 'Đã hoàn thành';
+                } else {
+                    icon.src = 'assets/images/no-checked-box.png';
+                    icon.alt = 'Chưa hoàn thành';
+                }
+            });
+            // Enable claim if condition met: completed >=2 and HALLO_SHOP done
+            const completedCount = Object.values(progress).filter(Boolean).length;
+            const shopDone = !!progress['HALLO_SHOP'];
+            const claimBtn = document.getElementById('claimRewardBtn');
+            if (claimBtn) {
+                claimBtn.style.pointerEvents = completedCount >= 2 && shopDone ? 'auto' : 'none';
+                claimBtn.style.opacity = completedCount >= 2 && shopDone ? '1' : '0.6';
+            }
+        } catch (e) {
+            console.warn('Local progress read failed', e);
         }
     }
 

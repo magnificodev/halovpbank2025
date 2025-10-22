@@ -235,13 +235,13 @@ body:not(.game-page) {
     max-width: 360px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 12px;
 }
 
 .station-checklist-item {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 4px;
 }
 
 .station-checklist-item .status-icon {

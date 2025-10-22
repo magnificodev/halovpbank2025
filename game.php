@@ -17,35 +17,35 @@
 
                 <!-- Stations list (5 items) -->
                 <ul class="station-checklist">
-                    <li class="station-checklist-item">
+                    <li class="station-checklist-item" data-station="HALLO_GLOW">
                         <img class="status-icon" src="assets/images/no-checked-box.png" alt="Chưa hoàn thành" />
                         <div class="station-text">
                             <h4 class="station-title">HALLO GLOW</h4>
                             <p class="station-desc">Chụp hình check in</p>
                         </div>
                     </li>
-                    <li class="station-checklist-item">
+                    <li class="station-checklist-item" data-station="HALLO_SOLUTION">
                         <img class="status-icon" src="assets/images/no-checked-box.png" alt="Chưa hoàn thành" />
                         <div class="station-text">
                             <h4 class="station-title">HALLO SOLUTION</h4>
                             <p class="station-desc">Thử thách game công nghệ<br>“không chạm”</p>
                         </div>
                     </li>
-                    <li class="station-checklist-item">
+                    <li class="station-checklist-item" data-station="HALLO_SUPER_SINH_LOI">
                         <img class="status-icon" src="assets/images/no-checked-box.png" alt="Chưa hoàn thành" />
                         <div class="station-text">
                             <h4 class="station-title">HALLO SUPER SINH LỜI PREMIER</h4>
                             <p class="station-desc">Thử thách hứng tiền lời</p>
                         </div>
                     </li>
-                    <li class="station-checklist-item">
+                    <li class="station-checklist-item" data-station="HALLO_SHOP">
                         <img class="status-icon" src="assets/images/no-checked-box.png" alt="Chưa hoàn thành" />
                         <div class="station-text">
                             <h4 class="station-title">HALLO SHOP</h4>
                             <p class="station-desc">Trải nghiệm các giải pháp<br>thanh toán từ VPBank</p>
                         </div>
                     </li>
-                    <li class="station-checklist-item">
+                    <li class="station-checklist-item" data-station="HALLO_WIN">
                         <img class="status-icon" src="assets/images/no-checked-box.png" alt="Chưa hoàn thành" />
                         <div class="station-text">
                             <h4 class="station-title">HALLO WIN</h4>
