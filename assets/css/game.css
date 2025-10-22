@@ -33,7 +33,7 @@ body:not(.game-page) {
 .mobile-frame {
     width: 360px;
     height: 100vh;
-    background: url('../images/background-1.png') center/contain no-repeat;
+    background: url('../images/background-1.png') center/cover no-repeat;
     background-color: #000;
     overflow: hidden;
     position: relative;
@@ -44,7 +44,7 @@ body:not(.game-page) {
 
 /* Game page background */
 .game-page .mobile-frame {
-    background: url('../images/background-2.png') center/contain no-repeat;
+    background: url('../images/background-2.png') center/cover no-repeat;
     background-color: #000;
 }
 
