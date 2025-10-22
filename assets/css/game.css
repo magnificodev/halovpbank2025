@@ -20,7 +20,7 @@ body:not(.game-page) {
 .desktop-container {
     width: 100vw;
     height: 100vh;
-    background: url('../images/background-1.png') center/cover no-repeat;
+    background: url('../images/background-1.png') center/contain no-repeat;
     background-color: #000;
     display: flex;
     justify-content: center;
@@ -33,7 +33,7 @@ body:not(.game-page) {
 
 /* Game page background */
 .game-page .desktop-container {
-    background: url('../images/background-2.png') center/cover no-repeat;
+    background: url('../images/background-2.png') center/contain no-repeat;
     background-color: #000;
 }
 
