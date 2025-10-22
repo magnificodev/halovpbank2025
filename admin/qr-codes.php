@@ -307,12 +307,12 @@ renderAdminHeader('qr-codes');
                         <td>
                             <?php if (!empty($qrCode['qr_filename'])): ?>
                                 <div class="qr-image-container">
-                                    <img src="../assets/qr-codes/<?= htmlspecialchars($qrCode['qr_filename']) ?>" 
-                                         alt="QR Code" 
+                                    <img src="../assets/qr-codes/<?= htmlspecialchars($qrCode['qr_filename']) ?>"
+                                         alt="QR Code"
                                          class="qr-image"
                                          onclick="showQRModal('<?= htmlspecialchars($qrCode['qr_filename']) ?>')">
                                     <div class="qr-actions">
-                                        <button onclick="downloadQR('<?= htmlspecialchars($qrCode['qr_filename']) ?>')" 
+                                        <button onclick="downloadQR('<?= htmlspecialchars($qrCode['qr_filename']) ?>')"
                                                 class="btn-download" title="Download QR Code">
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -461,13 +461,13 @@ function createQRCode() {
     const stationId = document.getElementById('stationSelect').value;
     const notes = document.getElementById('notesInput').value;
     const expiresAt = document.getElementById('expiresInput').value;
-    
+
     if (!stationId) {
         alert('Please select a station');
         return;
     }
-    
-    fetch('../api/qr-management.php?action=create', {
+
+    fetch('../api/simple-qr-generator.php?action=create', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -498,7 +498,7 @@ function showQRModal(filename) {
     const modal = document.getElementById('qrModal');
     const img = document.getElementById('qrModalImage');
     const downloadBtn = document.getElementById('qrModalDownload');
-    
+
     if (modal && img) {
         img.src = '../assets/qr-codes/' + filename;
         downloadBtn.onclick = () => downloadQR(filename);
