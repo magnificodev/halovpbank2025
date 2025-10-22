@@ -184,23 +184,35 @@ body:not(.game-page) {
     -webkit-box-shadow: 0 0 0 1000px white inset !important;
     -webkit-text-fill-color: #333 !important;
     background: linear-gradient(white, white) padding-box,
-                linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box !important;
+        linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box !important;
     border: 3px solid transparent !important;
+    border-radius: 25px !important;
     transition: background-color 5000s ease-in-out 0s;
 }
 
 .form-group .input:-moz-autofill {
     background: linear-gradient(white, white) padding-box,
-                linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box !important;
+        linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box !important;
     border: 3px solid transparent !important;
+    border-radius: 25px !important;
     color: #333 !important;
     -moz-text-fill-color: #333 !important;
 }
 
 .form-group .input:-internal-autofill-selected {
     background: linear-gradient(white, white) padding-box,
-                linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box !important;
+        linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box !important;
     border: 3px solid transparent !important;
+    border-radius: 25px !important;
+    color: #333 !important;
+}
+
+/* Additional autofill fix for all browsers */
+.form-group .input:autofill {
+    background: linear-gradient(white, white) padding-box,
+        linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box !important;
+    border: 3px solid transparent !important;
+    border-radius: 25px !important;
     color: #333 !important;
 }
 
