@@ -159,59 +159,47 @@ class VPBankGame {
 
     validateRegistration(data) {
         let isValid = true;
-
-        // Clear all previous errors
-        this.clearFieldErrors();
+        let errorMessages = [];
 
         // Validate full name
         if (!data.full_name.trim()) {
-            this.showFieldError('full_name', 'Vui lòng nhập họ tên');
+            errorMessages.push('Vui lòng nhập họ tên');
             isValid = false;
         } else if (data.full_name.trim().length < 2) {
-            this.showFieldError('full_name', 'Họ tên phải có ít nhất 2 ký tự');
+            errorMessages.push('Họ tên phải có ít nhất 2 ký tự');
             isValid = false;
         }
 
         // Validate phone
         if (!data.phone.trim()) {
-            this.showFieldError('phone', 'Vui lòng nhập số điện thoại');
+            errorMessages.push('Vui lòng nhập số điện thoại');
             isValid = false;
         } else if (!data.phone.match(/^(\+84[0-9]{9}|[0-9]{10,11})$/)) {
-            this.showFieldError('phone', 'Số điện thoại phải có 10-11 chữ số');
+            errorMessages.push('Số điện thoại phải có 10-11 chữ số');
             isValid = false;
         } else if (!this.isValidVietnamesePhone(data.phone)) {
-            this.showFieldError('phone', 'Số điện thoại không hợp lệ');
+            errorMessages.push('Số điện thoại không hợp lệ');
             isValid = false;
         }
 
         // Validate email
         if (!data.email.trim()) {
-            this.showFieldError('email', 'Vui lòng nhập email');
+            errorMessages.push('Vui lòng nhập email');
             isValid = false;
         } else if (!data.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-            this.showFieldError('email', 'Email không hợp lệ');
+            errorMessages.push('Email không hợp lệ');
             isValid = false;
+        }
+
+        // Show alert if there are errors
+        if (!isValid && errorMessages.length > 0) {
+            alert(errorMessages.join('\n'));
         }
 
         console.log('Validation result:', isValid);
         return isValid;
     }
 
-    showFieldError(fieldName, message) {
-        const errorElement = document.getElementById(`${fieldName}_error`);
-        if (errorElement) {
-            errorElement.textContent = message;
-            errorElement.classList.add('show');
-        }
-    }
-
-    clearFieldErrors() {
-        const errorElements = document.querySelectorAll('.field-error');
-        errorElements.forEach(element => {
-            element.textContent = '';
-            element.classList.remove('show');
-        });
-    }
 
     isValidVietnamesePhone(phone) {
         // Remove any spaces or special characters
