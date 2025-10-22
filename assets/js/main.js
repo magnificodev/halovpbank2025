@@ -370,7 +370,11 @@ class VPBankGame {
             const host = window.location.hostname;
             const params = new URLSearchParams(window.location.search);
             if (params.get('dev') === '1') return true;
-            return host === 'localhost' || host === '127.0.0.1';
+            // Treat common local networks/IPs as dev
+            const isLocalHost = host === 'localhost' || host === '127.0.0.1';
+            const isPrivateIp = /^10\.|^192\.168\.|^172\.(1[6-9]|2[0-9]|3[0-1])\./.test(host);
+            const isAnyIp = /^(\d+\.){3}\d+$/.test(host);
+            return isLocalHost || isPrivateIp || isAnyIp;
         } catch (_) {
             return false;
         }
