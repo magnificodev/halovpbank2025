@@ -544,44 +544,44 @@ body:not(.game-page) {
 
 .modal-content {
     background: linear-gradient(135deg, #0b66cf 0%, #02d15e 100%);
-    margin: 5% auto;
+    margin: 10% auto;
     padding: 0;
-    border-radius: 25px;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    width: 85%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     overflow: hidden;
-    border: 3px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 .modal-header {
-    padding: 20px;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
 }
 
 .modal-header h3 {
     margin: 0;
     color: white;
-    font-size: 18px;
-    font-weight: bold;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .close {
     color: white;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
     cursor: pointer;
     line-height: 1;
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -593,61 +593,62 @@ body:not(.game-page) {
 }
 
 .modal-body {
-    padding: 20px;
+    padding: 15px 20px 20px;
     text-align: center;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(5px);
 }
 
 #qr-reader {
     width: 100%;
-    max-width: 400px;
-    margin: 0 auto 20px;
-    border-radius: 20px;
+    max-width: 350px;
+    margin: 0 auto 15px;
+    border-radius: 15px;
     overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 .scan-instruction {
     color: #ffffff;
-    font-size: 14px;
+    font-size: 13px;
     margin: 0;
-    opacity: 0.9;
+    opacity: 0.85;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* Camera Switch Button */
 .camera-switch-btn {
     position: absolute;
-    top: 20px;
-    right: 60px;
-    background: rgba(255, 255, 255, 0.15);
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.12);
     color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
     cursor: pointer;
     z-index: 10001;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
 }
 
 .camera-switch-btn:hover {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.3);
 }
 
 .camera-switch-btn:active {
-    transform: scale(0.95);
+    transform: translateX(-50%) scale(0.95);
 }
 
 /* Mobile Modal Adjustments */
@@ -662,30 +663,29 @@ body:not(.game-page) {
     }
     
     .modal-content {
-        width: 95%;
-        margin: 5% auto;
+        width: 90%;
+        margin: 8% auto;
         max-width: none;
-        border-radius: 20px;
+        border-radius: 18px;
     }
     
     .modal-header {
-        padding: 15px;
+        padding: 12px 15px;
     }
     
     .modal-body {
-        padding: 15px;
+        padding: 12px 15px 18px;
     }
     
     #qr-reader {
         max-width: 100%;
-        border-radius: 15px;
+        border-radius: 12px;
     }
     
     .camera-switch-btn {
-        top: 15px;
-        right: 55px;
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
+        bottom: 12px;
+        width: 38px;
+        height: 38px;
+        font-size: 16px;
     }
 }
