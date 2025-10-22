@@ -67,7 +67,7 @@ renderAdminHeader('users');
     .search-input::placeholder{color:#9ca3af}
     .search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#6b7280;pointer-events:none}
     .csv-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;cursor:pointer;transition:all 0.2s ease;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
-    .csv-btn:hover{background:#059669;transform:translateY(-1px);box-shadow:0 4px 8px rgba(16,185,129,0.3)}
+    .csv-btn:hover{background:#10b981;transform:none;box-shadow:none}
     .search-status{color:#6b7280;font-size:12px;text-align:left}
     table{width:100%;border-collapse:separate;background:#ffffff;border-radius:12px;overflow:hidden}
     th{background:#f9fafb;color:#374151;padding:12px;text-align:left;font-weight:600;text-transform:uppercase;font-size:12px;letter-spacing:.4px}
