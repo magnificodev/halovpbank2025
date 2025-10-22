@@ -59,9 +59,9 @@ renderAdminHeader('users');
 ?>
 
 <style>
-    .search-box{margin-bottom:8px;display:flex;gap:15px;align-items:start}
-    .search-section{display:flex;flex-direction:column;gap:8px;flex:1}
-    .search-container{position:relative;display:flex;align-items:center}
+    .search-box{margin-bottom:16px;display:flex;gap:15px;align-items:start}
+    .search-section{display:flex;flex-direction:column;gap:4px;flex:1}
+    .search-container{position:relative;display:flex;align-items:center;margin-bottom:0}
     .search-input{padding:10px 14px 10px 40px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827;width:100%;font-size:14px}
     .search-input:focus{outline:none;border-color:#059669;box-shadow:0 0 0 3px rgba(16,185,129,.15)}
     .search-input::placeholder{color:#9ca3af}
