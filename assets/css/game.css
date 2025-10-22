@@ -3,8 +3,7 @@
 /* Game Page Base */
 body.game-page {
     font-family: 'Arial', sans-serif;
-    background: url('../images/background-2.png') center/cover no-repeat;
-    background-color: #000;
+    background: #000;
     color: white;
     min-height: 100vh;
     overflow-x: hidden;
@@ -14,26 +13,54 @@ body.game-page {
 
 /* Registration page background */
 body:not(.game-page) {
-    background: url('../images/background-1.png') center/cover no-repeat;
-    background-color: #000;
+    background: #000;
 }
 
-/* Fullscreen Container */
+/* Desktop Container with Letterbox */
 .desktop-container {
     width: 100vw;
     height: 100vh;
-    position: relative;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
     z-index: 1;
 }
 
 .mobile-frame {
-    width: 100vw;
+    width: 360px;
     height: 100vh;
-    background: transparent;
+    background: url('../images/background-1.png') center/contain no-repeat;
+    background-color: #000;
     overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
+    max-width: 100vw;
+}
+
+/* Game page background */
+.game-page .mobile-frame {
+    background: url('../images/background-2.png') center/contain no-repeat;
+    background-color: #000;
+}
+
+/* Mobile Responsive - Fullscreen */
+@media (max-width: 768px) {
+    .desktop-container {
+        position: relative;
+        background: transparent;
+    }
+
+    .mobile-frame {
+        width: 100vw;
+        height: 100vh;
+        max-width: none;
+        background-size: cover;
+    }
 }
 
 /* Game Content */
