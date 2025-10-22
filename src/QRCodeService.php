@@ -36,18 +36,26 @@ class QRCodeService {
             ->setErrorCorrectionLevel(new ErrorCorrectionLevelHigh())
             ->setRoundBlockSizeMode(new RoundBlockSizeModeMargin());
 
-        // Choose writer based on format
-        if ($format === 'svg') {
-            $writer = new SvgWriter();
-        } else {
-            $writer = new PngWriter();
-        }
-
+        // Always use SVG writer (works without GD)
+        $writer = new SvgWriter();
         $result = $writer->write($qrCode);
         $filePath = $this->qrDirectory . $filename;
         
-        // Save to file
+        // Save SVG
         $result->saveToFile($filePath);
+        
+        // If PNG requested, create a reference to the PNG API
+        if ($format === 'png') {
+            $pngFilename = str_replace('.svg', '.png', $filename);
+            $pngPath = $this->qrDirectory . $pngFilename;
+            
+            // Create a simple text file that references the PNG API
+            $pngApiUrl = $this->baseUrl . 'api/qr-png.php?data=' . urlencode($data) . '&size=' . $size;
+            file_put_contents($pngPath, $pngApiUrl);
+            
+            $filePath = $pngPath;
+            $filename = $pngFilename;
+        }
         
         return [
             'filename' => $filename,
@@ -92,10 +100,10 @@ class QRCodeService {
         $qrUrl = $baseUrl . '/game.php?station=' . urlencode($stationId) . '&verify=' . $verifyHash;
         
         if (!$filename) {
-            $filename = 'station_' . $stationId . '_' . substr($verifyHash, 0, 8) . '.svg';
+            $filename = 'station_' . $stationId . '_' . substr($verifyHash, 0, 8) . '.png';
         }
         
-        return $this->generateQRCode($qrUrl, $filename, 'svg', 400);
+        return $this->generateQRCode($qrUrl, $filename, 'png', 400);
     }
 
     /**
@@ -103,7 +111,7 @@ class QRCodeService {
      */
     public function generateStyledQR($data, $filename = null, $size = 300, $foregroundColor = '#000000', $backgroundColor = '#FFFFFF') {
         if (!$filename) {
-            $filename = 'qr_' . uniqid() . '.svg';
+            $filename = 'qr_' . uniqid() . '.png';
         }
 
         $qrCode = QrCode::create($data)
@@ -116,15 +124,21 @@ class QRCodeService {
         $result = $writer->write($qrCode);
         $filePath = $this->qrDirectory . $filename;
         
-        // Save to file
+        // Save SVG first
         $result->saveToFile($filePath);
         
+        // Create PNG reference
+        $pngFilename = str_replace('.png', '.png', $filename);
+        $pngPath = $this->qrDirectory . $pngFilename;
+        $pngApiUrl = $this->baseUrl . 'api/qr-png.php?data=' . urlencode($data) . '&size=' . $size;
+        file_put_contents($pngPath, $pngApiUrl);
+        
         return [
-            'filename' => $filename,
-            'filepath' => $filePath,
-            'url' => $this->baseUrl . $filename,
-            'size' => filesize($filePath),
-            'format' => 'svg',
+            'filename' => $pngFilename,
+            'filepath' => $pngPath,
+            'url' => $this->baseUrl . $pngFilename,
+            'size' => filesize($pngPath),
+            'format' => 'png',
             'method' => 'endroid-styled'
         ];
     }
@@ -189,7 +203,7 @@ class QRCodeService {
      */
     public function generateQRWithLogo($data, $filename = null, $size = 300, $logoPath = null) {
         if (!$filename) {
-            $filename = 'qr_' . uniqid() . '.svg';
+            $filename = 'qr_' . uniqid() . '.png';
         }
 
         $qrCode = QrCode::create($data)
@@ -202,17 +216,23 @@ class QRCodeService {
         $result = $writer->write($qrCode);
         $filePath = $this->qrDirectory . $filename;
         
-        // Save to file
+        // Save SVG first
         $result->saveToFile($filePath);
+        
+        // Create PNG reference
+        $pngFilename = str_replace('.png', '.png', $filename);
+        $pngPath = $this->qrDirectory . $pngFilename;
+        $pngApiUrl = $this->baseUrl . 'api/qr-png.php?data=' . urlencode($data) . '&size=' . $size;
+        file_put_contents($pngPath, $pngApiUrl);
         
         // TODO: Add logo overlay functionality if needed
         
         return [
-            'filename' => $filename,
-            'filepath' => $filePath,
-            'url' => $this->baseUrl . $filename,
-            'size' => filesize($filePath),
-            'format' => 'svg',
+            'filename' => $pngFilename,
+            'filepath' => $pngPath,
+            'url' => $this->baseUrl . $pngFilename,
+            'size' => filesize($pngPath),
+            'format' => 'png',
             'method' => 'endroid-with-logo'
         ];
     }

@@ -90,12 +90,13 @@ renderAdminHeader('qr-codes');
                     <td>
                         <?php if (!empty($qrCode['qr_filename'])): ?>
                             <div class="qr-image-container">
-                                <img src="../assets/qr-codes/<?= htmlspecialchars($qrCode['qr_filename']) ?>" 
+                                <!-- Use PNG API for display -->
+                                <img src="../api/qr-png.php?data=<?= urlencode($qrCode['qr_url']) ?>&size=100" 
                                      alt="QR Code" 
                                      class="qr-image"
-                                     onclick="showQRModal('<?= htmlspecialchars($qrCode['qr_filename']) ?>')">
+                                     onclick="showQRModal('<?= htmlspecialchars($qrCode['qr_url']) ?>')">
                                 <div class="qr-actions">
-                                    <button onclick="downloadQR('<?= htmlspecialchars($qrCode['qr_filename']) ?>')" 
+                                    <button onclick="downloadQR('<?= htmlspecialchars($qrCode['qr_url']) ?>')" 
                                             class="btn-download" title="Download QR Code">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -267,7 +268,7 @@ renderAdminHeader('qr-codes');
 </style>
 
 <script>
-let currentQRFilename = '';
+let currentQRUrl = '';
 
 function showCreateModal() {
     document.getElementById('createModal').style.display = 'block';
@@ -278,27 +279,27 @@ function hideCreateModal() {
     document.getElementById('createForm').reset();
 }
 
-function showQRModal(filename) {
-    currentQRFilename = filename;
-    document.getElementById('qrModalImage').src = '../assets/qr-codes/' + filename;
+function showQRModal(qrUrl) {
+    currentQRUrl = qrUrl;
+    document.getElementById('qrModalImage').src = '../api/qr-png.php?data=' + encodeURIComponent(qrUrl) + '&size=300';
     document.getElementById('qrModal').style.display = 'block';
 }
 
 function hideQRModal() {
     document.getElementById('qrModal').style.display = 'none';
-    currentQRFilename = '';
+    currentQRUrl = '';
 }
 
-function downloadQR(filename) {
+function downloadQR(qrUrl) {
     const link = document.createElement('a');
-    link.href = '../assets/qr-codes/' + filename;
-    link.download = filename;
+    link.href = '../api/qr-png.php?data=' + encodeURIComponent(qrUrl) + '&size=400';
+    link.download = 'qr-code.png';
     link.click();
 }
 
 function downloadCurrentQR() {
-    if (currentQRFilename) {
-        downloadQR(currentQRFilename);
+    if (currentQRUrl) {
+        downloadQR(currentQRUrl);
     }
 }
 
