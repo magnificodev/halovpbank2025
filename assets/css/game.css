@@ -81,6 +81,7 @@ body:not(.game-page) {
     align-items: center;
     padding: 20px;
     gap: 16px;
+    margin-top: 100px;
     position: relative;
     z-index: 2;
 }
@@ -234,7 +235,7 @@ body:not(.game-page) {
     max-width: 360px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 4px;
 }
 
 .station-checklist-item {
