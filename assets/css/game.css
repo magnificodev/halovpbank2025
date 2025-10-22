@@ -20,7 +20,8 @@ body:not(.game-page) {
 .desktop-container {
     width: 100vw;
     height: 100vh;
-    background: url('../images/background.png') center/cover no-repeat, url('../images/background-1.png') center/contain no-repeat;
+    background: url('../images/background-1.png') center/contain no-repeat,
+        url('../images/background.png') center/cover no-repeat;
     background-color: #000;
     display: flex;
     justify-content: center;
@@ -33,7 +34,8 @@ body:not(.game-page) {
 
 /* Game page background */
 .game-page .desktop-container {
-    background: url('../images/background.png') center/cover no-repeat, url('../images/background-2.png') center/contain no-repeat;
+    background: url('../images/background-2.png') center/contain no-repeat,
+        url('../images/background.png') center/cover no-repeat;
     background-color: #000;
 }
 
@@ -52,12 +54,14 @@ body:not(.game-page) {
 @media (max-width: 768px) {
     .desktop-container {
         position: relative;
-        background: url('../images/background.png') center/cover no-repeat, url('../images/background-1.png') center/contain no-repeat;
+        background: url('../images/background-1.png') center/contain no-repeat,
+            url('../images/background.png') center/cover no-repeat;
         background-color: #000;
     }
 
     .game-page .desktop-container {
-        background: url('../images/background.png') center/cover no-repeat, url('../images/background-2.png') center/contain no-repeat;
+        background: url('../images/background-2.png') center/contain no-repeat,
+            url('../images/background.png') center/cover no-repeat;
         background-color: #000;
     }
 
