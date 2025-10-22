@@ -183,17 +183,20 @@ body:not(.game-page) {
 .form-group .input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
     -webkit-text-fill-color: #333 !important;
-    background-color: transparent !important;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box !important;
     transition: background-color 5000s ease-in-out 0s;
 }
 
 .form-group .input:-moz-autofill {
-    background-color: transparent !important;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box !important;
     color: #333 !important;
 }
 
 .form-group .input:-internal-autofill-selected {
-    background-color: transparent !important;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(90deg, #0b66cf 0%, #02d15e 100%) border-box !important;
     color: #333 !important;
 }
 
