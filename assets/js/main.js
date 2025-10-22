@@ -534,34 +534,6 @@ class VPBankGame {
     }
 
     // Utility Methods
-    showMessage(message, type = 'info') {
-        // Don't show messages on registration page
-        if (this.currentPage === 'index') {
-            return;
-        }
-
-        // Remove existing messages
-        const existingMessages = document.querySelectorAll('.message');
-        existingMessages.forEach((msg) => msg.remove());
-
-        // Create new message
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `message ${type}`;
-        messageDiv.textContent = message;
-
-        // Insert message
-        const container = document.querySelector('.container');
-        if (container) {
-            container.insertBefore(messageDiv, container.firstChild);
-        }
-
-        // Auto remove after 5 seconds
-        setTimeout(() => {
-            if (messageDiv.parentNode) {
-                messageDiv.remove();
-            }
-        }, 5000);
-    }
 }
 
 // Initialize the game when DOM is loaded
