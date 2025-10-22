@@ -10,7 +10,7 @@ try {
     $result = $db->fetchOne("SHOW TABLES LIKE 'qr_codes'");
     if ($result) {
         echo "✅ qr_codes table exists\n";
-        
+
         // Check table structure
         $columns = $db->fetchAll("DESCRIBE qr_codes");
         echo "📋 Table structure:\n";
@@ -20,7 +20,7 @@ try {
     } else {
         echo "❌ qr_codes table does not exist\n";
         echo "📝 Creating qr_codes table...\n";
-        
+
         // Create the table
         $createTable = "
         CREATE TABLE qr_codes (
@@ -41,7 +41,7 @@ try {
             INDEX idx_created_at (created_at)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
         ";
-        
+
         $db->execute($createTable);
         echo "✅ qr_codes table created successfully\n";
     }

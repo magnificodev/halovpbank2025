@@ -291,6 +291,7 @@ renderAdminHeader('qr-codes');
                 <tr>
                     <th>ID</th>
                     <th>Station</th>
+                    <th>QR Code</th>
                     <th>QR URL</th>
                     <th>Status</th>
                     <th>Scans</th>
@@ -303,6 +304,28 @@ renderAdminHeader('qr-codes');
                     <tr>
                         <td><?= $qrCode['id'] ?></td>
                         <td><?= htmlspecialchars($qrCode['station_id']) ?></td>
+                        <td>
+                            <?php if (!empty($qrCode['qr_filename'])): ?>
+                                <div class="qr-image-container">
+                                    <img src="../assets/qr-codes/<?= htmlspecialchars($qrCode['qr_filename']) ?>" 
+                                         alt="QR Code" 
+                                         class="qr-image"
+                                         onclick="showQRModal('<?= htmlspecialchars($qrCode['qr_filename']) ?>')">
+                                    <div class="qr-actions">
+                                        <button onclick="downloadQR('<?= htmlspecialchars($qrCode['qr_filename']) ?>')" 
+                                                class="btn-download" title="Download QR Code">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                                <polyline points="7,10 12,15 17,10"></polyline>
+                                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            <?php else: ?>
+                                <span class="no-qr">No QR Code</span>
+                            <?php endif; ?>
+                        </td>
                         <td>
                             <div class="qr-url" title="<?= htmlspecialchars($qrCode['qr_url']) ?>">
                                 <?= htmlspecialchars($qrCode['qr_url']) ?>
@@ -469,6 +492,35 @@ function createQRCode() {
         alert('An error occurred');
     });
 }
+
+// QR Code Modal Functions
+function showQRModal(filename) {
+    const modal = document.getElementById('qrModal');
+    const img = document.getElementById('qrModalImage');
+    const downloadBtn = document.getElementById('qrModalDownload');
+    
+    if (modal && img) {
+        img.src = '../assets/qr-codes/' + filename;
+        downloadBtn.onclick = () => downloadQR(filename);
+        modal.classList.add('show');
+    }
+}
+
+function hideQRModal() {
+    const modal = document.getElementById('qrModal');
+    if (modal) {
+        modal.classList.remove('show');
+    }
+}
+
+function downloadQR(filename) {
+    const link = document.createElement('a');
+    link.href = '../assets/qr-codes/' + filename;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 </script>
 
 <!-- Create QR Code Modal -->
@@ -502,6 +554,25 @@ function createQRCode() {
         <div class="modal-footer">
             <button onclick="hideCreateModal()" class="btn btn-secondary">Cancel</button>
             <button onclick="createQRCode()" class="btn btn-primary">Create QR Code</button>
+        </div>
+    </div>
+</div>
+
+<!-- QR Code View Modal -->
+<div id="qrModal" class="qr-modal">
+    <div class="qr-modal-content">
+        <button class="qr-modal-close" onclick="hideQRModal()">&times;</button>
+        <img id="qrModalImage" class="qr-modal-image" alt="QR Code">
+        <div class="qr-modal-actions">
+            <button id="qrModalDownload" class="btn btn-primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="margin-right: 8px;">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7,10 12,15 17,10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download QR Code
+            </button>
+            <button onclick="hideQRModal()" class="btn btn-secondary">Close</button>
         </div>
     </div>
 </div>
@@ -615,9 +686,121 @@ function createQRCode() {
     color: white;
 }
 
-.btn-secondary:hover {
-    background: #4b5563;
-}
+    .btn-secondary:hover {
+        background: #4b5563;
+    }
+
+    /* QR Code Image Styles */
+    .qr-image-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .qr-image {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        border: 1px solid #e5e7eb;
+    }
+
+    .qr-image:hover {
+        transform: scale(1.1);
+    }
+
+    .qr-actions {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .qr-image-container:hover .qr-actions {
+        opacity: 1;
+    }
+
+    .btn-download {
+        background: var(--accent);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s ease;
+    }
+
+    .btn-download:hover {
+        background: var(--accent-600);
+    }
+
+    .no-qr {
+        color: #9ca3af;
+        font-style: italic;
+    }
+
+    /* QR Modal Styles */
+    .qr-modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.8);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .qr-modal.show {
+        display: flex;
+    }
+
+    .qr-modal-content {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        max-width: 90%;
+        max-height: 90%;
+        text-align: center;
+        position: relative;
+    }
+
+    .qr-modal-image {
+        max-width: 400px;
+        max-height: 400px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .qr-modal-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #6b7280;
+    }
+
+    .qr-modal-close:hover {
+        color: #374151;
+    }
+
+    .qr-modal-actions {
+        margin-top: 15px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
 </style>
 
 <?php renderAdminFooter(); ?>
