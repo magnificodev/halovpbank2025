@@ -52,14 +52,20 @@ body:not(.game-page) {
 @media (max-width: 768px) {
     .desktop-container {
         position: relative;
-        background: transparent;
+        background: url('../images/background-1.png') center/cover no-repeat;
+        background-color: #000;
+    }
+
+    .game-page .desktop-container {
+        background: url('../images/background-2.png') center/cover no-repeat;
+        background-color: #000;
     }
 
     .mobile-frame {
         width: 100vw;
         height: 100vh;
         max-width: none;
-        background-size: cover;
+        background: transparent;
     }
 }
 
