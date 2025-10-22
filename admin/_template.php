@@ -28,7 +28,6 @@ function renderAdminHeader($currentPage = '') {
             .logo svg{width:20px;height:20px;color:var(--accent);flex-shrink:0}
             .user-info{display:flex;align-items:center;gap:12px}
             a{color:var(--accent-600);text-decoration:none}
-            a:hover{color:var(--accent)}
             .toggle{padding:8px;border-radius:12px;border:1px solid #e5e7eb;background:#eef2f7;color:#111827;cursor:pointer;display:flex;align-items:center;justify-content:center;width:36px;height:36px;transition:all 0.2s ease}
             .logout-btn{padding:10px 20px;border-radius:10px;background:var(--accent);border:1px solid var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.5;transition:all 0.2s ease}
             .logout-btn:hover{background:var(--accent-600);transform:translateY(-1px);box-shadow:0 4px 8px rgba(16,185,129,0.3)}
@@ -176,7 +175,7 @@ function renderAdminFooter() {
             // Theme toggle functionality
             const themeToggle = document.getElementById('themeToggle');
             const body = document.body;
-            
+
             // Load saved theme (check both keys for compatibility)
             const savedTheme = localStorage.getItem('admin-theme') || localStorage.getItem('admin_theme') || 'light';
             if (savedTheme === 'dark') {
@@ -185,19 +184,19 @@ function renderAdminFooter() {
             } else {
                 updateThemeIcon('moon');
             }
-            
+
             themeToggle.addEventListener('click', function() {
                 body.classList.toggle('dark');
                 const isDark = body.classList.contains('dark');
                 localStorage.setItem('admin-theme', isDark ? 'dark' : 'light');
                 updateThemeIcon(isDark ? 'sun' : 'moon');
             });
-            
+
             function updateThemeIcon(icon) {
-                const iconPath = icon === 'sun' 
+                const iconPath = icon === 'sun'
                     ? 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z'
                     : 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z';
-                
+
                 themeToggle.innerHTML = `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="${iconPath}"></path>
                 </svg>`;
