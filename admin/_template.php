@@ -176,8 +176,8 @@ function renderAdminFooter() {
             const themeToggle = document.getElementById('themeToggle');
             const body = document.body;
             
-            // Load saved theme
-            const savedTheme = localStorage.getItem('admin-theme') || 'light';
+            // Load saved theme (check both keys for compatibility)
+            const savedTheme = localStorage.getItem('admin-theme') || localStorage.getItem('admin_theme') || 'light';
             if (savedTheme === 'dark') {
                 body.classList.add('dark');
                 updateThemeIcon('sun');
