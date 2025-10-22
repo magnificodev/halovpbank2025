@@ -243,8 +243,8 @@ body:not(.game-page) {
 }
 
 .station-checklist-item .status-icon {
-    width: 28px;
-    height: 28px;
+    width: 42px;
+    height: 42px;
 }
 
 .station-text {
@@ -254,17 +254,17 @@ body:not(.game-page) {
 
 .station-title {
     margin: 0;
-    font-family: 'Gilroy ExtraBold', 'Gilroy Bold', 'Gilroy', 'Segoe UI', sans-serif;
-    font-weight: 800;
-    font-size: 16px;
+    font-family: 'Gilroy Bold', 'Gilroy', 'Segoe UI', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
     letter-spacing: 0.2px;
     color: #ffffff;
 }
 
 .station-desc {
-    margin: 2px 0 0 0;
-    font-family: 'Gilroy SemiBold', 'Gilroy', 'Segoe UI', sans-serif;
-    font-weight: 600;
+    margin: 0;
+    font-family: 'Gilroy Regular', 'Gilroy', 'Segoe UI', sans-serif;
+    font-weight: 400;
     font-size: 14px;
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.4;
