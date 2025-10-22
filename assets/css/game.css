@@ -224,6 +224,52 @@ body:not(.game-page) {
     font-weight: 700;
 }
 
+/* Station checklist */
+.station-checklist {
+    list-style: none;
+    padding: 0 20px;
+    margin: 12px auto 0;
+    width: 100%;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.station-checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.station-checklist-item .status-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.station-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.station-title {
+    margin: 0;
+    font-family: 'Gilroy ExtraBold', 'Gilroy Bold', 'Gilroy', 'Segoe UI', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.2px;
+    color: #ffffff;
+}
+
+.station-desc {
+    margin: 2px 0 0 0;
+    font-family: 'Gilroy SemiBold', 'Gilroy', 'Segoe UI', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.4;
+}
+
 /* Stations Container */
 .stations-container {
     width: 100%;

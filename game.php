@@ -15,6 +15,45 @@
                     <p><strong>Hoàn thành 2</strong> trong số các nhiệm vụ và <strong>thực hiện trải nghiệm đặc biệt tại booth Hallo Shop</strong> để nhận quà từ chương trình</p>
                 </div>
 
+                <!-- Stations list (5 items) -->
+                <ul class="station-checklist">
+                    <li class="station-checklist-item">
+                        <img class="status-icon" src="assets/images/no-checked-box.png" alt="Chưa hoàn thành" />
+                        <div class="station-text">
+                            <h4 class="station-title">HALLO GLOW</h4>
+                            <p class="station-desc">Chụp hình check in</p>
+                        </div>
+                    </li>
+                    <li class="station-checklist-item">
+                        <img class="status-icon" src="assets/images/no-checked-box.png" alt="Chưa hoàn thành" />
+                        <div class="station-text">
+                            <h4 class="station-title">HALLO SOLUTION</h4>
+                            <p class="station-desc">Thử thách game công nghệ “không chạm”</p>
+                        </div>
+                    </li>
+                    <li class="station-checklist-item">
+                        <img class="status-icon" src="assets/images/no-checked-box.png" alt="Chưa hoàn thành" />
+                        <div class="station-text">
+                            <h4 class="station-title">HALLO SUPER SINH LỜI PREMIER</h4>
+                            <p class="station-desc">Thử thách hứng tiền lời</p>
+                        </div>
+                    </li>
+                    <li class="station-checklist-item">
+                        <img class="status-icon" src="assets/images/no-checked-box.png" alt="Chưa hoàn thành" />
+                        <div class="station-text">
+                            <h4 class="station-title">HALLO SHOP</h4>
+                            <p class="station-desc">Trải nghiệm các giải pháp thanh toán từ VPBank</p>
+                        </div>
+                    </li>
+                    <li class="station-checklist-item">
+                        <img class="status-icon" src="assets/images/no-checked-box.png" alt="Chưa hoàn thành" />
+                        <div class="station-text">
+                            <h4 class="station-title">HALLO WIN</h4>
+                            <p class="station-desc">Trò chơi đuổi hình bắt chữ vui nhộn</p>
+                        </div>
+                    </li>
+                </ul>
+
                 <!-- Action Buttons Row (image-based) -->
                 <div class="action-image-buttons">
                     <img id="scanQRBtn" class="action-image-btn" src="assets/images/scan-button.png" alt="QUÉT MÃ QR" role="button" />
