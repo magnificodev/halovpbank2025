@@ -1,5 +1,5 @@
 <?php
-// Database configuration (align local with production naming)
+// Database configuration for DirectAdmin (with vpbankgame_ prefix)
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'vpbankgame_halovpbank');
 define('DB_USER', 'vpbankgame_halovpbank');

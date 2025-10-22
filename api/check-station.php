@@ -77,8 +77,25 @@ try {
         [$user['id']]
     );
 
-    $completedCount = count($completedStations);
-    $canClaimReward = $completedCount >= REQUIRED_STATIONS;
+    $completedStationIds = array_column($completedStations, 'station_id');
+
+    // Check if user can claim reward (new logic: >= 2 in first 4 + HALLO_SHOP)
+    $firstFourStations = ['HALLO_GLOW', 'HALLO_SOLUTION', 'HALLO_SUPER_SINH_LOI', 'HALLO_WIN'];
+    $requiredShopStation = 'HALLO_SHOP';
+
+    // Count completed stations in first 4
+    $completedFirstFour = 0;
+    foreach ($firstFourStations as $stationId) {
+        if (in_array($stationId, $completedStationIds)) {
+            $completedFirstFour++;
+        }
+    }
+
+    // Check if HALLO_SHOP is completed
+    $isShopCompleted = in_array($requiredShopStation, $completedStationIds);
+
+    // New logic: >= 2 in first 4 stations AND HALLO_SHOP must be completed
+    $canClaimReward = $completedFirstFour >= 2 && $isShopCompleted;
 
     sendJsonResponse([
         'success' => true,

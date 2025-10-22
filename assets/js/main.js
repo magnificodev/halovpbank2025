@@ -304,16 +304,36 @@ class VPBankGame {
 
         if (!claimBtn || !scanBtn || !actionButtons) return;
 
-        // Compute completed stations from result
-        const completedStations = result.stations
-            ? result.stations.filter((station) => station.completed).length
-            : 0;
-        const hasEnoughStations = completedStations >= 3;
+        // Define the 4 first stations and HALLO_SHOP
+        const firstFourStations = [
+            'HALLO_GLOW',
+            'HALLO_SOLUTION',
+            'HALLO_SUPER_SINH_LOI',
+            'HALLO_WIN',
+        ];
+        const requiredShopStation = 'HALLO_SHOP';
+
+        // Check completion status
+        const stations = result.stations || [];
+        const completedStations = stations.filter((station) => station.completed);
+
+        // Count completed stations in first 4
+        const completedFirstFour = completedStations.filter((station) =>
+            firstFourStations.includes(station.id)
+        ).length;
+
+        // Check if HALLO_SHOP is completed
+        const isShopCompleted = completedStations.some(
+            (station) => station.id === requiredShopStation
+        );
+
+        // New logic: >= 2 in first 4 stations AND HALLO_SHOP must be completed
+        const canClaimReward = completedFirstFour >= 2 && isShopCompleted;
 
         if (result.has_claimed_reward) {
             // User already claimed reward, redirect to reward page
             window.location.href = `reward.php?token=${this.userToken}`;
-        } else if (hasEnoughStations) {
+        } else if (canClaimReward) {
             // Show both buttons
             claimBtn.style.display = 'block';
             scanBtn.style.display = 'block';
@@ -412,7 +432,8 @@ class VPBankGame {
         try {
             const key = 'vpbank_station_progress';
             const progress = JSON.parse(localStorage.getItem(key) || '{}');
-            const items = document.querySelectorAll('.station-checklist-item');
+            // Ensure we have a real Array for mapping below
+            const items = Array.from(document.querySelectorAll('.station-checklist-item'));
             items.forEach((li) => {
                 const station = li.getAttribute('data-station');
                 const icon = li.querySelector('.status-icon');
@@ -425,8 +446,7 @@ class VPBankGame {
                     icon.alt = 'Chưa hoàn thành';
                 }
             });
-            // Update action buttons based on local progress (>= 3 stations)
-            const completedCount = Object.values(progress).filter(Boolean).length;
+            // Update action buttons based on local progress (new logic: >= 2 in first 4 + HALLO_SHOP)
             const mockResult = {
                 stations: items.map((item) => ({
                     id: item.getAttribute('data-station'),

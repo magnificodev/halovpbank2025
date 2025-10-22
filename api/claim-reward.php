@@ -41,13 +41,30 @@ try {
         sendJsonResponse(['error' => ERRORS['REWARD_ALREADY_CLAIMED']], 400);
     }
 
-    // Check if user completed enough stations
-    $completedCount = $db->fetch(
-        "SELECT COUNT(*) as count FROM user_progress WHERE user_id = ?",
+    // Check if user completed enough stations (new logic: >= 2 in first 4 + HALLO_SHOP)
+    $completedStations = $db->fetchAll(
+        "SELECT station_id FROM user_progress WHERE user_id = ?",
         [$user['id']]
-    )['count'];
+    );
 
-    if ($completedCount < REQUIRED_STATIONS) {
+    $completedStationIds = array_column($completedStations, 'station_id');
+
+    $firstFourStations = ['HALLO_GLOW', 'HALLO_SOLUTION', 'HALLO_SUPER_SINH_LOI', 'HALLO_WIN'];
+    $requiredShopStation = 'HALLO_SHOP';
+
+    // Count completed stations in first 4
+    $completedFirstFour = 0;
+    foreach ($firstFourStations as $stationId) {
+        if (in_array($stationId, $completedStationIds)) {
+            $completedFirstFour++;
+        }
+    }
+
+    // Check if HALLO_SHOP is completed
+    $isShopCompleted = in_array($requiredShopStation, $completedStationIds);
+
+    // New logic: >= 2 in first 4 stations AND HALLO_SHOP must be completed
+    if (!($completedFirstFour >= 2 && $isShopCompleted)) {
         sendJsonResponse(['error' => ERRORS['INSUFFICIENT_STATIONS']], 400);
     }
 

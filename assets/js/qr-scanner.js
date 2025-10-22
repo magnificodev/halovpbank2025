@@ -59,22 +59,106 @@ class QRScanner {
             this.availableCameras = await Html5Qrcode.getCameras();
             console.log('Available cameras:', this.availableCameras.length, this.availableCameras);
 
+            // Log camera details for debugging
+            this.availableCameras.forEach((camera, index) => {
+                console.log(`Camera ${index}: ${camera.label} (${camera.id})`);
+            });
+
             if (this.availableCameras.length === 0) {
                 this.showScannerError('Không tìm thấy camera');
                 return;
             }
 
-            // Use back camera if available, otherwise use first camera
-            const backCamera = this.availableCameras.find(camera => {
-                const label = camera.label.toLowerCase();
-                return label.includes('back') || 
-                       label.includes('rear') || 
-                       label.includes('environment');
-            });
-            
-            const cameraId = backCamera ? backCamera.id : this.availableCameras[0].id;
-            this.currentCameraIndex = backCamera ? 
-                this.availableCameras.findIndex(c => c.id === backCamera.id) : 0;
+            // Smart camera selection for different platforms
+            let selectedCamera = null;
+            let cameraId = null;
+            let cameraIndex = 0;
+
+            // Detect platform
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isAndroid = /Android/.test(navigator.userAgent);
+
+            if (isIOS) {
+                // iOS: Enhanced back camera detection
+                console.log(
+                    'iOS detected, available cameras:',
+                    this.availableCameras.map((c) => c.label)
+                );
+
+                // First try: Look for explicit back camera indicators
+                selectedCamera = this.availableCameras.find((camera) => {
+                    const label = camera.label.toLowerCase();
+                    return (
+                        label.includes('back') ||
+                        label.includes('rear') ||
+                        label.includes('environment') ||
+                        label.includes('camera 1') || // iOS often uses "Camera 1" for back
+                        (label.includes('camera') && !label.includes('front'))
+                    );
+                });
+
+                // Second try: Look for cameras that are NOT front-facing
+                if (!selectedCamera) {
+                    selectedCamera = this.availableCameras.find((camera) => {
+                        const label = camera.label.toLowerCase();
+                        return (
+                            !label.includes('front') &&
+                            !label.includes('user') &&
+                            !label.includes('selfie')
+                        );
+                    });
+                }
+
+                // Third try: Use camera with higher index (usually back on iOS)
+                if (!selectedCamera && this.availableCameras.length > 1) {
+                    // Sort by camera ID/index and pick the one with higher index
+                    const sortedCameras = [...this.availableCameras].sort((a, b) => {
+                        // Extract numeric part from camera ID for comparison
+                        const aNum = parseInt(a.id.match(/\d+/)?.[0] || '0');
+                        const bNum = parseInt(b.id.match(/\d+/)?.[0] || '0');
+                        return bNum - aNum; // Higher index first
+                    });
+                    selectedCamera = sortedCameras[0];
+                }
+
+                // Final fallback
+                if (!selectedCamera) {
+                    selectedCamera = this.availableCameras[0];
+                }
+
+                console.log(
+                    'iOS selected camera:',
+                    selectedCamera.label,
+                    'from',
+                    this.availableCameras.length,
+                    'cameras'
+                );
+            } else if (isAndroid) {
+                // Android: Prefer back camera with standard naming
+                selectedCamera = this.availableCameras.find((camera) => {
+                    const label = camera.label.toLowerCase();
+                    return (
+                        label.includes('back') ||
+                        label.includes('rear') ||
+                        label.includes('environment')
+                    );
+                });
+            } else {
+                // Desktop/Other: Use first camera
+                selectedCamera = this.availableCameras[0];
+            }
+
+            // Fallback to first camera if no specific camera found
+            if (!selectedCamera) {
+                selectedCamera = this.availableCameras[0];
+            }
+
+            cameraId = selectedCamera.id;
+            cameraIndex = this.availableCameras.findIndex((c) => c.id === selectedCamera.id);
+            this.currentCameraIndex = cameraIndex;
+
+            console.log(`Platform: ${isIOS ? 'iOS' : isAndroid ? 'Android' : 'Desktop'}`);
+            console.log(`Selected camera: ${selectedCamera.label} (index: ${cameraIndex})`);
 
             // Start scanning
             await this.scanner.start(
@@ -142,7 +226,7 @@ class QRScanner {
         }
 
         console.log('Switching camera...');
-        
+
         // Stop current scanner
         if (this.isScanning && this.scanner) {
             try {
@@ -156,7 +240,7 @@ class QRScanner {
         // Switch to next camera
         this.currentCameraIndex = (this.currentCameraIndex + 1) % this.availableCameras.length;
         const newCamera = this.availableCameras[this.currentCameraIndex];
-        
+
         console.log(`Switching to camera ${this.currentCameraIndex}:`, newCamera.label);
 
         // Restart scanner with new camera
