@@ -358,20 +358,29 @@ if (typeof QRCode === 'undefined') {
                     }
 
                     function generateQRCode() {
-                        QRCode.toCanvas(document.getElementById('qrcode'), '<?= htmlspecialchars($qrUrl) ?>', {
-                            width: 200,
-                            margin: 2,
-                            color: {
-                                dark: '#000000',
-                                light: '#FFFFFF'
-                            }
-                        }, function (error) {
-                            if (error) {
-                                console.error('QR Code generation error:', error);
-                            } else {
-                                console.log('QR Code generated successfully');
-                            }
-                        });
+                        console.log('Attempting to generate QR code...');
+                        console.log('QRCode library available:', typeof QRCode !== 'undefined');
+                        console.log('Canvas element:', document.getElementById('qrcode'));
+                        console.log('URL to encode:', '<?= htmlspecialchars($qrUrl) ?>');
+                        
+                        try {
+                            QRCode.toCanvas(document.getElementById('qrcode'), '<?= htmlspecialchars($qrUrl) ?>', {
+                                width: 200,
+                                margin: 2,
+                                color: {
+                                    dark: '#000000',
+                                    light: '#FFFFFF'
+                                }
+                            }, function (error) {
+                                if (error) {
+                                    console.error('QR Code generation error:', error);
+                                } else {
+                                    console.log('QR Code generated successfully');
+                                }
+                            });
+                        } catch (e) {
+                            console.error('Exception during QR generation:', e);
+                        }
                     }
 
                     function copyToClipboard(text) {

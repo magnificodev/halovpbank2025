@@ -15,9 +15,9 @@ function renderAdminHeader($currentPage = '') {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?= htmlspecialchars($pages[$currentPage]['title'] ?? 'Admin') ?> - VPBank Admin</title>
-        <script src="https://unpkg.com/heroicons@2.0.18/24/outline/index.js" type="module"></script>
+        <!-- Heroicons removed due to CORS issues -->
         <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js" defer></script>
-        <link rel="stylesheet" href="../assets/css/common.css">
+        <link rel="stylesheet" href="../assets/css/base.css">
         <link rel="stylesheet" href="../assets/css/admin.css">
         <style>
             :root{--accent:#10b981;--accent-600:#059669;--header-height:74px}
