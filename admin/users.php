@@ -62,10 +62,10 @@ renderAdminHeader('users');
     .search-box{margin-bottom:16px;display:flex;gap:15px;align-items:start}
     .search-section{display:flex;flex-direction:column;gap:4px;flex:1}
     .search-container{position:relative;display:flex;align-items:center;margin-bottom:0}
-    .search-input{padding:10px 14px 10px 40px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827;width:100%;font-size:14px}
+    .search-input{padding:10px 14px 10px 40px;border:1px solid #e5e7eb;border-radius:10px;background:#ffffff;color:#111827;width:300px;font-size:14px}
     .search-input:focus{outline:none;border-color:#059669;box-shadow:0 0 0 3px rgba(16,185,129,.15)}
     .search-input::placeholder{color:#9ca3af}
-    .search-icon{position:absolute;left:12px;width:16px;height:16px;color:#6b7280;pointer-events:none}
+    .search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#6b7280;pointer-events:none}
     .csv-btn{padding:10px 16px;background:#10b981;border:1px solid #10b981;border-radius:10px;color:#ffffff;font-weight:600;cursor:pointer;transition:all 0.2s ease;display:inline-flex;align-items:center;justify-content:center;text-align:center;width:160px;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;font-size:14px;letter-spacing:0;line-height:1}
     .csv-btn:hover{background:#059669;transform:translateY(-1px);box-shadow:0 4px 8px rgba(16,185,129,0.3)}
     .search-status{color:#6b7280;font-size:12px;text-align:left}
