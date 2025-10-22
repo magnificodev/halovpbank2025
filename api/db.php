@@ -50,6 +50,22 @@ class Database {
     public function lastInsertId() {
         return $this->connection->lastInsertId();
     }
+
+    public function execute($sql, $params = []) {
+        $stmt = $this->query($sql, $params);
+        return $stmt->rowCount();
+    }
+
+    // Alias for fetch() method
+    public function fetchOne($sql, $params = []) {
+        return $this->fetch($sql, $params);
+    }
+
+    // Insert method
+    public function insert($sql, $params = []) {
+        $this->execute($sql, $params);
+        return $this->lastInsertId();
+    }
 }
 
 // Utility functions
