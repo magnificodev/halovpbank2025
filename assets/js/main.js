@@ -551,5 +551,5 @@ class VPBankGame {
 
 // Initialize the game when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new VPBankGame();
+    window.vpbankGame = new VPBankGame();
 });
