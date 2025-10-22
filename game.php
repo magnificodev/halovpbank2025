@@ -15,8 +15,11 @@
                     <p><strong>Hoàn thành 2</strong> trong số các nhiệm vụ và <strong>thực hiện trải nghiệm đặc biệt tại booth Hallo Shop</strong> để nhận quà từ chương trình</p>
                 </div>
 
-                <!-- Scan QR Button (image-based) -->
-                <img id="scanQRBtn" class="scan-image-btn" src="assets/images/scan-button.png" alt="QUÉT MÃ QR" role="button" />
+                <!-- Action Buttons Row (image-based) -->
+                <div class="action-image-buttons">
+                    <img id="scanQRBtn" class="action-image-btn" src="assets/images/scan-button.png" alt="QUÉT MÃ QR" role="button" />
+                    <img id="claimRewardBtn" class="action-image-btn" src="assets/images/claim-button.png" alt="QUAY SỐ TRÚNG QUÀ" role="button" />
+                </div>
             </div>
         </div>
     </div>

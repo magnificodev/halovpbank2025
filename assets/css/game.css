@@ -193,6 +193,22 @@ body:not(.game-page) {
     cursor: pointer;
 }
 
+/* Action buttons row (image-based) */
+.action-image-buttons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.action-image-btn {
+    display: block;
+    width: 180px;
+    height: auto;
+    cursor: pointer;
+}
+
 .instructions p {
     font-family: 'Gilroy Regular', 'Gilroy', 'Segoe UI', sans-serif;
     font-size: 12px;
