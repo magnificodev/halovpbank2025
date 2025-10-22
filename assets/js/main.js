@@ -236,6 +236,11 @@ class VPBankGame {
             window.history.replaceState({}, document.title, `game.php?token=${this.userToken}`);
         }
 
+        // Clear any local dev progress when not in dev mode to avoid stale UI
+        if (!this.isDevMode()) {
+            localStorage.removeItem('vpbank_station_progress');
+        }
+
         await this.loadGameProgress();
         this.initGameEvents();
     }
@@ -366,15 +371,10 @@ class VPBankGame {
     }
 
     isDevMode() {
+        // Only enable when explicitly requested via URL: ?dev=1
         try {
-            const host = window.location.hostname;
             const params = new URLSearchParams(window.location.search);
-            if (params.get('dev') === '1') return true;
-            // Treat common local networks/IPs as dev
-            const isLocalHost = host === 'localhost' || host === '127.0.0.1';
-            const isPrivateIp = /^10\.|^192\.168\.|^172\.(1[6-9]|2[0-9]|3[0-1])\./.test(host);
-            const isAnyIp = /^(\d+\.){3}\d+$/.test(host);
-            return isLocalHost || isPrivateIp || isAnyIp;
+            return params.get('dev') === '1';
         } catch (_) {
             return false;
         }
