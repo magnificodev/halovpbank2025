@@ -200,7 +200,6 @@ class VPBankGame {
         return isValid;
     }
 
-
     isValidVietnamesePhone(phone) {
         // Remove any spaces or special characters
         let cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
@@ -328,6 +327,13 @@ class VPBankGame {
     }
 
     async handleStationCompletion(stationId, verifyHash) {
+        // Dev mode: allow testing without backend verification
+        if (this.isDevMode()) {
+            this.markStationCompletedLocally(stationId);
+            this.applyLocalProgressToChecklist();
+            this.showMessage(`Đã đánh dấu hoàn thành ${stationId} (DEV)`, 'success');
+            return;
+        }
         try {
             const response = await fetch('api/check-station.php', {
                 method: 'POST',
@@ -356,6 +362,17 @@ class VPBankGame {
         } catch (error) {
             console.error('Station completion error:', error);
             this.showMessage('Có lỗi xảy ra khi hoàn thành trạm', 'error');
+        }
+    }
+
+    isDevMode() {
+        try {
+            const host = window.location.hostname;
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('dev') === '1') return true;
+            return host === 'localhost' || host === '127.0.0.1';
+        } catch (_) {
+            return false;
         }
     }
 
