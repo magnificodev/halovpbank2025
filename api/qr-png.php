@@ -1,20 +1,14 @@
 <?php
+// Simple PNG QR test
 require_once '../vendor/autoload.php';
 
 use Endroid\QrCode\QrCode;
-use Endroid\QrCode\Writer\SvgWriter;
+use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
 use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
 
-// Get parameters
-$data = $_GET['data'] ?? '';
+$data = $_GET['data'] ?? 'Test QR Code';
 $size = (int)($_GET['size'] ?? 300);
-
-if (!$data) {
-    http_response_code(400);
-    echo 'Missing data parameter';
-    exit;
-}
 
 try {
     $qrCode = QrCode::create($data)
@@ -23,19 +17,25 @@ try {
         ->setErrorCorrectionLevel(new ErrorCorrectionLevelHigh())
         ->setRoundBlockSizeMode(new RoundBlockSizeModeMargin());
 
-    $writer = new SvgWriter();
+    $writer = new PngWriter();
     $result = $writer->write($qrCode);
     
-    // Set PNG headers but serve SVG content
-    header('Content-Type: image/png');
-    header('Content-Disposition: inline; filename="qr.png"');
-    header('Cache-Control: public, max-age=3600');
+    // Save to file first
+    $filename = 'qr_' . time() . '.png';
+    $result->saveToFile($filename);
     
-    // Output SVG content (browsers will handle it)
-    echo $result->getString();
+    // Set headers
+    header('Content-Type: image/png');
+    header('Content-Disposition: inline; filename="' . $filename . '"');
+    
+    // Output the file
+    readfile($filename);
+    
+    // Clean up
+    unlink($filename);
     
 } catch (Exception $e) {
-    http_response_code(500);
-    echo 'Error generating QR code: ' . $e->getMessage();
+    header('Content-Type: text/plain');
+    echo 'Error: ' . $e->getMessage();
 }
 ?>
