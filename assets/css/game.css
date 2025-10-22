@@ -145,7 +145,6 @@ body:not(.game-page) {
 /* Autofill Fix - Maintain gradient border */
 .form-group .input:-webkit-autofill,
 .form-group .input:-webkit-autofill:hover,
-.form-group .input:-webkit-autofill:focus,
 .form-group .input:-webkit-autofill:active,
 .form-group .input:-moz-autofill,
 .form-group .input:-internal-autofill-selected,
