@@ -432,7 +432,6 @@ class VPBankGame {
                     id: item.getAttribute('data-station'),
                     completed: progress[item.getAttribute('data-station')] || false,
                 })),
-                can_claim_reward: completedCount >= 3,
                 has_claimed_reward: false,
             };
             this.updateActionButtons(mockResult);
