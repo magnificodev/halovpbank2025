@@ -11,23 +11,7 @@
     <div class="desktop-container">
         <div class="mobile-frame">
             <div class="container">
-                <!-- Instructions -->
-                <div class="instructions">
-                    <p>Hoàn thành 3 trong số các nhiệm vụ để tham gia quay thường trúng quà 100%</p>
-                </div>
-
-                <!-- Stations List -->
-                <div class="stations-container">
-                    <div id="stationsList" class="stations-list">
-                        <!-- Stations will be loaded dynamically -->
-                    </div>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="action-buttons">
-                    <button id="scanQRBtn" class="scan-button">QUÉT MÃ QR</button>
-                    <button id="claimRewardBtn" class="claim-button" style="display: none;">QUAY SỐ TRÚNG QUÀ</button>
-                </div>
+                <!-- Page 2 UI cleared intentionally. Add new layout here. -->
             </div>
         </div>
     </div>
