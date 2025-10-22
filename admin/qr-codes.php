@@ -91,12 +91,12 @@ renderAdminHeader('qr-codes');
                         <?php if (!empty($qrCode['qr_filename'])): ?>
                             <div class="qr-image-container">
                                 <!-- Use PNG API for display -->
-                                <img src="../api/qr-png.php?data=<?= urlencode($qrCode['qr_url']) ?>&size=100" 
-                                     alt="QR Code" 
+                                <img src="../api/qr-png.php?data=<?= urlencode($qrCode['qr_url']) ?>&size=100"
+                                     alt="QR Code"
                                      class="qr-image"
                                      onclick="showQRModal('<?= htmlspecialchars($qrCode['qr_url']) ?>')">
                                 <div class="qr-actions">
-                                    <button onclick="downloadQR('<?= htmlspecialchars($qrCode['qr_url']) ?>')" 
+                                    <button onclick="downloadQR('<?= htmlspecialchars($qrCode['qr_url']) ?>')"
                                             class="btn-download" title="Download QR Code">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -124,7 +124,7 @@ renderAdminHeader('qr-codes');
                     <td><?= (new DateTime($qrCode['created_at']))->format('Y-m-d H:i') ?></td>
                     <td class="actions">
                         <button onclick="editQRCode(<?= $qrCode['id'] ?>)" class="btn-edit">Edit</button>
-                        <button onclick="toggleQRStatus(<?= $qrCode['id'] ?>, '<?= $qrCode['status'] ?>')" 
+                        <button onclick="toggleQRStatus(<?= $qrCode['id'] ?>, '<?= $qrCode['status'] ?>')"
                                 class="btn-toggle btn-<?= $qrCode['status'] === 'active' ? 'deactivate' : 'activate' ?>">
                             <?= $qrCode['status'] === 'active' ? 'Deactivate' : 'Activate' ?>
                         </button>
@@ -268,96 +268,7 @@ renderAdminHeader('qr-codes');
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    let currentQRUrl = '';
-
-    // Functions moved to global scope for onclick attributes
-
-    document.getElementById('createForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const stationId = document.getElementById('stationSelect').value;
-    const notes = document.getElementById('notesInput').value;
-    const expiresAt = document.getElementById('expiresAtInput').value;
-    
-    if (!stationId) {
-        alert('Please select a station');
-        return;
-    }
-    
-    try {
-        const response = await fetch('../api/endroid-qr-generator.php?action=create', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                station_id: stationId,
-                notes: notes,
-                expires_at: expiresAt || null
-            })
-        });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-            alert('QR Code created successfully!');
-            location.reload();
-        } else {
-            alert('Error: ' + result.error);
-        }
-    } catch (error) {
-        alert('Error: ' + error.message);
-    }
-});
-
-function applyFilter() {
-    const status = document.getElementById('statusFilter').value;
-    const station = document.getElementById('stationFilter').value;
-    
-    const params = new URLSearchParams();
-    if (status) params.append('status', status);
-    if (station) params.append('station', station);
-    
-    window.location.href = '?' + params.toString();
-}
-
-function editQRCode(id) {
-    // TODO: Implement edit functionality
-    alert('Edit functionality coming soon');
-}
-
-function toggleQRStatus(id, currentStatus) {
-    const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
-    
-    if (confirm(`Are you sure you want to ${newStatus} this QR code?`)) {
-        // TODO: Implement status toggle
-        alert('Status toggle functionality coming soon');
-    }
-}
-
-function deleteQRCode(id) {
-    if (confirm('Are you sure you want to delete this QR code? This action cannot be undone.')) {
-        // TODO: Implement delete functionality
-        alert('Delete functionality coming soon');
-    }
-}
-
-// Close modals when clicking outside
-window.onclick = function(event) {
-    const createModal = document.getElementById('createModal');
-    const qrModal = document.getElementById('qrModal');
-    
-    if (event.target === createModal) {
-        hideCreateModal();
-    }
-    if (event.target === qrModal) {
-        hideQRModal();
-    }
-}
-}); // End DOMContentLoaded
-
-// Global functions for onclick attributes
+// Global functions for onclick attributes - must be defined before DOM
 function showCreateModal() {
     document.getElementById('createModal').style.display = 'block';
 }
@@ -375,6 +286,93 @@ function showQRModal(qrUrl) {
 function hideQRModal() {
     document.getElementById('qrModal').style.display = 'none';
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    let currentQRUrl = '';
+
+    document.getElementById('createForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const stationId = document.getElementById('stationSelect').value;
+    const notes = document.getElementById('notesInput').value;
+    const expiresAt = document.getElementById('expiresAtInput').value;
+
+    if (!stationId) {
+        alert('Please select a station');
+        return;
+    }
+
+    try {
+        const response = await fetch('../api/endroid-qr-generator.php?action=create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                station_id: stationId,
+                notes: notes,
+                expires_at: expiresAt || null
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            alert('QR Code created successfully!');
+            location.reload();
+        } else {
+            alert('Error: ' + result.error);
+        }
+    } catch (error) {
+        alert('Error: ' + error.message);
+    }
+});
+
+function applyFilter() {
+    const status = document.getElementById('statusFilter').value;
+    const station = document.getElementById('stationFilter').value;
+
+    const params = new URLSearchParams();
+    if (status) params.append('status', status);
+    if (station) params.append('station', station);
+
+    window.location.href = '?' + params.toString();
+}
+
+function editQRCode(id) {
+    // TODO: Implement edit functionality
+    alert('Edit functionality coming soon');
+}
+
+function toggleQRStatus(id, currentStatus) {
+    const newStatus = currentStatus === 'active' ? 'inactive' : 'active';
+
+    if (confirm(`Are you sure you want to ${newStatus} this QR code?`)) {
+        // TODO: Implement status toggle
+        alert('Status toggle functionality coming soon');
+    }
+}
+
+function deleteQRCode(id) {
+    if (confirm('Are you sure you want to delete this QR code? This action cannot be undone.')) {
+        // TODO: Implement delete functionality
+        alert('Delete functionality coming soon');
+    }
+}
+
+// Close modals when clicking outside
+window.onclick = function(event) {
+    const createModal = document.getElementById('createModal');
+    const qrModal = document.getElementById('qrModal');
+
+    if (event.target === createModal) {
+        hideCreateModal();
+    }
+    if (event.target === qrModal) {
+        hideQRModal();
+    }
+}
+}); // End DOMContentLoaded
 </script>
 
 <?php renderAdminFooter(); ?>
