@@ -48,7 +48,7 @@ renderAdminHeader('qr-manager');
 ?>
 
 <!-- Load QRCode script directly -->
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js"></script>
 <style>
     .card {
         background: #fff;
@@ -334,22 +334,22 @@ renderAdminHeader('qr-manager');
                     function generateQR() {
                         console.log('Starting QR generation...');
                         console.log('QRCode available:', typeof QRCode !== 'undefined');
-                        
+
                         if (typeof QRCode === 'undefined') {
                             console.log('QRCode not ready, retrying in 100ms...');
                             setTimeout(generateQR, 100);
                             return;
                         }
-                        
+
                         const canvas = document.getElementById('qrcode');
                         if (!canvas) {
                             console.error('Canvas element not found');
                             return;
                         }
-                        
+
                         const url = '<?= htmlspecialchars($qrUrl) ?>';
                         console.log('Generating QR for URL:', url);
-                        
+
                         QRCode.toCanvas(canvas, url, {
                             width: 200,
                             margin: 2,
@@ -365,7 +365,7 @@ renderAdminHeader('qr-manager');
                             }
                         });
                     }
-                    
+
                     // Start generation when page loads
                     window.addEventListener('load', generateQR);
 
