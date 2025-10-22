@@ -48,26 +48,6 @@ CREATE TABLE IF NOT EXISTS scan_logs (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- QR codes management table
-CREATE TABLE IF NOT EXISTS qr_codes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    station_id VARCHAR(50) NOT NULL,
-    qr_url TEXT NOT NULL,
-    verify_hash VARCHAR(64) NOT NULL UNIQUE,
-    qr_filename VARCHAR(255),
-    status ENUM('active', 'inactive', 'deleted') DEFAULT 'active',
-    created_by VARCHAR(100),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    expires_at TIMESTAMP NULL,
-    notes TEXT,
-    scan_count INT DEFAULT 0,
-    last_scan_at TIMESTAMP NULL,
-    INDEX idx_station_id (station_id),
-    INDEX idx_status (status),
-    INDEX idx_created_at (created_at)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 -- QR generation logs table
 CREATE TABLE IF NOT EXISTS qr_generation_logs (
     id INT AUTO_INCREMENT PRIMARY KEY,

@@ -1,0 +1,17 @@
+{
+    "name": "vpbank/halovpbank2025",
+    "description": "VPBank Solution Day Game - QR Code Management System",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "endroid/qr-code": "^4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "VPBank\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}

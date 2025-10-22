@@ -47,7 +47,8 @@ try {
 renderAdminHeader('qr-manager');
 ?>
 
-<!-- Use Google Charts API for QR code -->
+<!-- Load QRCode script from alternative CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <style>
     .card {
         background: #fff;
@@ -323,29 +324,65 @@ renderAdminHeader('qr-manager');
                             <button onclick="copyToClipboard('<?= htmlspecialchars($qrUrl) ?>')" class="btn btn-secondary">Copy URL</button>
                         </div>
                         <div class="qr-code">
-                            <img id="qrcode" src="" alt="QR Code" style="max-width: 200px; height: auto;">
+                            <canvas id="qrcode"></canvas>
                         </div>
                     </div>
                 </div>
 
                 <script>
-                    // Use Google Charts API for QR code
+                    // Simple approach - wait for script to load then generate
+                    let retryCount = 0;
+                    const maxRetries = 50; // 5 seconds max
+
                     function generateQR() {
-                        console.log('Generating QR using Google Charts API...');
+                        console.log('Starting QR generation...');
+                        console.log('qrcode available:', typeof qrcode !== 'undefined');
 
-                        const url = '<?= htmlspecialchars($qrUrl) ?>';
-                        const qrImage = document.getElementById('qrcode');
-
-                        if (!qrImage) {
-                            console.error('QR image element not found');
+                        if (typeof qrcode === 'undefined') {
+                            retryCount++;
+                            if (retryCount >= maxRetries) {
+                                console.error('qrcode library failed to load after', maxRetries * 100, 'ms');
+                                return;
+                            }
+                            console.log('qrcode not ready, retrying in 100ms... (attempt', retryCount, '/', maxRetries, ')');
+                            setTimeout(generateQR, 100);
                             return;
                         }
 
-                        // Use Google Charts QR API
-                        const googleQRUrl = 'https://chart.googleapis.com/chart?chs=200x200&chld=L|0&cht=qr&chl=' + encodeURIComponent(url);
-                        qrImage.src = googleQRUrl;
+                        const canvas = document.getElementById('qrcode');
+                        if (!canvas) {
+                            console.error('Canvas element not found');
+                            return;
+                        }
 
-                        console.log('QR code generated successfully using Google Charts!');
+                        const url = '<?= htmlspecialchars($qrUrl) ?>';
+                        console.log('Generating QR for URL:', url);
+
+                        // Use qrcode-generator library
+                        const qr = qrcode(0, 'M');
+                        qr.addData(url);
+                        qr.make();
+                        
+                        const ctx = canvas.getContext('2d');
+                        const size = 200;
+                        const cellSize = size / qr.getModuleCount();
+                        
+                        canvas.width = size;
+                        canvas.height = size;
+                        
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.fillRect(0, 0, size, size);
+                        
+                        ctx.fillStyle = '#000000';
+                        for (let row = 0; row < qr.getModuleCount(); row++) {
+                            for (let col = 0; col < qr.getModuleCount(); col++) {
+                                if (qr.isDark(row, col)) {
+                                    ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+                                }
+                            }
+                        }
+                        
+                        console.log('QR code generated successfully!');
                     }
 
                     // Start generation when page loads

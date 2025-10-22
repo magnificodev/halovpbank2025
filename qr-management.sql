@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS qr_codes (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Update scan_logs to reference qr_codes
-ALTER TABLE scan_logs
+ALTER TABLE scan_logs 
 ADD COLUMN qr_code_id INT NULL,
 ADD FOREIGN KEY (qr_code_id) REFERENCES qr_codes(id) ON DELETE SET NULL;
 
