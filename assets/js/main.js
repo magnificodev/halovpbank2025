@@ -159,62 +159,75 @@ class VPBankGame {
 
     validateRegistration(data) {
         let isValid = true;
-        let errorMessages = [];
+
+        // Clear all previous errors
+        this.clearFieldErrors();
 
         // Validate full name
         if (!data.full_name.trim()) {
-            errorMessages.push('Vui lòng nhập họ tên');
+            this.showFieldError('full_name', 'Vui lòng nhập họ tên');
             isValid = false;
         } else if (data.full_name.trim().length < 2) {
-            errorMessages.push('Họ tên phải có ít nhất 2 ký tự');
+            this.showFieldError('full_name', 'Họ tên phải có ít nhất 2 ký tự');
             isValid = false;
         }
 
         // Validate phone
         if (!data.phone.trim()) {
-            errorMessages.push('Vui lòng nhập số điện thoại');
+            this.showFieldError('phone', 'Vui lòng nhập số điện thoại');
             isValid = false;
         } else if (!data.phone.match(/^(\+84[0-9]{9}|[0-9]{10,11})$/)) {
-            errorMessages.push('Số điện thoại phải có 10-11 chữ số');
+            this.showFieldError('phone', 'Số điện thoại phải có 10-11 chữ số');
             isValid = false;
         } else if (!this.isValidVietnamesePhone(data.phone)) {
-            errorMessages.push('Số điện thoại không hợp lệ');
+            this.showFieldError('phone', 'Số điện thoại không hợp lệ');
             isValid = false;
         }
 
         // Validate email
         if (!data.email.trim()) {
-            errorMessages.push('Vui lòng nhập email');
+            this.showFieldError('email', 'Vui lòng nhập email');
             isValid = false;
         } else if (!data.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-            errorMessages.push('Email không hợp lệ');
+            this.showFieldError('email', 'Email không hợp lệ');
             isValid = false;
-        }
-
-        // Show alert if there are errors
-        if (!isValid && errorMessages.length > 0) {
-            alert(errorMessages.join('\n'));
         }
 
         console.log('Validation result:', isValid);
         return isValid;
     }
 
+    showFieldError(fieldName, message) {
+        const errorElement = document.getElementById(`${fieldName}_error`);
+        if (errorElement) {
+            errorElement.textContent = message;
+            errorElement.classList.add('show');
+        }
+    }
+
+    clearFieldErrors() {
+        const errorElements = document.querySelectorAll('.field-error');
+        errorElements.forEach(element => {
+            element.textContent = '';
+            element.classList.remove('show');
+        });
+    }
+
     isValidVietnamesePhone(phone) {
         // Remove any spaces or special characters
         let cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
-        
+
         // Handle international format (+84)
         if (cleanPhone.startsWith('+84')) {
             cleanPhone = '0' + cleanPhone.substring(3);
         }
-        
+
         // Vietnamese phone number patterns:
         // Mobile: 03x, 05x, 07x, 08x, 09x (10 digits)
         // Landline: 02x (10 digits) or 02xx (11 digits)
         const mobilePattern = /^(03[2-9]|05[6|8|9]|07[0|6|7|8|9]|08[1-6|8|9]|09[0-9])[0-9]{7}$/;
         const landlinePattern = /^(02[0-9])[0-9]{7,8}$/;
-        
+
         return mobilePattern.test(cleanPhone) || landlinePattern.test(cleanPhone);
     }
 
