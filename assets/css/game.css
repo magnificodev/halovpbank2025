@@ -619,42 +619,14 @@ body:not(.game-page) {
 }
 
 /* Scanner controls row */
-.scanner-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 10px;
-}
+/* .scanner-controls removed */
 
 /* Camera Switch Button */
-.camera-switch-btn {
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    font-size: 0; /* hide text node spacing */
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
+/* .camera-switch-btn removed */
 
-.camera-switch-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: scale(1.05);
-    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.3);
-}
+/* .camera-switch-btn:hover removed */
 
-.camera-switch-btn:active {
-    transform: scale(0.95);
-}
+/* .camera-switch-btn:active removed */
 
 /* Mobile Modal Adjustments */
 @media (max-width: 768px) {
@@ -687,6 +659,5 @@ body:not(.game-page) {
         border-radius: 12px;
     }
     
-    .scanner-controls { gap: 10px; }
-    .camera-switch-btn { width: 40px; height: 40px; }
+    /* camera switch controls removed for mobile as well */
 }

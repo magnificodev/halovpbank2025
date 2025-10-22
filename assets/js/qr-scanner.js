@@ -96,7 +96,6 @@ class QRScanner {
             );
 
             this.isScanning = true;
-            this.addCameraSwitchButton();
             console.log('QR Scanner started successfully');
         } catch (error) {
             console.error('Failed to start QR scanner:', error);
@@ -134,38 +133,7 @@ class QRScanner {
         }
     }
 
-    addCameraSwitchButton() {
-        const modalBody = document.querySelector('#qrScannerModal .modal-body');
-        if (!modalBody) return;
-
-        // Ensure a controls row exists
-        let controls = modalBody.querySelector('.scanner-controls');
-        if (!controls) {
-            controls = document.createElement('div');
-            controls.className = 'scanner-controls';
-            // Insert controls after qr-reader if present, else append at end
-            const qrReaderEl = modalBody.querySelector('#qr-reader');
-            if (qrReaderEl && qrReaderEl.parentNode) {
-                qrReaderEl.parentNode.insertBefore(controls, qrReaderEl.nextSibling);
-            } else {
-                modalBody.appendChild(controls);
-            }
-        }
-
-        // Check if button already exists
-        if (controls.querySelector('.camera-switch-btn')) return;
-
-        const switchButton = document.createElement('button');
-        switchButton.className = 'camera-switch-btn';
-        // Professional inline SVG icon (camera rotate)
-        switchButton.innerHTML = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 6a6 6 0 016 6h2a8 8 0 10-2.343 5.657l-1.414-1.414A6 6 0 1112 6z" fill="currentColor"/><path d="M16 3h5v5h-2V6.414l-2.293 2.293-1.414-1.414L17.586 5H16V3z" fill="currentColor"/></svg>';
-        switchButton.title = 'Xoay camera';
-        switchButton.type = 'button';
-        switchButton.addEventListener('click', () => this.switchCamera());
-
-        controls.appendChild(switchButton);
-        console.log('Camera switch button added to controls, available cameras:', this.availableCameras.length);
-    }
+    // Camera switch button removed per latest requirement
 
     async switchCamera() {
         if (this.availableCameras.length <= 1) {
