@@ -104,7 +104,6 @@ body:not(.game-page) {
     position: relative;
 }
 
-
 .form-group > label {
     font-family: 'Gilroy Bold', 'Segoe UI', sans-serif;
     font-size: 20px;
@@ -140,7 +139,6 @@ body:not(.game-page) {
     border-radius: 25px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-
 
 /* Autofill Fix - Maintain gradient border */
 .form-group .input:-webkit-autofill,
@@ -188,8 +186,9 @@ body:not(.game-page) {
 }
 
 .instructions p {
-    font-size: 18px;
-    line-height: 1.6;
+    font-family: 'Gilroy Bold', 'Segoe UI', sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
     color: #ffffff;
     margin: 0;
     font-weight: 600;
@@ -219,13 +218,12 @@ body:not(.game-page) {
 }
 
 .station-item::before {
-    content: "";
+    content: '';
     width: 56px;
     height: 56px;
     min-width: 56px;
     border-radius: 50%;
-    background:
-        radial-gradient(closest-side, rgba(0,0,0,0) 70%, rgba(0,0,0,0) 72%),
+    background: radial-gradient(closest-side, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0) 72%),
         conic-gradient(from 0deg, #00ff95, #85ff3b, #00e06d, #00ff95);
     box-shadow: 0 0 12px rgba(0, 255, 149, 0.8), 0 0 24px rgba(0, 255, 149, 0.4) inset;
 }
@@ -234,9 +232,23 @@ body:not(.game-page) {
     flex: 1;
 }
 
-.station-name { font-size: 20px; font-weight: 800; color: #ffffff; letter-spacing: 0.2px; margin: 0 0 6px 0; }
-.station-description { font-size: 18px; color: rgba(255, 255, 255, 0.9); margin: 0; font-weight: 500; line-height: 1.4; }
-.station-status { display: none; }
+.station-name {
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.2px;
+    margin: 0 0 6px 0;
+}
+.station-description {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    font-weight: 500;
+    line-height: 1.4;
+}
+.station-status {
+    display: none;
+}
 
 /* Action Buttons */
 .action-buttons {
@@ -266,7 +278,7 @@ body:not(.game-page) {
     justify-content: space-between;
     padding: 15px;
     margin: 10px 0;
-    background: rgba(255, 255, 255, 0.0);
+    background: rgba(255, 255, 255, 0);
     border-radius: 10px;
     backdrop-filter: none;
 }
@@ -281,7 +293,7 @@ body:not(.game-page) {
     width: 40px;
     height: 40px;
     margin-right: 15px;
-    background: rgba(255, 255, 255, 0.0);
+    background: rgba(255, 255, 255, 0);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -309,13 +321,13 @@ body:not(.game-page) {
 }
 
 .status-pending {
-    background: rgba(255, 193, 7, 0.0);
+    background: rgba(255, 193, 7, 0);
     color: #ffc107;
     border: 0;
 }
 
 .status-completed {
-    background: rgba(40, 167, 69, 0.0);
+    background: rgba(40, 167, 69, 0);
     color: #28a745;
     border: 0;
 }
@@ -332,7 +344,7 @@ body:not(.game-page) {
     text-transform: uppercase;
     letter-spacing: 1px;
     width: 260px;
-    box-shadow: 0 10px 30px rgba(0, 230, 118, 0.35), inset 0 2px 0 rgba(255,255,255,0.2);
+    box-shadow: 0 10px 30px rgba(0, 230, 118, 0.35), inset 0 2px 0 rgba(255, 255, 255, 0.2);
 }
 
 .scan-button:hover {
@@ -623,26 +635,26 @@ body:not(.game-page) {
         width: 100vw;
         height: 100vh;
     }
-    
+
     .modal-content {
         width: 90%;
         margin: 8% auto;
         max-width: none;
         border-radius: 18px;
     }
-    
+
     .modal-header {
         padding: 12px 15px;
     }
-    
+
     .modal-body {
         padding: 12px 15px 18px;
     }
-    
+
     #qr-reader {
         max-width: 100%;
         border-radius: 12px;
     }
-    
+
     /* camera switch controls removed for mobile as well */
 }
