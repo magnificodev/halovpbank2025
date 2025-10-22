@@ -268,42 +268,12 @@ renderAdminHeader('qr-codes');
 </style>
 
 <script>
-let currentQRUrl = '';
+document.addEventListener('DOMContentLoaded', function() {
+    let currentQRUrl = '';
 
-function showCreateModal() {
-    document.getElementById('createModal').style.display = 'block';
-}
+    // Functions moved to global scope for onclick attributes
 
-function hideCreateModal() {
-    document.getElementById('createModal').style.display = 'none';
-    document.getElementById('createForm').reset();
-}
-
-function showQRModal(qrUrl) {
-    currentQRUrl = qrUrl;
-    document.getElementById('qrModalImage').src = '../api/qr-png.php?data=' + encodeURIComponent(qrUrl) + '&size=300';
-    document.getElementById('qrModal').style.display = 'block';
-}
-
-function hideQRModal() {
-    document.getElementById('qrModal').style.display = 'none';
-    currentQRUrl = '';
-}
-
-function downloadQR(qrUrl) {
-    const link = document.createElement('a');
-    link.href = '../api/qr-png.php?data=' + encodeURIComponent(qrUrl) + '&size=400';
-    link.download = 'qr-code.png';
-    link.click();
-}
-
-function downloadCurrentQR() {
-    if (currentQRUrl) {
-        downloadQR(currentQRUrl);
-    }
-}
-
-document.getElementById('createForm').addEventListener('submit', async function(e) {
+    document.getElementById('createForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     
     const stationId = document.getElementById('stationSelect').value;
@@ -384,6 +354,26 @@ window.onclick = function(event) {
     if (event.target === qrModal) {
         hideQRModal();
     }
+}
+}); // End DOMContentLoaded
+
+// Global functions for onclick attributes
+function showCreateModal() {
+    document.getElementById('createModal').style.display = 'block';
+}
+
+function hideCreateModal() {
+    document.getElementById('createModal').style.display = 'none';
+    document.getElementById('createForm').reset();
+}
+
+function showQRModal(qrUrl) {
+    document.getElementById('qrModalImage').src = '../api/qr-png.php?data=' + encodeURIComponent(qrUrl) + '&size=300';
+    document.getElementById('qrModal').style.display = 'block';
+}
+
+function hideQRModal() {
+    document.getElementById('qrModal').style.display = 'none';
 }
 </script>
 
